@@ -2,6 +2,7 @@ import { Inter, Fira_Code } from 'next/font/google';
 import { ThemeProvider } from '@/context/ThemeContext';  // Use your custom provider
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+//import '@/styles/globals.css';
 import './globals.css';
 
 const inter = Inter({
