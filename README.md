@@ -1,10 +1,10 @@
 # Edwin Ogola Portfolio Website
 
-This is a modern, responsive portfolio website showcasing my work as a Full Stack Software Engineer focused on East African markets/global too.
+Welcome to my professional portfolio website! I’m Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world, designed to connect with potential employers and clients.
 
 ![Portfolio Screenshot](/public/images/portfolio-screenshot.png)
 
-## 🚀 Features
+## 🌟  Features
 
 - **Responsive Design**: Optimized for all devices, with special attention to mobile (critical for East African markets)
 - **Dark/Light Mode**: Toggle between themes for comfortable viewing
@@ -105,7 +105,7 @@ portfolio-website/
 1. Create a new Markdown file in `/src/content/blog/`
 2. Include frontmatter with title, date, excerpt, and featured image
 
-## 🌐 Deployment
+## 🌐 Deployment🌍
 
 This site is optimized for deployment on Vercel:
 
@@ -115,7 +115,7 @@ npm run build
 vercel deploy
 ```
 
-## 📧 Contact
+## 📧 Contact📞
 
 Edwin Ogola - [hello@edwinogola.com](mailto:hello@edwinogola.com)
 
@@ -124,3 +124,10 @@ Website: [edwinogola.com](https://edwinogola.com)
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with ❤️ for the East African tech community.
+- Inspired by modern portfolio designs and Next.js best practices.
+
+Let’s build something amazing together!
