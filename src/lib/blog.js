@@ -1,3 +1,7 @@
+/**
+ * Blog data for Edwin Ogola's portfolio
+ * Contains articles, tutorials, and case studies
+ */
 export const blogPosts = [
     {
       id: '1',
