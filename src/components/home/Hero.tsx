@@ -25,6 +25,13 @@ import {
   SiKubernetes,
   SiGit,
 } from 'react-icons/si';
+import {
+  FaUserSecret,
+  FaBug,
+  FaLock,
+  FaShieldAlt,
+  FaLaptopCode,
+} from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
 
@@ -51,6 +58,12 @@ const iconData = [
   { icon: SiGraphql, title: 'GraphQL', proficiency: 85, color: 'text-pink-500 dark:text-pink-300 hover:text-pink-600 dark:hover:text-pink-200' },
   { icon: SiKubernetes, title: 'Kubernetes', proficiency: 70, color: 'text-blue-400 dark:text-blue-200 hover:text-blue-500 dark:hover:text-blue-100' },
   { icon: SiGit, title: 'Git', proficiency: 90, color: 'text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300' },
+  { icon: FaUserSecret, title: 'Ethical Hacking', proficiency: 70, color: 'text-red-500 dark:text-red-300 hover:text-red-600 dark:hover:text-red-200' },
+  { icon: FaShieldAlt, title: 'Cybersecurity', proficiency: 75, color: 'text-indigo-500 dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200' },
+  { icon: FaBug, title: 'Vulnerability Scanning', proficiency: 65, color: 'text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300' },
+  { icon: FaLock, title: 'Network Security', proficiency: 70, color: 'text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200' },
+  { icon: FaLaptopCode, title: 'Technical Writing', proficiency: 85, color: 'text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300' },
+
 ];
 
 // Actual client logos - Replace these with your actual client information
