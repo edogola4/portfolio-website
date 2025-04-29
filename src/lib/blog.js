@@ -517,6 +517,111 @@ This solution addresses one of the most overlooked barriers to digital adoption 
     authorName: 'Edwin Ogola',
     authorAvatar: '/images/edwin-avatar.webp',
     popularity: 96
+  },
+  {
+    id: '6',
+    title: 'Web Application Enumeration with Gobuster and Curl',
+    slug: 'web-application-enumeration-gobuster-curl',
+    excerpt: 'In this tutorial, I recount using Gobuster and curl to enumerate a university web portal. Along the way I uncovered a hidden backup config file, learned how to filter out false positives, and verified that no sensitive data was exposed.',
+    featuredImage: '/images/blog/gobuster-enum.webp',
+    content: `# Web Application Enumeration with Gobuster and Curl
+
+## Introduction
+
+In a recent security assessment of a public university's web portal, I set out to enumerate hidden directories and ensure no leftover sensitive files were exposed. Using Gobuster (a directory/file brute-forcing tool) along with curl, I scanned the site for common paths and backup files. This post is a step-by-step walkthrough of that process: from installing Gobuster on macOS and using SecLists wordlists, to discovering a config.bak file and confirming its contents. Throughout, I highlight important lessons like filtering out false positives and practicing responsible disclosure. (As always, I performed these scans with explicit permission and caution.)
+
+## Tools and Setup
+
+I used a MacBook for this exercise. First, I installed Gobuster via Homebrew:
+
+\`\`\`bash
+brew install gobuster
+\`\`\`
+
+This fetches the latest Gobuster binary on macOS. Next, I needed wordlists for directory enumeration. I used the SecLists collection (by Daniel Miessler), which contains many useful lists for web content discovery. SecLists can also be installed via Homebrew:
+
+\`\`\`bash
+brew install seclists
+\`\`\`
+
+If not using Homebrew, you can clone it directly from GitHub:
+
+\`\`\`bash
+git clone https://github.com/danielmiessler/SecLists.git
+\`\`\`
+
+On my machine, the SecLists wordlists were located under /usr/local/share/wordlists/seclists/Discovery/Web-Content/. For example, I used common.txt from that directory. Finally, I used the built-in curl (no install needed) to fetch any discovered files for inspection.
+
+## Running Gobuster Scans
+
+With tools ready, I began the directory scan. First, I ran Gobuster without any file extensions:
+
+\`\`\`bash
+gobuster dir -u http://target.university.example -w /usr/local/share/wordlists/seclists/Discovery/Web-Content/common.txt -o gobuster_noext.txt
+\`\`\`
+
+This command brute-forces common directory names from common.txt against the target URL. The -o option saves the output. The initial scan quickly revealed several directories (for example, /assets/ and /backup/), but most importantly it flagged a file /config.bak with status 200 (OK). This indicated that a backup configuration file was accessible on the server.
+
+Next, I ran Gobuster including common file extensions, to catch files like .php, .html, and .bak. For example:
+
+\`\`\`bash
+gobuster dir -u http://target.university.example -w /usr/local/share/wordlists/seclists/Discovery/Web-Content/common.txt -x php,html,txt,bak -o gobuster_ext.txt
+\`\`\`
+
+The -x flag tells Gobuster to append each word with the given extensions. This scan again listed /config.bak (as well as /config.php if it existed). Comparing both scans confirmed the config.bak result: the file was present and returned a 200 status on the server.
+
+## Dealing with False Positives
+
+During these scans, I noticed some outputs that looked suspicious. For instance, Gobuster showed many entries with HTTP 301/302 or even 200 status for paths I knew should not exist. Some web servers return a fake 404 page with status 200, or redirect all unknown paths, causing Gobuster to mark everything as "found".
+
+To filter out these false positives, I used the -s (status) flag to only display relevant codes. For example:
+
+\`\`\`bash
+gobuster dir -u http://target.university.example -w /usr/local/share/wordlists/seclists/Discovery/Web-Content/common.txt -s 200,301,302
+\`\`\`
+
+This tells Gobuster to only show items with status 200, 301, or 302, excluding 404s and other noise. After adjusting status codes, the results were cleaner. Importantly, /config.bak (Status: 200) still appeared, confirming it was a real resource. Filtering out irrelevant codes helped me focus only on actual files and directories.
+
+## Downloading and Inspecting the Backup File
+
+With /config.bak identified, I used curl to download it for inspection. The command was simple:
+
+\`\`\`bash
+curl -O http://target.university.example/config.bak
+\`\`\`
+
+The -O option saves the file with its original name (config.bak). After downloading, I opened the file in a text editor (or used cat) to check its contents. For example, the config file contained lines like:
+
+\`\`\`
+DB_HOST=127.0.0.1
+DB_USER=appuser
+DB_PASSWORD=
+\`\`\`
+
+The password field was empty. I searched for keywords like PASSWORD and found no actual credentials or API keys. In this case, the backup file held only generic placeholders or defaults. This verification step confirmed that no sensitive data (usernames, passwords, secrets) was exposed. (Had there been real credentials, the ethical action would be to stop here and report immediately.)
+
+Overall, this inspection reassured me that even though a backup file was publicly accessible, it did not contain critical secrets.
+
+## Conclusion and Recommendations
+
+In summary, using Gobuster with SecLists wordlists allowed us to enumerate hidden paths on the university portal efficiently. We discovered a leftover config.bak file, retrieved it with curl, and verified its contents. Importantly, by filtering status codes we reduced false positives and focused on genuine findings.
+
+Based on this case study, I recommend the following responsible security practices:
+
+1. Remove or secure backup files. Delete any unnecessary *.bak, *.old, or backup config files from the web server. If needed, store them outside the public web root.
+2. Serve proper HTTP errors. Configure the server so that missing pages return a true 404, not a 200 or redirect, to prevent confusion during scans.
+3. Use up-to-date wordlists. Keep tools like SecLists updated to cover a wide range of directory and file names.
+4. Scan ethically: Only run enumeration tools on systems you have permission to test. If you find anything sensitive, report it through the proper channels rather than exploiting or publicizing it.
+5. Communicate findings: I shared my results with the university's IT/security team so they could remove the exposed file and review their web app configuration.
+
+By following these steps, we ensure thorough web application reconnaissance while maintaining professional and ethical standards.`,
+    category: 'Tutorial',
+    tags: ['Gobuster', 'Web Security', 'Enumeration', 'Backup Files', 'East Africa'],
+    publishedDate: '2025-04-29',
+    readTime: '7 min read',
+    authorName: 'Edwin Ogola',
+    authorAvatar: '/images/edwin-avatar.webp',
+    popularity: 90
   }
 ];
 
@@ -591,7 +696,7 @@ export function getPostBySlug(slug) {
   return blogPosts.find(post => post.slug === slug);
 }
 
-// ✅ Function to get reading time estimate
+// ✅ Function to calculate reading time estimate
 export function calculateReadingTime(content) {
   const wordsPerMinute = 200;
   const words = content.split(/\s+/).length;
