@@ -24,6 +24,9 @@ import {
   SiGraphql,
   SiKubernetes,
   SiGit,
+  SiJavascript,
+  SiMysql,
+  SiExpress
 } from 'react-icons/si';
 import {
   FaUserSecret,
@@ -63,7 +66,24 @@ const iconData = [
   { icon: FaBug, title: 'Vulnerability Scanning', proficiency: 65, color: 'text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300' },
   { icon: FaLock, title: 'Network Security', proficiency: 70, color: 'text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200' },
   { icon: FaLaptopCode, title: 'Technical Writing', proficiency: 85, color: 'text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300' },
-
+  {
+    icon: SiJavascript,
+    title: 'JavaScript',
+    proficiency: 90,
+    color: 'text-yellow-400 dark:text-yellow-300 hover:text-yellow-500 dark:hover:text-yellow-200',
+  },
+  {
+    icon: SiMysql,
+    title: 'MySQL',
+    proficiency: 75,
+    color: 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300',
+  },
+  {
+    icon: SiExpress,
+    title: 'Express',
+    proficiency: 80,
+    color: 'text-gray-700 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200',
+  },
 ];
 
 // Actual client logos - Replace these with your actual client information
@@ -190,6 +210,7 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const particlesInitialized = useRef(false);
+  const particlesContainerRef = useRef(null);
 
   // Array of testimonials
   const testimonials = [
@@ -257,8 +278,8 @@ const Hero = () => {
     };
   }, []);
 
-  // Check for reduced motion preference
-  useEffect(() => {
+   // Check for reduced motion preference
+   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -270,7 +291,7 @@ const Hero = () => {
   // Initialize particles - but make sure they're contained to the Hero section
   useEffect(() => {
     // Function to initialize particles - prevents duplicate initialization
-    const initializeParticles = () => {
+    const initializeParticles = async () => {
       if (particlesInitialized.current || prefersReducedMotion ||
         typeof window === 'undefined' || !window.tsParticles) {
         return;
@@ -279,43 +300,48 @@ const Hero = () => {
       const heroParticlesContainer = document.getElementById("hero-particles");
       if (!heroParticlesContainer) return;
 
-      window.tsParticles.load("hero-particles", {
-        fpsLimit: 60,
-        fullScreen: {
-          enable: false, // IMPORTANT: This ensures particles are not fullscreen
-          zIndex: 0
-        },
-        particles: {
-          number: { value: 30, density: { enable: true, value_area: 1500 } },
-          color: { value: "#2e86de" },
-          shape: { type: "triangle", stroke: { width: 0 } },
-          opacity: { value: 0.3, random: true },
-          size: { value: 6, random: true },
-          move: {
-            enable: true,
-            speed: 1.5,
-            random: true,
-            outMode: "bounce", // Changed from "out" to "bounce" to keep particles within container
-            direction: "none",
-            attract: { enable: false }
-          }
-        },
-        interactivity: {
-          detectsOn: "canvas",
-          events: {
-            onHover: { enable: true, mode: "bubble" },
-            onClick: { enable: false },
-            resize: true
+      try {
+        // Store the container reference for cleanup
+        particlesContainerRef.current = await window.tsParticles.load("hero-particles", {
+          fpsLimit: 60,
+          fullScreen: {
+            enable: false, // IMPORTANT: This ensures particles are not fullscreen
+            zIndex: 0
           },
-          modes: {
-            bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
-          }
-        },
-        retina_detect: true,
-        pauseOnBlur: true
-      });
+          particles: {
+            number: { value: 30, density: { enable: true, value_area: 1500 } },
+            color: { value: "#2e86de" },
+            shape: { type: "triangle", stroke: { width: 0 } },
+            opacity: { value: 0.3, random: true },
+            size: { value: 6, random: true },
+            move: {
+              enable: true,
+              speed: 1.5,
+              random: true,
+              outMode: "bounce", // Changed from "out" to "bounce" to keep particles within container
+              direction: "none",
+              attract: { enable: false }
+            }
+          },
+          interactivity: {
+            detectsOn: "canvas",
+            events: {
+              onHover: { enable: true, mode: "bubble" },
+              onClick: { enable: false },
+              resize: true
+            },
+            modes: {
+              bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
+            }
+          },
+          retina_detect: true,
+          pauseOnBlur: true
+        });
 
-      particlesInitialized.current = true;
+        particlesInitialized.current = true;
+      } catch (error) {
+        console.error("Failed to initialize particles:", error);
+      }
     };
 
     // Attempt to initialize immediately if script is already loaded
@@ -325,9 +351,13 @@ const Hero = () => {
 
     return () => {
       // Clean up particles when component unmounts
-      if (window.tsParticles && particlesInitialized.current) {
-        window.tsParticles.destroy("hero-particles");
-        particlesInitialized.current = false;
+      if (particlesContainerRef.current && particlesInitialized.current) {
+        try {
+          particlesContainerRef.current.destroy();
+          particlesInitialized.current = false;
+        } catch (error) {
+          console.error("Failed to destroy particles:", error);
+        }
       }
     };
   }, [prefersReducedMotion]);
@@ -335,46 +365,53 @@ const Hero = () => {
   // Handle script load event
   const handleTsParticlesLoad = () => {
     if (typeof window !== 'undefined' && window.tsParticles && !particlesInitialized.current && !prefersReducedMotion) {
-      window.tsParticles.load("hero-particles", {
-        fpsLimit: 60,
-        fullScreen: {
-          enable: false, // IMPORTANT: Ensures particles stay within container
-          zIndex: 0
-        },
-        particles: {
-          number: { value: 30, density: { enable: true, value_area: 1500 } },
-          color: { value: "#2e86de" },
-          shape: { type: "triangle", stroke: { width: 0 } },
-          opacity: { value: 0.3, random: true },
-          size: { value: 6, random: true },
-          move: {
-            enable: true,
-            speed: 1.5,
-            random: true,
-            outMode: "bounce", // Changed to keep particles within container
-            direction: "none",
-            attract: { enable: false }
-          }
-        },
-        interactivity: {
-          detectsOn: "canvas",
-          events: {
-            onHover: { enable: true, mode: "bubble" },
-            onClick: { enable: false },
-            resize: true
-          },
-          modes: {
-            bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
-          }
-        },
-        retina_detect: true,
-        pauseOnBlur: true
-      });
-
-      particlesInitialized.current = true;
+      const initializeParticles = async () => {
+        try {
+          particlesContainerRef.current = await window.tsParticles.load("hero-particles", {
+            fpsLimit: 60,
+            fullScreen: {
+              enable: false, // IMPORTANT: Ensures particles stay within container
+              zIndex: 0
+            },
+            particles: {
+              number: { value: 30, density: { enable: true, value_area: 1500 } },
+              color: { value: "#2e86de" },
+              shape: { type: "triangle", stroke: { width: 0 } },
+              opacity: { value: 0.3, random: true },
+              size: { value: 6, random: true },
+              move: {
+                enable: true,
+                speed: 1.5,
+                random: true,
+                outMode: "bounce", // Changed to keep particles within container
+                direction: "none",
+                attract: { enable: false }
+              }
+            },
+            interactivity: {
+              detectsOn: "canvas",
+              events: {
+                onHover: { enable: true, mode: "bubble" },
+                onClick: { enable: false },
+                resize: true
+              },
+              modes: {
+                bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
+              }
+            },
+            retina_detect: true,
+            pauseOnBlur: true
+          });
+  
+          particlesInitialized.current = true;
+        } catch (error) {
+          console.error("Failed to initialize particles:", error);
+        }
+      };
+      
+      initializeParticles();
     }
   };
-
   // Cycle through testimonials
   useEffect(() => {
     const interval = setInterval(() => {
