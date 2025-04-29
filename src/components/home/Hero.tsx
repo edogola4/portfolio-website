@@ -217,7 +217,11 @@ const Hero = () => {
           'Full Stack Software Engineer',
           'NLP Specialist',
           'AI | Machine Learning Student',
-          'AWS Cloud Architect'
+          'AWS Cloud Architect',
+          'Cybersecurity Enthusiast',
+          'Ethical Hacking Explorer',
+          'Technical Writer & Educator',
+          'Web Application Security Analyst'
         ],
         typeSpeed: 60,
         backSpeed: 40,
