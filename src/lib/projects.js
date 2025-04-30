@@ -10,194 +10,153 @@ export const projects = [
     id: 'e-commerce-platform',
     title: 'E-Commerce Platform',
     slug: 'e-commerce-platform',
-    description: 'A comprehensive e-commerce solution tailored for East African markets with M-Pesa integration, offline capabilities, and multilingual support.',
-    longDescription: `This platform was developed to address the unique challenges of e-commerce in East Africa, 
-    including intermittent connectivity, diverse payment preferences, and language diversity. Features include:
+    description: 'A full-featured e-commerce platform built for East African markets with M-Pesa integration, multilingual support, and offline capabilities.',
+    longDescription: `This project addressed the unique challenges of e-commerce in East Africa, including intermittent connectivity and diverse payment preferences. The platform features:
 
-- M-Pesa integration for seamless mobile payments
-- Offline-first experience using Progressive Web App (PWA) technology
-- Multilingual support (English and Swahili)
-- Product catalog management and inventory tracking
-- Vendor onboarding and management system
-- Low-bandwidth image optimization and caching`,
-    imageUrl: '/images/projects/ecommerce.jpg',
-    images: [
-      '/images/projects/ecommerce-home.jpg',
-      '/images/projects/ecommerce-product.jpg',
-      '/images/projects/ecommerce-checkout.jpg'
-    ],
-    technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Redis', 'Tailwind CSS', 'Redux', 'PWA', 'M-Pesa API'],
+- Complete M-Pesa integration for seamless mobile payments
+- Offline browsing with Progressive Web App technology
+- Multilingual support (English, Swahili)
+- Vendor management system for marketplace functionality
+- Location-based delivery estimation
+- Low-bandwidth image optimization`,
+    technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Redis', 'Tailwind CSS'],
     category: 'Full Stack',
     featured: true,
+    imageUrl: '/images/projects/ecommerce.jpg',
     demoUrl: 'https://ecommerce-demo.edwinogola.dev',
     githubUrl: 'https://github.com/edwinogola/ecommerce-platform',
-    completedAt: '2024-03-15',
-    challenges: [
-      "Implementing reliable payment processing with intermittent network connectivity",
-      "Optimizing image loading for low-bandwidth environments",
-      "Building a vendor onboarding system for non-technical users"
-    ],
-    solutions: [
-      "Built a robust transaction verification and queuing system",
-      "Implemented progressive image loading with local storage",
-      "Created step-by-step onboarding with tooltips and tutorials"
-    ],
     testimonial: {
       text: "Edwin's platform perfectly addressed our need to reach customers across Kenya, regardless of their device or connectivity situation.",
       author: "Jane Muthoni, CEO of Local Goods Kenya"
-    }
+    },
+    challenges: [
+      "Implementing reliable payment processing that works with intermittent connectivity",
+      "Optimizing image loading for low-bandwidth environments",
+      "Building a vendor onboarding system that's accessible to non-technical users"
+    ],
+    solutions: [
+      "Created a transaction queueing system that processes payments when connectivity is restored",
+      "Implemented progressive image loading and local caching strategies",
+      "Designed an intuitive, step-by-step onboarding process with comprehensive tutorials"
+    ]
   },
   {
     id: 'health-tracking-app',
     title: 'Community Health Tracking App',
     slug: 'health-tracking-app',
     description: 'Mobile-first health monitoring application for community health workers to track patient data in remote areas with limited connectivity.',
-    longDescription: `This application helps community health workers collect and manage health data in rural areas. 
-It works offline, syncs when connectivity is available, and provides real-time analytics. Features include:
+    longDescription: `Developed for a Kenyan NGO, this progressive web application enables community health workers to:
 
-- Recording patient data during home visits
-- Sync and conflict resolution for offline data
-- SMS alerts for critical situations
-- Follow-up visit scheduling
-- Role-based access and encryption
-- Community trend analytics`,
-    imageUrl: '/images/projects/health-app.jpg',
-    images: [
-      '/images/projects/health-dashboard.jpg',
-      '/images/projects/health-tracking.jpg',
-      '/images/projects/health-reports.jpg'
-    ],
-    technologies: ['React Native', 'Firebase', 'Node.js', 'Express.js', 'SQLite', 'Chart.js'],
+- Record patient data during home visits without internet access
+- Sync information when connectivity is available
+- Generate health trend reports for communities
+- Send SMS alerts for critical health situations
+- Schedule follow-up visits and track outreach metrics`,
+    technologies: ['React Native', 'Firebase', 'Express.js', 'SQLite', 'Chart.js'],
     category: 'Mobile',
     featured: true,
+    imageUrl: '/images/projects/health-app.jpg',
     demoUrl: 'https://health-demo.edwinogola.dev',
     githubUrl: 'https://github.com/edwinogola/community-health-tracker',
-    completedAt: '2023-11-20',
     challenges: [
-      "Ensuring reliable performance in low-connectivity areas",
-      "Maintaining data privacy while enabling collaboration",
-      "Designing intuitive UI for varying technical literacy levels"
+      "Creating a robust offline-first data architecture",
+      "Ensuring patient data privacy while enabling necessary sharing between health workers",
+      "Building intuitive interfaces for users with varying levels of technical expertise"
     ],
     solutions: [
-      "Built local-first data model with smart syncing",
-      "Encrypted sensitive data and used role-based access control",
-      "Conducted user testing with health workers to refine usability"
-    ],
-    testimonial: {
-      text: "The health tracking app has transformed how we collect data in the field. The offline capabilities are perfect for our needs.",
-      author: "Dr. Michael Ochieng, Health Program Director"
-    }
+      "Implemented local-first data with intelligent conflict resolution during syncing",
+      "Developed a role-based access control system with encrypted data storage",
+      "Conducted extensive user testing with actual community health workers to refine the UX"
+    ]
   },
   {
-    id: 'agricultural-management-system',
+    id: 'agricultural-marketplace',
     title: 'Agricultural Marketplace',
     slug: 'agricultural-marketplace',
-    description: 'Platform connecting small-scale farmers directly with buyers, featuring crop tracking, price updates, logistics, and SMS alerts.',
-    longDescription: `This system helps farmers optimize production and sales through:
+    description: 'Platform connecting small-scale farmers directly with buyers, featuring real-time price tracking, logistics coordination, and SMS notifications.',
+    longDescription: `This marketplace addresses key challenges in the East African agricultural supply chain:
 
-- Market price tracking and buyer connections
-- Weather forecasts and crop management
-- Real-time logistics coordination
-- SMS notifications for non-smartphone users
-- Voice prompts and icon-driven navigation`,
-    imageUrl: '/images/projects/agri-marketplace.jpg',
-    images: [
-      '/images/projects/agri-dashboard.jpg',
-      '/images/projects/agri-market.jpg',
-      '/images/projects/agri-weather.jpg'
-    ],
-    technologies: ['Vue.js', 'React', 'Django', 'Node.js', 'PostgreSQL', 'Twilio API', 'Weather API', 'Redis', 'Docker', 'Tailwind CSS'],
+- Eliminating middlemen to increase farmer profits
+- Providing market price transparency
+- Coordinating transportation logistics
+- Supporting both web and SMS-based interactions for farmers with feature phones
+- Implementing quality verification workflows`,
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'Twilio API', 'Tailwind CSS'],
     category: 'Full Stack',
     featured: true,
-    demoUrl: 'https://agri-demo.edwinogola.com',
-    githubUrl: 'https://github.com/edwinogola/agricultural-system',
-    completedAt: '2024-01-10',
+    imageUrl: '/images/projects/agri-marketplace.jpg',
+    demoUrl: 'https://agri-demo.edwinogola.dev',
+    githubUrl: 'https://github.com/edwinogola/agricultural-marketplace',
+    testimonial: {
+      text: "This platform has increased our members' income by over 30% by connecting us directly with buyers and giving us real-time price information.",
+      author: "John Kamau, Nyeri Farmers Cooperative"
+    },
     challenges: [
-      "Designing for users with minimal literacy and tech experience",
-      "Providing real-time insights over unstable networks",
-      "Ensuring equitable access via SMS"
+      "Building interfaces that work for both smartphone and feature phone users",
+      "Creating a fair pricing system with transparency for all parties",
+      "Coordinating complex logistics across rural areas"
     ],
     solutions: [
-      "Used iconography and voice UI for navigation",
-      "Implemented SMS updates and low-data UI",
-      "Tested with real farmers to validate usability"
-    ],
-    testimonial: {
-      text: "This system has changed how I farm. I now know when to plant, harvest, and where to sell for the best prices.",
-      author: "John Kamau, Farmer"
-    }
+      "Developed a dual interface system with SMS fallback for all critical functions",
+      "Implemented a blockchain-based price verification system",
+      "Created an optimized route-planning algorithm for rural deliveries"
+    ]
   },
   {
-    id: 'fintech-solution',
-    title: 'Microfinance Platform',
-    slug: 'microfinance-platform',
-    description: 'A digital microfinance solution offering microloans and mobile repayments for underserved entrepreneurs.',
-    longDescription: `Built to increase financial inclusion in East Africa, this platform includes:
+    id: 'education-platform',
+    title: 'E-Learning Platform',
+    slug: 'education-platform',
+    description: 'Accessible e-learning system designed for low-bandwidth environments with downloadable content, peer-to-peer sharing, and offline assessment capabilities.',
+    longDescription: `This educational platform was designed specifically for East African schools with limited internet infrastructure:
 
-- Alternative credit scoring using non-traditional data
-- Loan application and approval workflows
-- M-Pesa-based disbursements and repayments
-- Analytics dashboard for financial institutions
-- Secure multi-factor authentication for feature phones`,
-    imageUrl: '/images/projects/fintech.jpg',
-    images: [
-      '/images/projects/fintech-dashboard.jpg',
-      '/images/projects/fintech-application.jpg',
-      '/images/projects/fintech-analytics.jpg'
-    ],
-    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Express', 'AWS', 'M-Pesa API'],
-    category: 'FinTech',
-    featured: true,
-    demoUrl: 'https://fintech-demo.edwinogola.com',
-    githubUrl: 'https://github.com/edwinogola/microfinance-platform',
-    completedAt: '2023-09-05',
+- Content preloading when connectivity is available
+- Peer-to-peer content sharing via Bluetooth
+- Offline video lessons with interactive elements
+- Progress tracking that syncs when online
+- Teacher dashboard for monitoring student engagement
+- Gamification elements to increase student motivation`,
+    technologies: ['Vue.js', 'Nuxt.js', 'Node.js', 'MongoDB', 'IndexedDB', 'WebRTC'],
+    category: 'Web Application',
+    featured: false,
+    imageUrl: '/images/projects/education-platform.jpg',
+    demoUrl: 'https://edu-demo.edwinogola.dev',
+    githubUrl: 'https://github.com/edwinogola/education-platform',
     challenges: [
-      "Developing secure login for users without smartphones",
-      "Calculating credit scores using limited financial history",
-      "Preventing loan fraud and abuse"
+      "Delivering video content in low-bandwidth environments",
+      "Creating assessment tools that work reliably offline",
+      "Implementing secure peer-to-peer content sharing"
     ],
     solutions: [
-      "Built USSD-compatible multi-factor authentication",
-      "Used behavioral and mobile usage data for scoring",
-      "Implemented fraud detection algorithms and manual review flags"
-    ],
-    testimonial: {
-      text: "Edwin's microfinance platform has enabled us to serve clients we previously couldn't reach. The mobile integration is seamless.",
-      author: "Sarah Njeri, Microfinance Director"
-    }
+      "Developed adaptive streaming with extreme compression options",
+      "Built a robust offline assessment engine with delayed submission",
+      "Created an encrypted sharing protocol for secure content distribution"
+    ]
   }
 ];
 
-/**
- * Get all projects
- * @returns {Array} All projects
- */
-export const getAllProjects = () => {
+// Helper function to get all projects
+export function getAllProjects() {
   return projects;
-};
+}
 
-/**
- * Get featured projects for homepage
- * @returns {Array} Featured projects
- */
-export const getFeaturedProjects = () => {
+// Helper function to get featured projects
+export function getFeaturedProjects() {
   return projects.filter(project => project.featured);
-};
+}
 
-/**
- * Get a project by slug
- * @param {string} slug - Project slug
- * @returns {Object} Project object
- */
-export const getProjectBySlug = (slug) => {
+// Helper function to get a project by slug
+export function getProjectBySlug(slug) {
   return projects.find(project => project.slug === slug);
-};
+}
 
-/**
- * Get projects by category
- * @param {string} category - Project category
- * @returns {Array} Filtered projects
- */
-export const getProjectsByCategory = (category) => {
+// Helper function to get projects by category
+export function getProjectsByCategory(category) {
+  if (category === 'All') return projects;
   return projects.filter(project => project.category === category);
-};
+}
+
+// Get all unique categories
+export function getAllCategories() {
+  const categories = projects.map(project => project.category);
+  return ['All', ...new Set(categories)];
+}
