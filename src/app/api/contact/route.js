@@ -1,72 +1,59 @@
+// src/app/api/contact/route.js
+import { NextResponse } from 'next/server';
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * POST /api/contact
+ * Accepts JSON { name, email, message, [subject], [budget], [timeline] }
+ * Validates required fields & email format, simulates processing, returns JSON.
+ */
 export async function POST(request) {
-    try {
-      // Parse the request body
-      const data = await request.json();
-      
-      // Validate required fields
-      if (!data.email || !data.name || !data.message) {
-        return new Response(
-          JSON.stringify({ success: false, message: 'Missing required fields' }),
-          {
-            status: 400,
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-      }
-  
-      // In a real application, you would:
-      // 1. Validate the email format
-      // 2. Check for spam using techniques like honeypot fields or captcha
-      // 3. Send an email or store the message in a database
-      // 4. Possibly send a confirmation email to the user
-      
-      // For now, we'll just simulate a successful submission
-      console.log('Contact form submission:', data);
-      
-      // Simulate processing time
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: 'Your message has been received. I\'ll get back to you soon!' 
-        }),
-        {
-          status: 200,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+  try {
+    const data = await request.json();                              // parse JSON body :contentReference[oaicite:0]{index=0}
+    const { name, email, message, subject, budget, timeline } = data;
+
+    // Validate required fields
+    if (!name || !email || !message) {                              // required fields :contentReference[oaicite:1]{index=1}
+      return NextResponse.json(
+        { success: false, error: 'Name, email and message are required.' },
+        { status: 400 }
       );
-    } catch (error) {
-      console.error('Contact form error:', error);
-      
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          message: 'Something went wrong. Please try again later.' 
-        }),
-        {
-          status: 500,
-          headers: {
-            'Content-Type': 'application/json',
-        },
-      }
+    }
+
+    // Validate email format
+    if (!emailRegex.test(email)) {                                  // basic email regex :contentReference[oaicite:2]{index=2}
+      return NextResponse.json(
+        { success: false, error: 'Invalid email address.' },
+        { status: 400 }
+      );
+    }
+
+    // (Here you could integrate with an email service: SendGrid, Mailgun, etc.)
+
+    // Simulate processing delay
+    await new Promise(res => setTimeout(res, 1000));
+
+    return NextResponse.json(
+      { success: true, message: 'Your message has been received!' },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error('Contact API error:', err);                       // server-side logging :contentReference[oaicite:3]{index=3}
+    return NextResponse.json(
+      { success: false, error: 'Server error—please try again later.' },
+      { status: 500 }
     );
   }
 }
 
-// If you want to handle GET requests (e.g., for testing)
+/**
+ * GET /api/contact
+ * Health-check endpoint to verify the route is active.
+ */
 export async function GET() {
-  return new Response(
-    JSON.stringify({ message: 'Contact API endpoint is working' }),
-    {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+  return NextResponse.json(
+    { status: 'OK', timestamp: new Date().toISOString() },
+    { status: 200 }
+  );                                                               // simple JSON response :contentReference[oaicite:4]{index=4}
 }
