@@ -1,10 +1,6 @@
+"use client";
 // src/app/contact/page.js
 import React, { useState } from 'react';
-
-export const metadata = {
-  title: 'Contact | Edwin Ogola - Full Stack Software Engineer',
-  description: 'Get in touch with Edwin Ogola for your web development needs or job opportunities',
-};
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -149,7 +145,7 @@ const ContactPage = () => {
                   <div>
                     <h3 className="text-lg font-medium mb-2 text-gray-900 dark:text-white">Availability</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Freelance & full-time | 9 AM – 6 PM EAT
+                      Freelance & full-time | 9 AM – 6 PM EAT
                     </p>
                   </div>
                 </div>
