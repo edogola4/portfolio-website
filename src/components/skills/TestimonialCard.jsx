@@ -1,4 +1,6 @@
 // src/components/skills/TestimonialCard.jsx
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -6,7 +8,7 @@ import { FaQuoteLeft } from 'react-icons/fa';
 
 const TestimonialCard = ({ testimonial, index }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -18,16 +20,14 @@ const TestimonialCard = ({ testimonial, index }) => {
           <FaQuoteLeft size={24} />
         </span>
       </div>
-      
       <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
         "{testimonial.content}"
       </p>
-      
       <div className="flex items-center">
         <div className="h-12 w-12 relative rounded-full overflow-hidden mr-4">
           {testimonial.avatar ? (
-            <Image 
-              src={testimonial.avatar} 
+            <Image
+              src={testimonial.avatar}
               alt={testimonial.name}
               fill
               className="object-cover"
