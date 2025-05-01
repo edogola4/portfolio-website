@@ -1,10 +1,12 @@
 // src/components/skills/SkillCategory.jsx
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const SkillCategory = ({ category }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -21,15 +23,13 @@ const SkillCategory = ({ category }) => {
           {category.title}
         </h3>
       </div>
-      
       <p className="text-gray-600 dark:text-gray-300 mb-6">
         {category.description}
       </p>
-      
       <div className="space-y-4">
         {category.skills.map((skill, index) => (
-          <motion.div 
-            key={skill.name} 
+          <motion.div
+            key={skill.name}
             className="flex flex-col md:flex-row md:items-center gap-2"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -51,10 +51,9 @@ const SkillCategory = ({ category }) => {
                 ({skill.years} {skill.years === 1 ? 'year' : 'years'})
               </span>
             </div>
-            
             <div className="w-full md:w-2/3">
               <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                <motion.div 
+                <motion.div
                   className="h-2 bg-blue-600 dark:bg-blue-400 rounded-full"
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
