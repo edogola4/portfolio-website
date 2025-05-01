@@ -202,9 +202,9 @@ export default function SkillsPageClient() {
               href="/contact" 
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)"
+                boxShadow: "0 0 55px rgba(59, 130, 246, 0.5)"
               }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 3.95 }}
               className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium py-4 px-10 rounded-lg transition duration-300 shadow-lg hover:shadow-xl"
             >
               Get in Touch
