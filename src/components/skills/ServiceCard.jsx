@@ -1,10 +1,12 @@
 // src/components/skills/ServiceCard.jsx
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const ServiceCard = ({ service, index }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -18,21 +20,18 @@ const ServiceCard = ({ service, index }) => {
           </span>
         )}
       </div>
-      
       <h3 className="text-xl font-bold mb-3 text-gray-800 dark:text-white">
         {service.title}
       </h3>
-      
       <p className="text-gray-600 dark:text-gray-300 mb-4">
         {service.description}
       </p>
-      
       <div className="mt-auto">
         <h4 className="font-medium text-gray-800 dark:text-white mb-2">Key Features:</h4>
         <ul className="space-y-2 mb-4">
           {service.features.map((feature, idx) => (
-            <motion.li 
-              key={idx} 
+            <motion.li
+              key={idx}
               className="flex items-start"
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -44,12 +43,11 @@ const ServiceCard = ({ service, index }) => {
             </motion.li>
           ))}
         </ul>
-        
         <div>
           <h4 className="font-medium text-gray-800 dark:text-white mb-2">Examples:</h4>
           <div className="flex flex-wrap gap-2">
             {service.examples.map((example, idx) => (
-              <motion.span 
+              <motion.span
                 key={idx}
                 className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full"
                 initial={{ opacity: 0, scale: 0.8 }}
