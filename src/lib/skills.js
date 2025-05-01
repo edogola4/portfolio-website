@@ -191,6 +191,7 @@ export const testimonials = [
     content: "We hired Edwin to build our educational platform that needed to work in areas with limited connectivity. His offline-first approach and optimization for low-bandwidth environments made our product accessible to thousands of students across rural Tanzania.",
     avatar: "/images/testimonials/david-omondi.jpg"
   },
+  
   {
     id: "testimonial3",
     name: "Sarah Njeri",
