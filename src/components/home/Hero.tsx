@@ -5,7 +5,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
 import { BsArrowUpRight } from 'react-icons/bs';
@@ -140,7 +140,8 @@ interface TiltState {
 }
 
 // Custom tilt effect hook with proper TypeScript typings
-const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement>, TiltState] => {
+//const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement>, TiltState] => {
+  const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement | null>, TiltState] => {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
 
