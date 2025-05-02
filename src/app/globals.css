@@ -1,101 +1,125 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Custom base styles */
+
+/* 
+  ===============================
+  Base Styles
+  ===============================
+*/
 @layer base {
   body {
     @apply bg-[#f9fafb] text-[#111827] dark:bg-[#111827] dark:text-[#f9fafb] transition-colors duration-300;
   }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold;
   }
+  
   h1 {
     @apply text-4xl md:text-5xl;
   }
+  
   h2 {
     @apply text-3xl md:text-4xl;
   }
+  
   h3 {
     @apply text-2xl md:text-3xl;
   }
+  
   h4 {
     @apply text-xl md:text-2xl;
   }
+  
   p {
     @apply leading-relaxed;
   }
+  
   /* Typed.js smoothing */
   .typed-text {
     display: inline-block;
     min-width: 26ch;
     white-space: nowrap;
   }
+  
   .typed-fade-out {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 }
 
-/* Custom components */
+/* 
+  ===============================
+  Component Styles
+  ===============================
+*/
 @layer components {
   .container-custom {
     @apply mx-auto px-4 max-w-7xl;
   }
+  
+  /* Button styles */
   .btn {
     @apply px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:translate-y-1 focus:outline-none focus:ring-2 focus:ring-opacity-50;
   }
+  
   .btn-primary {
     @apply btn bg-[#2563eb] text-white hover:bg-[#1d4ed8] focus:ring-[#3b82f6];
   }
+  
   .btn-secondary {
     @apply btn bg-[#7c3aed] text-white hover:bg-[#6d28d9] focus:ring-[#8b5cf6];
   }
+  
   .btn-outline {
     @apply btn border-2 border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white focus:ring-[#3b82f6];
   }
+  
+  /* Section heading with animated underline */
   .section-heading {
-    @apply text-3xl font-bold text-center mb-12 relative after:content-[''] after:absolute after:w-20 after:h-1 after:bg-[#3b82f6] after:left-1/2 after:-translate-x-1/2 after:bottom-[-10px];
+    @apply text-3xl font-bold text-center mb-12 relative;
   }
+  
+  .section-heading::after {
+    @apply content-[''] absolute w-20 h-1 bg-[#3b82f6] left-1/2 -translate-x-1/2 bottom-[-10px];
+  }
+  
+  /* Card and form components */
   .card {
     @apply bg-white dark:bg-[#1f2937] rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
   }
+  
   .link {
     @apply text-[#2563eb] hover:text-[#1e40af] dark:text-[#60a5fa] dark:hover:text-[#93c5fd] transition-colors;
   }
+  
   .input {
     @apply bg-[#f3f4f6] dark:bg-[#374151] border-transparent focus:border-[#3b82f6] focus:bg-white dark:focus:bg-[#1f2937] rounded-md w-full p-3;
   }
+  
+  /* Text gradient */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563eb] to-[#7c3aed];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400;
+  }
+  
+  /* Card hover effect */
+  .hover-card-effect {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-card-effect:hover {
+    @apply -translate-y-1.5 shadow-xl;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background-color: #e5e7eb;
-}
-.dark ::-webkit-scrollbar-track {
-  background-color: #374151;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #9ca3af;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #6b7280;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background-color: #6b7280;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background-color: #9ca3af;
-}
+/* 
+  ===============================
+  Animations
+  ===============================
+*/
 
-/* Animations */
+/* Floating animation */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -107,17 +131,45 @@
     transform: translateY(0px);
   }
 }
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Dark mode transition */
-.dark-transition {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* Blob animation - improved with proper keyframes */
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(-10px, -15px) scale(1.05);
+  }
 }
 
-/* Added these animations to my globals.css file */
+.animate-blob {
+  animation: blob 10s infinite alternate;
+}
 
+/* Animation delays for staggered animations */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animation-delay-6000 {
+  animation-delay: 6s;
+}
+
+/* Shimmer effect animation */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
@@ -127,34 +179,107 @@
   }
 }
 
-@keyframes blob {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2.5s infinite;
+}
+
+/* Animated underline effect */
+@keyframes underline-expand {
+  from {
+    width: 0;
   }
-  25% {
-    transform: translate(20px, -20px) scale(1.1);
-  }
-  50% {
-    transform: translate(0, 10px) scale(0.9);
-  }
-  75% {
-    transform: translate(-20px, -15px) scale(1.05);
+  to {
+    width: 100%;
   }
 }
 
-.animate-blob {
-  animation: blob 12s infinite alternate;
+.animate-underline {
+  position: relative;
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+.animate-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+  transition: width 0.3s ease;
 }
 
-.animation-delay-4000 {
-  animation-delay: 4s;
+.animate-underline:hover::after {
+  width: 100%;
 }
 
-/* Optional 3D Card effect - if you're using Tilt for 3D effect */
+/* 
+  ===============================
+  Custom Scrollbar
+  ===============================
+*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  background-color: #e5e7eb;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3B82F6, #8B5CF6);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563EB, #7C3AED);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #60a5fa, #a78bfa);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #93c5fd, #c4b5fd);
+}
+
+/* 
+  ===============================
+  Dark Mode Transitions
+  ===============================
+*/
+.dark-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* 
+  ===============================
+  Optional 3D Card Effect Support
+  ===============================
+*/
 .js-tilt-glare {
   border-radius: 1rem;
 }
