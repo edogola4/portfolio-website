@@ -1,6 +1,12 @@
 // src/components/about/Education.jsx
-import { AcademicCapIcon, BadgeCheckIcon, BeakerIcon, CheckCircleIcon } from '@heroicons/react/outline';
-
+//import { AcademicCapIcon, BadgeCheckIcon, BeakerIcon, CheckCircleIcon } from '@heroicons/react/outline';
+import {
+    AcademicCapIcon,
+    BadgeCheckIcon,
+    BeakerIcon,
+    CheckCircleIcon
+  } from '@heroicons/react/24/outline';
+  
 // Reusable components for cleaner code
 const SectionDivider = ({ title }) => (
   <div className="relative my-6">
