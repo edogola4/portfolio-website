@@ -1,4 +1,6 @@
 // src/components/about/PersonalSection.jsx
+"use client";
+
 import { motion } from 'framer-motion';
 import { 
   BookOpen, 
@@ -6,7 +8,7 @@ import {
   Camera, 
   Lightbulb,
   Users,
-  Mountains,
+  Mountain,
   Coffee,
   Code
 } from 'lucide-react';
@@ -143,7 +145,7 @@ export default function PersonalSection() {
                 Reading tech blogs and books on software architecture and entrepreneurship
               </InterestItem>
               
-              <InterestItem icon={Mountains}>
+              <InterestItem icon={Mountain}>
                 Exploring new hiking trails around Mount Kenya and the Aberdare Ranges
               </InterestItem>
               
@@ -168,7 +170,7 @@ export default function PersonalSection() {
                 className="relative aspect-square bg-gradient-to-br from-indigo-100 to-purple-200 dark:from-indigo-900 dark:to-purple-900 rounded-tl-xl overflow-hidden"
               >
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Mountains className="h-12 w-12 text-indigo-600 dark:text-indigo-300" />
+                  <Mountain className="h-12 w-12 text-indigo-600 dark:text-indigo-300" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
                   <p className="text-white text-sm font-medium">Hiking Adventures</p>

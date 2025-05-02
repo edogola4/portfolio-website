@@ -1,14 +1,18 @@
 // src/components/about/TechStack.jsx
+"use client";
+
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 // Tech stack icons from react-icons
-import { 
-  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
-  SiNodedotjs, SiExpress, SiPython, SiDjango, SiGraphql,
-  SiMongodb, SiPostgresql, SiFirebase, SiRedis,
-  SiDocker, SiAmazonaws, SiVercel, SiGithubactions
-} from 'react-icons/si';
+import {
+    SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
+    SiNodedotjs, SiExpress, SiPython, SiDjango, SiGraphql,
+    SiMongodb, SiPostgresql, SiFirebase, SiRedis,
+    SiDocker, SiAmazon, // ✅ Use SiAmazon instead of SiAmazonaws
+    SiVercel, SiGithubactions
+  } from 'react-icons/si';
+  
 
 const iconComponents = {
   react: SiReact,
@@ -26,7 +30,7 @@ const iconComponents = {
   firebase: SiFirebase,
   redis: SiRedis,
   docker: SiDocker,
-  aws: SiAmazonaws,
+  aws: SiAmazon,
   vercel: SiVercel,
   github: SiGithubactions
 };

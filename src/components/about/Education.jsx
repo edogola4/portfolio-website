@@ -2,9 +2,9 @@
 //import { AcademicCapIcon, BadgeCheckIcon, BeakerIcon, CheckCircleIcon } from '@heroicons/react/outline';
 import {
     AcademicCapIcon,
-    BadgeCheckIcon,
+    CheckBadgeIcon, // ✅ Replace BadgeCheckIcon
     BeakerIcon,
-    CheckCircleIcon
+    CheckCircleIcon,
   } from '@heroicons/react/24/outline';
   
 // Reusable components for cleaner code
@@ -109,7 +109,7 @@ export default function Education() {
         
         <div className="grid gap-6 md:grid-cols-2">
           <TrainingItem 
-            icon={BadgeCheckIcon}
+            icon={CheckBadgeIcon}
             title="Full Stack Web Development Bootcamp"
             institution="Moringa School"
             period="2021"
