@@ -1,7 +1,6 @@
 // src/app/projects/[slug]/page.js
 import { getProjectBySlug, getAllProjects } from '@/lib/projects';
 import Link from 'next/link';
-import Tag from '@/components/ui/Tag';
 import ProjectDetails from '@/components/projects/ProjectDetails';
 import { notFound } from 'next/navigation';
 

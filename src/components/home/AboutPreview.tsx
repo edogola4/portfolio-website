@@ -25,7 +25,7 @@ const AboutPreview = () => {
           <h2 className="section-heading">About Me</h2>
           
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
-            I'm a passionate Full Stack Software Engineer with expertise in building 
+            I&apos;m a passionate Full Stack Software Engineer with expertise in building 
             scalable web applications that solve real problems for businesses and communities 
             across East Africa.
           </p>

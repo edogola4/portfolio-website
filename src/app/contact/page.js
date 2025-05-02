@@ -23,7 +23,7 @@ const ContactPage = () => {
     const [status, setStatus] = useState('');
     const [statusType, setStatusType] = useState(''); // 'success', 'error', 'loading'
     const [mounted, setMounted] = useState(false);
-    const { theme } = useTheme();
+    useTheme();
 
     // Form validation states
     const [errors, setErrors] = useState({});

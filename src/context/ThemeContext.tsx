@@ -8,7 +8,7 @@ import type { ThemeProviderProps } from 'next-themes';
 // Create a custom ThemeContext
 const ThemeContext = createContext({
   theme: 'light',
-  setTheme: (theme: string) => {},
+  setTheme: () => {},
   toggleTheme: () => {}
 });
 

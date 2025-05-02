@@ -25,7 +25,7 @@ const ContactForm = () => {
     threshold: 0.1,
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async () => {
     setIsSubmitting(true);
     setSubmitError('');
     
@@ -41,6 +41,7 @@ const ContactForm = () => {
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setSubmitError('Something went wrong. Please try again later.');
     } finally {
@@ -68,7 +69,7 @@ const ContactForm = () => {
             {submitSuccess ? (
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-900 rounded-lg p-4 flex items-center text-green-800 dark:text-green-300 mb-6">
                 <FiCheck size={20} className="mr-2 flex-shrink-0" />
-                <p>Message sent successfully! I'll get back to you soon.</p>
+                <p>Message sent successfully! I&apos;ll get back to you soon.</p>
               </div>
             ) : submitError ? (
               <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900 rounded-lg p-4 flex items-center text-red-800 dark:text-red-300 mb-6">

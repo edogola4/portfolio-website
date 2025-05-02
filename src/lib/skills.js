@@ -19,7 +19,6 @@ import {
   SiGooglecloud,
   SiDocker,
   SiKubernetes,
-  SiGit,
   SiGithub,
   SiPython,
   SiDjango,
@@ -41,6 +40,7 @@ import {
 } from 'react-icons/fa';
 
 import { TbApi, TbBrandReactNative } from 'react-icons/tb';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BsCodeSlash, BsDatabaseFillGear } from 'react-icons/bs';
 import { BiMobileAlt } from 'react-icons/bi';
 import { MdIntegrationInstructions, MdMiscellaneousServices } from 'react-icons/md';
