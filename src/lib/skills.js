@@ -492,41 +492,9 @@ export const services = [
 
 // Updated testimonials with additional styling properties
 export const testimonials = [
+  
   {
     id: 'testi1',
-    name: 'Sarah Kimani',
-    role: 'CTO',
-    company: 'MobiPay Kenya',
-    content: 'Working with this developer transformed our payment platform. They understood the unique challenges of the Kenyan market and delivered a solution that works flawlessly even in areas with spotty connectivity.',
-    avatar: '/images/testimonials/sarah.jpg',
-    gradientStart: '#3B82F6',
-    gradientEnd: '#8B5CF6',
-    rating: 5
-  },
-  {
-    id: 'testi2',
-    name: 'David Mugisha',
-    role: 'Founder',
-    company: 'AgriConnect Rwanda',
-    content: 'The mobile solution developed for our agricultural platform has been game-changing. Farmers can now access market prices and submit produce data even in remote areas without reliable internet.',
-    avatar: '/images/testimonials/david.jpg',
-    gradientStart: '#8B5CF6',
-    gradientEnd: '#EC4899',
-    rating: 5
-  },
-  {
-    id: 'testi3',
-    name: 'Amina Hassan',
-    role: 'Director of Technology',
-    company: 'EduTech Tanzania',
-    content: 'Their understanding of both technical requirements and local educational context helped us create a learning platform that truly works for Tanzanian schools, even those with limited infrastructure.',
-    avatar: '/images/testimonials/amina.jpg',
-    gradientStart: '#10B981',
-    gradientEnd: '#3B82F6',
-    rating: 5
-  },
-  {
-    id: 'testi4',
     name: 'Jane Mwangi',
     role: 'CTO',
     company: 'TechKe Innovations',
@@ -537,7 +505,7 @@ export const testimonials = [
     rating: 5
   },
   {
-    id: 'testi5',
+    id: 'testi2',
     name: 'David Omondi',
     role: 'Founder',
     company: 'EduTech Tanzania',
@@ -548,7 +516,7 @@ export const testimonials = [
     rating: 5
   },
   {
-    id: 'testi6',
+    id: 'testi3',
     name: 'Sarah Njeri',
     role: 'Product Manager',
     company: 'FinSolutions Africa',
