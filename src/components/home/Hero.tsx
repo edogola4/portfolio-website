@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/home/Hero.tsx
 'use client';
 
@@ -8,7 +7,7 @@ import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'fram
 import { Engine } from "@tsparticles/engine";
 import { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
-import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
@@ -580,10 +579,8 @@ const Hero = () => {
             }}
             initial="hidden"
             animate="visible"
-          // eslint-disable-next-line react/jsx-no-comment-textnodes
           >
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            {highlights.map((highlight, _index) => {
+            {highlights.map((highlight) => {
               const Icon = highlight.icon;
               return (
                 <motion.div
