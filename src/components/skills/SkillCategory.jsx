@@ -18,7 +18,8 @@ const SkillCategory = ({ category }) => {
     }
   }, [controls, inView]);
 
-  const containerVariants = {
+  // Combine container and card hover variants
+  const combinedContainerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -29,6 +30,11 @@ const SkillCategory = ({ category }) => {
         staggerChildren: 0.1,
       },
     },
+    hover: {
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+      borderColor: "rgba(99, 102, 241, 0.5)",
+      transition: { duration: 0.3 }
+    }
   };
 
   const childVariants = {
@@ -40,22 +46,13 @@ const SkillCategory = ({ category }) => {
     },
   };
 
-  const cardHoverVariants = {
-    hover: {
-      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
-      borderColor: "rgba(99, 102, 241, 0.5)",
-      transition: { duration: 0.3 }
-    }
-  }
-
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={containerVariants}
+      variants={combinedContainerVariants}
       whileHover="hover"
-      variants={cardHoverVariants}
       className="mb-12 p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 transition-all duration-300"
     >
       <motion.div 
