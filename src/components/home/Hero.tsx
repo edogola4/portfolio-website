@@ -5,7 +5,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
- 
+import { Engine } from "@tsparticles/engine";
+import { Container } from "@tsparticles/engine";
+import { loadFull } from "tsparticles";
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
 import { BsArrowUpRight } from 'react-icons/bs';
@@ -42,7 +44,7 @@ import Typed from 'typed.js';
 // Define the window interface to include tsParticles
 declare global {
   interface Window {
-    tsParticles: unknown; // Update type for better intellisense if needed
+    tsParticles: Engine; // Update type for better intellisense if needed
   }
 }
 
@@ -141,7 +143,7 @@ interface TiltState {
 
 // Custom tilt effect hook with proper TypeScript typings
 //const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement>, TiltState] => {
-  const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement | null>, TiltState] => {
+const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement | null>, TiltState] => {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
 
@@ -212,7 +214,8 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const particlesInitialized = useRef(false);
-  const particlesContainerRef = useRef(null);
+  //const particlesContainerRef = useRef(null);
+  const particlesContainerRef = useRef<Container | null | undefined>(undefined);
 
   // Array of testimonials
   const testimonials = [
@@ -280,8 +283,8 @@ const Hero = () => {
     };
   }, []);
 
-   // Check for reduced motion preference
-   useEffect(() => {
+  // Check for reduced motion preference
+  useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -294,6 +297,7 @@ const Hero = () => {
   useEffect(() => {
     // Function to initialize particles - prevents duplicate initialization
     const initializeParticles = async () => {
+      await loadFull(window.tsParticles);
       if (particlesInitialized.current || prefersReducedMotion ||
         typeof window === 'undefined' || !window.tsParticles) {
         return;
@@ -304,41 +308,65 @@ const Hero = () => {
 
       try {
         // Store the container reference for cleanup
-        particlesContainerRef.current = await window.tsParticles.load("hero-particles", {
-          fpsLimit: 60,
-          fullScreen: {
-            enable: false, // IMPORTANT: This ensures particles are not fullscreen
-            zIndex: 0
-          },
-          particles: {
-            number: { value: 30, density: { enable: true, value_area: 1500 } },
-            color: { value: "#2e86de" },
-            shape: { type: "triangle", stroke: { width: 0 } },
-            opacity: { value: 0.3, random: true },
-            size: { value: 6, random: true },
-            move: {
-              enable: true,
-              speed: 1.5,
-              random: true,
-              outMode: "bounce", // Changed from "out" to "bounce" to keep particles within container
-              direction: "none",
-              attract: { enable: false }
-            }
-          },
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onHover: { enable: true, mode: "bubble" },
-              onClick: { enable: false },
-              resize: true
+        particlesContainerRef.current = await window.tsParticles.load({
+          id: "hero-particles",
+          options: {
+            fpsLimit: 60,
+            fullScreen: { enable: false, zIndex: 0 },
+            particles: {
+              number: {
+                value: 30,
+                density: {
+                  enable: true,
+                  // area: 1500  // This is the correct property in v3
+                  width: 1500,
+                  height: 1500
+                }
+              },
+              color: { value: "#2e86de" },
+              shape: {
+                type: "triangle",
+                options: {  // In v3, stroke is defined in options
+                  triangle: {
+                    sides: 3
+                  }
+                }
+              },
+              opacity: {
+                value: { min: 0.1, max: 0.3 }
+              },
+              size: {
+                value: { min: 2, max: 6 }
+              },
+              move: {
+                enable: true,
+                speed: 1.5,
+                direction: "none",
+                random: true,
+                outModes: {
+                  default: "bounce"  // In v3, outModes is an object with default property
+                },
+                attract: { enable: false }
+              }
             },
-            modes: {
-              bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
-            }
-          },
-          retina_detect: true,
-          pauseOnBlur: true
+            interactivity: {
+              detectsOn: "window",  // Changed from canvas to window, as detectsOn is deprecated
+              events: {
+                onHover: { enable: true, mode: "bubble" },
+                onClick: { enable: false },
+                resize: { enable: true }  // In v3, resize is an object
+              },
+              modes: {
+                bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
+              }
+            },
+            detectRetina: true,
+            pauseOnBlur: true
+          }
         });
+
+
+
 
         particlesInitialized.current = true;
       } catch (error) {
@@ -369,48 +397,69 @@ const Hero = () => {
     if (typeof window !== 'undefined' && window.tsParticles && !particlesInitialized.current && !prefersReducedMotion) {
       const initializeParticles = async () => {
         try {
-          particlesContainerRef.current = await window.tsParticles.load("hero-particles", {
-            fpsLimit: 60,
-            fullScreen: {
-              enable: false, // IMPORTANT: Ensures particles stay within container
-              zIndex: 0
-            },
-            particles: {
-              number: { value: 30, density: { enable: true, value_area: 1500 } },
-              color: { value: "#2e86de" },
-              shape: { type: "triangle", stroke: { width: 0 } },
-              opacity: { value: 0.3, random: true },
-              size: { value: 6, random: true },
-              move: {
-                enable: true,
-                speed: 1.5,
-                random: true,
-                outMode: "bounce", // Changed to keep particles within container
-                direction: "none",
-                attract: { enable: false }
-              }
-            },
-            interactivity: {
-              detectsOn: "canvas",
-              events: {
-                onHover: { enable: true, mode: "bubble" },
-                onClick: { enable: false },
-                resize: true
+          particlesContainerRef.current = await window.tsParticles.load({
+            id: "hero-particles",
+            options: {
+              fpsLimit: 60,
+              fullScreen: { enable: false, zIndex: 0 },
+              particles: {
+                number: {
+                  value: 30,
+                  density: {
+                    enable: true,
+                    //area: 1500  // Changed from value to area
+                    width: 1500,
+                    height: 1500
+                  }
+                },
+                color: { value: "#2e86de" },
+                shape: {
+                  type: "triangle",
+                  options: {  // In v3, stroke is defined in options
+                    triangle: {
+                      sides: 3
+                    }
+                  }
+                },
+                opacity: {
+                  value: { min: 0.1, max: 0.3 }  // Changed from random: true
+                },
+                size: {
+                  value: { min: 2, max: 6 }  // Changed from random: true
+                },
+                move: {
+                  enable: true,
+                  speed: 1.5,
+                  random: true,
+                  outModes: {
+                    default: "bounce"  // In v3, outModes is an object with default property
+                  },
+                  direction: "none",
+                  attract: { enable: false }
+                }
               },
-              modes: {
-                bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
-              }
-            },
-            retina_detect: true,
-            pauseOnBlur: true
+              interactivity: {
+                detectsOn: "window",  // Changed from canvas to window
+                events: {
+                  onHover: { enable: true, mode: "bubble" },
+                  onClick: { enable: false },
+                  resize: { enable: true }  // In v3, resize is an object
+                },
+                modes: {
+                  bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
+                }
+              },
+              detectRetina: true,  // Changed from retina_detect
+              pauseOnBlur: true
+            }
           });
-  
+
           particlesInitialized.current = true;
         } catch (error) {
           console.error("Failed to initialize particles:", error);
         }
       };
-      
+
       initializeParticles();
     }
   };
@@ -728,8 +777,9 @@ const Hero = () => {
               rotateX: prefersReducedMotion ? 0 : tilt.x,
               rotateY: prefersReducedMotion ? 0 : tilt.y,
               scale: prefersReducedMotion ? 1 : (tilt.x !== 0 || tilt.y !== 0) ? 1.05 : 1,
-              transition: { duration: 0.2 }
+              //transition: { duration: 0.2 }
             }}
+            transition={{ duration: 0.2 }}
             className="w-full max-w-lg mx-auto aspect-square"
           >
             {/* Enhanced background glow effect */}
