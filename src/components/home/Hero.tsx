@@ -91,9 +91,9 @@ const iconData = [
 // Actual client logos - Replace these with your actual client information
 const clientLogos = [
   { name: 'Safaricom', logo: '/images/clients/client1.png' },
-  { name: 'Equity Bank', logo: '/images/clients/client2.svg' },
-  { name: 'Twiga Foods', logo: '/images/clients/client3.svg' },
-  { name: 'M-KOPA', logo: '/images/clients/client4.svg' },
+  { name: 'Equity Bank', logo: '/images/clients/client2.png' },
+  { name: 'Twiga Foods', logo: '/images/clients/client3.png' },
+  { name: 'M-KOPA', logo: '/images/clients/client4.png' },
 ];
 
 // Highlights/Stats to showcase achievements
