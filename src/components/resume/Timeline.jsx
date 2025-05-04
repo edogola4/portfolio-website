@@ -33,7 +33,7 @@ const Timeline = ({ items }) => {
             {item.technologies && item.technologies.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {item.technologies.map((tech, techIndex) => (
-                  <Tag key={techIndex} text={tech} />
+                  <Tag key={techIndex} text={tech} color="primary" variant="rounded" />
                 ))}
               </div>
             )}
