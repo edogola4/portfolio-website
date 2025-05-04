@@ -1,0 +1,69 @@
+/* src/app/resume/resume.module.css */
+
+.resumeContainer {
+    position: relative;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+  }
+  
+  .timeline {
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .timelineItem {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  
+  .timelineDot {
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 4px solid var(--bg-color);
+    z-index: 1;
+  }
+  
+  .timelineCard {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .timelineCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media print {
+    .noprint {
+      display: none;
+    }
+    
+    .printOnly {
+      display: block;
+    }
+    
+    .resumeContainer {
+      padding: 0;
+      margin: 0;
+    }
+    
+    .timelineCard {
+      box-shadow: none;
+      border: 1px solid #eaeaea;
+    }
+    
+    /* Adjust page breaks */
+    .page-break {
+      page-break-before: always;
+    }
+    
+    /* Ensure text is readable when printed */
+    body {
+      color: #000;
+      background: #fff;
+    }
+  }
