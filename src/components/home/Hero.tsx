@@ -9,6 +9,7 @@ import { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
+import { SiX } from 'react-icons/si'; // Updated to use SiX
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
@@ -683,10 +684,10 @@ const Hero = () => {
               href="https://x.com/BrandonOgola"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter Profile"
+              aria-label="X Profile"
               className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
             >
-              <FaTwitter className="w-6 h-6" />
+              <SiX className="w-6 h-6" />
             </a>
           </div>
 
