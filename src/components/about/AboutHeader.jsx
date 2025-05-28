@@ -34,7 +34,7 @@ export default function AboutHeader() {
             {[
               { href: 'https://github.com/edogola4', icon: FaGithub, label: 'GitHub Profile', name: 'GitHub' },
               { href: 'https://www.linkedin.com/in/brandon-ogola-b77063232/', icon: FaLinkedin, label: 'LinkedIn Profile', name: 'LinkedIn' },
-              { href: 'https://x.com/BrandonOgola', icon: SiX, label: 'X Profile', name: 'X' },
+              { href: 'https://x.com/BrandonOgola', icon: SiX, label: 'X Profile', name: '' },
             ].map(({ href, icon: Icon, label, name }) => (
               <a
                 key={href}
