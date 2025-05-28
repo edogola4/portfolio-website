@@ -138,16 +138,8 @@ const AboutPreview = memo<AboutPreviewProps>(({
           <div className="flex flex-wrap gap-4 justify-center mt-8">
             <Link 
               href="/about" 
-              className="btn btn-outline group inline-flex items-center px-6 py-3 text-base font-medium rounded-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-400 dark:hover:text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 hover:transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
+              className="btn btn-outline group inline-flex items-center px-6 py-3 text-base font-medium rounded-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-400 dark:hover:text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 hover:transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 about-cta-button"
               aria-label="Learn more about my background and experience"
-              style={{
-                // Enhanced focus styles for better accessibility
-                '@media (prefers-contrast: high)': {
-                  borderColor: 'currentColor',
-                  color: 'CanvasText',
-                  backgroundColor: 'Canvas'
-                }
-              }}
             >
               Learn More About Me 
               <FiArrowRight 
@@ -192,6 +184,13 @@ const AboutPreview = memo<AboutPreviewProps>(({
             --text-color: #ffffff;
             --bg-color: #000000;
             --border-color: #ffffff;
+          }
+
+          /* High contrast styles for the CTA button */
+          :global(.about-cta-button) {
+            border-color: currentColor !important;
+            color: CanvasText !important;
+            background-color: Canvas !important;
           }
         }
 
