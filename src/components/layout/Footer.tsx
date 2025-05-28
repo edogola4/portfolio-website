@@ -1,6 +1,6 @@
 // src/components/layout/Footer.tsx
 import Link from 'next/link';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiPhone } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
 import { SiX } from 'react-icons/si'
 
 const Footer = () => {
