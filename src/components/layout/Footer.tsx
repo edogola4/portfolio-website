@@ -1,6 +1,7 @@
 // src/components/layout/Footer.tsx
 import Link from 'next/link';
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiPhone } from 'react-icons/fi';
+import { SiX } from 'react-icons/si'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -38,9 +39,9 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
-                aria-label="Twitter"
+                aria-label="X Profile"
               >
-                <FiTwitter size={20} />
+                <SiX size={20} />
               </a>
             </div>
           </div>
@@ -79,16 +80,16 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
             <div className="flex flex-col space-y-2">
               <a 
-                href="mailto:hello@edwinogola.com"
+                href="mailto:hello@edogola4@gmail.com"
                 className="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
               >
-                <FiMail className="mr-2" /> hello@edwinogola.com
+                <FiMail className="mr-2" /> hello@edogola4@gmail.com
               </a>
               <a 
                 href="tel:+254712345678"
                 className="flex items-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
               >
-                <FiPhone className="mr-2" /> +254 712 345 678
+                <FiPhone className="mr-2" /> +254 706 322 944
               </a>
               <Link 
                 href="/contact"
