@@ -8,7 +8,7 @@ import { Engine } from "@tsparticles/engine";
 import { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { FiArrowRight } from 'react-icons/fi';
-import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
+import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
 import { SiX } from 'react-icons/si'; // Updated to use SiX
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
