@@ -31,36 +31,23 @@ export default function AboutHeader() {
             I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="https://github.com/edogola4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-transparent bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <FaGithub className="h-5 w-5 mr-2" aria-hidden="true" />
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-transparent bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="LinkedIn Profile"
-            >
-              <FaLinkedin className="h-5 w-5 mr-2" aria-hidden="true" />
-              LinkedIn
-            </a>
-            <a
-              href="https://x.com/BrandonOgola"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-transparent bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="X Profile"
-            >
-              <SiX className="h-5 w-5 mr-2" aria-hidden="true" />
-              
-            </a>
+            {[
+              { href: 'https://github.com/edogola4', icon: FaGithub, label: 'GitHub Profile', name: 'GitHub' },
+              { href: 'https://www.linkedin.com/in/brandon-ogola-b77063232/', icon: FaLinkedin, label: 'LinkedIn Profile', name: 'LinkedIn' },
+              { href: 'https://x.com/BrandonOgola', icon: SiX, label: 'X Profile', name: 'X' },
+            ].map(({ href, icon: Icon, label, name }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                aria-label={label}
+                className="inline-flex items-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 focus:border-current focus:bg-canvas focus:text-canvas-text dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 dark:focus:bg-canvas dark:focus:text-canvas-text"
+              >
+                <Icon className="mr-2 h-5 w-5" aria-hidden="true" />
+                {name}
+              </a>
+            ))}
           </div>
         </div>
       </div>
