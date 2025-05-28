@@ -100,7 +100,7 @@ export default function Education() {
           icon={AcademicCapIcon}
           title="Bachelor of Science in Computer Science"
           institution="University of Nairobi"
-          period="2016 - 2020"
+          period="2021 - 2025"
         >
           Focused on software engineering, database systems, and web technologies. Graduated with honors and completed a capstone project on developing a mobile payment integration system for small businesses in Kenya.
         </EducationItem>
