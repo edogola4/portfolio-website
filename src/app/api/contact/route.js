@@ -54,7 +54,7 @@ ${timeline ? `<p><strong>Timeline:</strong> ${timeline}</p>` : ''}
     // Send email
     await sendEmail({
       from: `"Contact Form" <${data.email}>`, // This will show "Contact Form" with the submitter's email for replies
-      to: process.env.EMAIL_TO,
+      to: process.env.CONTACT_EMAIL,
       subject: emailSubject,
       text: emailText,
       html: emailHtml

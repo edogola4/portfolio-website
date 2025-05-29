@@ -19,7 +19,7 @@ export async function sendEmail({ from, to, subject, text, html }) {
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_APP_PASSWORD, // Use an App Password if 2FA is enabled
+        pass: process.env.EMAIL_PASS, // Changed from EMAIL_APP_PASSWORD to EMAIL_PASS
       },
     });
     
