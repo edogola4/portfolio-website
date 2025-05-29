@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import {
     MapPin,
     Mail,
@@ -17,18 +18,26 @@ import {
     Loader
 } from 'lucide-react';
 import { SiX } from 'react-icons/si';
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState('');
     const [statusType, setStatusType] = useState(''); // 'success', 'error', 'loading'
+    const [mounted, setMounted] = useState(false);
+    const { executeRecaptcha } = useGoogleReCaptcha();
+    useTheme();
+
+    // Form validation states
     const [errors, setErrors] = useState({});
     const [touched, setTouched] = useState({});
-    const { executeRecaptcha } = useGoogleReCaptcha();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const validateField = (name, value) => {
         let error = '';
+
         switch (name) {
             case 'name':
                 if (!value.trim()) error = 'Name is required';
@@ -45,12 +54,15 @@ const ContactForm = () => {
             default:
                 break;
         }
+
         return error;
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+
+        // Validate on change if field has been touched
         if (touched[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -61,10 +73,14 @@ const ContactForm = () => {
 
     const handleBlur = (e) => {
         const { name, value } = e.target;
+
+        // Mark field as touched
         setTouched(prev => ({
             ...prev,
             [name]: true
         }));
+
+        // Validate on blur
         setErrors(prev => ({
             ...prev,
             [name]: validateField(name, value)
@@ -77,15 +93,21 @@ const ContactForm = () => {
             email: validateField('email', formData.email),
             message: validateField('message', formData.message)
         };
+
         setErrors(newErrors);
         setTouched({ name: true, email: true, message: true });
+
+        // Return true if no errors
         return !Object.values(newErrors).some(error => error);
     };
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
+
+        // Validate all fields before submission
         if (!validateForm()) return;
 
+        // Check if reCAPTCHA is available
         if (!executeRecaptcha) {
             setStatus('reCAPTCHA not available. Please try again later.');
             setStatusType('error');
@@ -96,12 +118,19 @@ const ContactForm = () => {
         setStatusType('loading');
 
         try {
+            // Generate reCAPTCHA token
             const token = await executeRecaptcha('contact_form_submit');
+
+            // Simulate network delay (remove in production)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...formData, token }),
             });
+
+            const responseData = await res.json();
 
             if (res.ok) {
                 setStatus('Message sent successfully! I\'ll get back to you soon.');
@@ -110,12 +139,12 @@ const ContactForm = () => {
                 setTouched({});
                 setErrors({});
             } else {
-                const errorData = await res.json();
-                setStatus(errorData.error || 'Failed to send message. Please try again later.');
+                // Handle server-side errors (including reCAPTCHA failure)
+                setStatus(responseData.message || 'Failed to send message. Please try again later.');
                 setStatusType('error');
             }
         } catch (err) {
-            console.error('Submission error:', err);
+            console.error('Contact form error:', err);
             setStatus('An error occurred. Please try again later.');
             setStatusType('error');
         }
@@ -164,23 +193,33 @@ const ContactForm = () => {
         }
     };
 
+    // 3D Card tilt effect
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e) => {
         const card = e.currentTarget;
         const cardRect = card.getBoundingClientRect();
+
+        // Calculate mouse position relative to the card
         const cardCenterX = cardRect.left + cardRect.width / 2;
         const cardCenterY = cardRect.top + cardRect.height / 2;
         const mouseX = e.clientX - cardCenterX;
         const mouseY = e.clientY - cardCenterY;
-        const rotateY = mouseX * 0.01;
-        const rotateX = -mouseY * 0.01;
+
+        // Calculate rotation values (limited to small angles)
+        const rotateY = mouseX * 0.01; // Horizontal tilt
+        const rotateX = -mouseY * 0.01; // Vertical tilt
+
         setTilt({ x: rotateX, y: rotateY });
     };
 
     const resetTilt = () => {
         setTilt({ x: 0, y: 0 });
     };
+
+    if (!mounted) {
+        return null; // Prevent theme flash during hydration
+    }
 
     return (
         <div className="container mx-auto px-4 py-16">
@@ -192,10 +231,10 @@ const ContactForm = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 text-transparent bg-clip-text">
-                        Let's Work Together
+                        Let&apos;s Work Together
                     </h1>
                     <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-                        I'm always open to discussing new projects, job opportunities, or partnerships.
+                        I&apos;m always open to discussing new projects, job opportunities, or partnerships.
                         Feel free to reach out using the form below or through my social channels.
                     </p>
                 </motion.div>
@@ -217,15 +256,26 @@ const ContactForm = () => {
                             onMouseMove={handleMouseMove}
                             onMouseLeave={resetTilt}
                         >
+                            {/* Decorative gradient blob */}
                             <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full opacity-20 blur-3xl"></div>
+
+                            {/* Form content */}
                             <div className="relative p-8">
                                 <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
                                     <MessageCircle className="mr-3 text-blue-500" />
                                     Send a Message
                                 </h2>
+
                                 <form onSubmit={handleSubmit} className="space-y-6">
-                                    <motion.div custom={0} variants={formFieldVariants} initial="hidden" animate="visible">
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                                    <motion.div
+                                        custom={0}
+                                        variants={formFieldVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                            Your Name
+                                        </label>
                                         <input
                                             type="text"
                                             name="name"
@@ -233,15 +283,26 @@ const ContactForm = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.name && touched.name ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-600'} rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
+                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.name && touched.name
+                                                ? 'border-red-500 dark:border-red-400'
+                                                : 'border-gray-200 dark:border-gray-600'
+                                                } rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
                                             placeholder="Bran Don"
                                         />
                                         {errors.name && touched.name && (
                                             <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.name}</p>
                                         )}
                                     </motion.div>
-                                    <motion.div custom={1} variants={formFieldVariants} initial="hidden" animate="visible">
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+
+                                    <motion.div
+                                        custom={1}
+                                        variants={formFieldVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                            Email Address
+                                        </label>
                                         <input
                                             type="email"
                                             name="email"
@@ -249,15 +310,26 @@ const ContactForm = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.email && touched.email ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-600'} rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
+                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.email && touched.email
+                                                ? 'border-red-500 dark:border-red-400'
+                                                : 'border-gray-200 dark:border-gray-600'
+                                                } rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
                                             placeholder="your.email@example.com"
                                         />
                                         {errors.email && touched.email && (
                                             <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.email}</p>
                                         )}
                                     </motion.div>
-                                    <motion.div custom={2} variants={formFieldVariants} initial="hidden" animate="visible">
-                                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Message</label>
+
+                                    <motion.div
+                                        custom={2}
+                                        variants={formFieldVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                            Your Message
+                                        </label>
                                         <textarea
                                             name="message"
                                             id="message"
@@ -265,14 +337,23 @@ const ContactForm = () => {
                                             value={formData.message}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.message && touched.message ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-600'} rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
+                                            className={`w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border ${errors.message && touched.message
+                                                ? 'border-red-500 dark:border-red-400'
+                                                : 'border-gray-200 dark:border-gray-600'
+                                                } rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors`}
                                             placeholder="Tell me about your project or job opportunity..."
                                         />
                                         {errors.message && touched.message && (
                                             <p className="mt-1 text-sm text-red-500 dark:text-red-400">{errors.message}</p>
                                         )}
                                     </motion.div>
-                                    <motion.div custom={3} variants={formFieldVariants} initial="hidden" animate="visible">
+
+                                    <motion.div
+                                        custom={3}
+                                        variants={formFieldVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
                                         <button
                                             type="submit"
                                             disabled={statusType === 'loading'}
@@ -291,11 +372,17 @@ const ContactForm = () => {
                                             )}
                                         </button>
                                     </motion.div>
+
                                     {status && (
                                         <motion.div
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            className={`mt-4 p-3 rounded-lg flex items-center ${statusType === 'success' ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200' : statusType === 'error' ? 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200' : 'bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200'}`}
+                                            className={`mt-4 p-3 rounded-lg flex items-center ${statusType === 'success'
+                                                ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200'
+                                                : statusType === 'error'
+                                                    ? 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200'
+                                                    : 'bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200'
+                                                }`}
                                         >
                                             {statusType === 'success' ? (
                                                 <CheckCircle size={18} className="mr-2 flex-shrink-0" />
@@ -322,11 +409,19 @@ const ContactForm = () => {
                     >
                         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 h-full">
                             <div className="relative overflow-hidden h-full flex flex-col justify-between">
-                                <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full opacity-10"></div>
+                                {/* Decorative elements */}
+                                <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full opacity-10 blur-3xl"></div>
+
                                 <div className="relative">
-                                    <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Contact Information</h2>
+                                    <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Contact Information</h2>
+
                                     <ul className="space-y-6">
-                                        <motion.li className="flex items-start" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+                                        <motion.li
+                                            className="flex items-start"
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
                                             <div className="mr-4 mt-1 bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg">
                                                 <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                             </div>
@@ -335,35 +430,67 @@ const ContactForm = () => {
                                                 <p className="text-gray-600 dark:text-gray-300">Nairobi, Kenya</p>
                                             </div>
                                         </motion.li>
-                                        <motion.li className="flex items-start" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+
+                                        <motion.li
+                                            className="flex items-start"
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.4 }}
+                                        >
                                             <div className="mr-4 mt-1 bg-indigo-100 dark:bg-indigo-900/30 p-2 rounded-lg">
                                                 <Mail className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-medium mb-1 text-gray-900 dark:text-white">Email</h3>
-                                                <a href="mailto:brandon14ogola@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">brandon14ogola@gmail.com</a>
+                                                <a
+                                                    href="mailto:edogola4@gmail.com"
+                                                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                                >
+                                                    edogola4@gmail.com
+                                                </a>
                                             </div>
                                         </motion.li>
-                                        <motion.li className="flex items-start" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
+
+                                        <motion.li
+                                            className="flex items-start"
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.5 }}
+                                        >
                                             <div className="mr-4 mt-1 bg-purple-100 dark:bg-purple-900/30 p-2 rounded-lg">
                                                 <Phone className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-medium mb-1 text-gray-900 dark:text-white">Phone/WhatsApp</h3>
-                                                <a href="tel:+254706322944" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">+254 706 322 944</a>
+                                                <a
+                                                    href="tel:+254706322944"
+                                                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                                >
+                                                    +254 706 322 944
+                                                </a>
                                             </div>
                                         </motion.li>
-                                        <motion.li className="flex items-start" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6 }}>
+
+                                        <motion.li
+                                            className="flex items-start"
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.6 }}
+                                        >
                                             <div className="mr-4 mt-1 bg-teal-100 dark:bg-teal-900/30 p-2 rounded-lg">
                                                 <Clock className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-medium mb-1 text-gray-900 dark:text-white">Availability</h3>
-                                                <p className="text-gray-600 dark:text-gray-300">Freelance & full-time<br />9 AM – 6 PM EAT</p>
+                                                <p className="text-gray-600 dark:text-gray-300">
+                                                    Freelance & full-time<br />
+                                                    9 AM – 11 PM EAT
+                                                </p>
                                             </div>
                                         </motion.li>
                                     </ul>
                                 </div>
+
                                 <div className="mt-10">
                                     <h3 className="text-lg font-medium mb-4 text-gray-900 dark:text-white">Connect With Me</h3>
                                     <div className="flex space-x-4">
@@ -381,6 +508,7 @@ const ContactForm = () => {
                                         >
                                             <Github className="w-5 h-5 text-gray-700 dark:text-gray-200" />
                                         </motion.a>
+
                                         <motion.a
                                             href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
                                             target="_blank"
@@ -395,11 +523,12 @@ const ContactForm = () => {
                                         >
                                             <Linkedin className="w-5 h-5 text-blue-700 dark:text-blue-300" />
                                         </motion.a>
+
                                         <motion.a
                                             href="https://x.com/BrandonOgola"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            aria-label="X"
+                                            aria-label="X (Twitter)"
                                             custom={2}
                                             variants={socialIconVariants}
                                             initial="hidden"
@@ -409,6 +538,7 @@ const ContactForm = () => {
                                         >
                                             <SiX className="w-5 h-5 text-gray-700 dark:text-gray-200" />
                                         </motion.a>
+
                                         <motion.a
                                             href="https://wa.me/+254706322944"
                                             target="_blank"
@@ -431,6 +561,8 @@ const ContactForm = () => {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Quote Section */}
                 <motion.div
                     className="mt-16 text-center"
                     initial={{ opacity: 0 }}
@@ -439,7 +571,7 @@ const ContactForm = () => {
                 >
                     <blockquote className="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl shadow-lg max-w-3xl mx-auto">
                         <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
-                            "The best way to predict the future is to create it. Let's build something amazing together."
+                            &quot;The best way to predict the future is to create it. Let&apos;s build something amazing together.&quot;
                         </p>
                         <footer className="text-gray-600 dark:text-gray-400">
                             — Edwin Ogola, Full Stack Software Engineer
@@ -451,17 +583,8 @@ const ContactForm = () => {
     );
 };
 
+// Main ContactPage component with reCAPTCHA provider
 const ContactPage = () => {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) {
-        return null;
-    }
-
     return (
         <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
             <ContactForm />
