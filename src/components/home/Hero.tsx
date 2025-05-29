@@ -1,15 +1,15 @@
 // src/components/home/Hero.tsx
+
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
-import { Engine } from "@tsparticles/engine";
-import { Container } from "@tsparticles/engine";
+import { Engine, Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
-import { SiX } from 'react-icons/si'; // Updated to use SiX
+import { SiX } from 'react-icons/si';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
@@ -44,7 +44,8 @@ import Typed from 'typed.js';
 // Define the window interface to include tsParticles
 declare global {
   interface Window {
-    tsParticles: Engine; // Update type for better intellisense if needed
+    tsParticles: Engine;
+    BMC?: { init: () => void }; // Add BMC for manual initialization
   }
 }
 
@@ -89,7 +90,7 @@ const iconData = [
   },
 ];
 
-// Actual client logos - Replace these with your actual client information
+// Actual client logos
 const clientLogos = [
   { name: 'Safaricom', logo: '/images/Clients/client1.png' },
   { name: 'Equity Bank', logo: '/images/Clients/client2.png' },
@@ -141,8 +142,7 @@ interface TiltState {
   y: number;
 }
 
-// Custom tilt effect hook with proper TypeScript typings
-//const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement>, TiltState] => {
+// Custom tilt effect hook
 const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement | null>, TiltState] => {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
@@ -168,11 +168,9 @@ const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivEleme
       const width = rect.width;
       const height = rect.height;
 
-      // Calculate mouse position relative to the element
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      // Calculate tilt values (invert to make it look more natural)
       const tiltX = ((y / height) * max * 2) - max;
       const tiltY = -((x / width) * max * 2) + max;
 
@@ -214,10 +212,8 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const particlesInitialized = useRef(false);
-  //const particlesContainerRef = useRef(null);
   const particlesContainerRef = useRef<Container | null | undefined>(undefined);
 
-  // Array of testimonials
   const testimonials = [
     {
       quote: "Edwin delivered our AI-powered supply chain solution on time and under budget.",
@@ -236,19 +232,16 @@ const Hero = () => {
     }
   ];
 
-  // Custom tilt effect for profile image
   const [tiltRef, tilt] = useCustomTilt({
     max: 15,
     speed: 500,
     reset: true,
   });
 
-  // Parallax effect values
   const profileImageY = useTransform(scrollY, [0, 500], [0, -50]);
   const titleY = useTransform(scrollY, [0, 500], [0, -30]);
   const subtitleOpacity = useTransform(scrollY, [0, 200, 300], [1, 0.8, 0]);
 
-  // Initialize typed.js
   useEffect(() => {
     if (typedElementRef.current) {
       typedRef.current = new Typed(typedElementRef.current, {
@@ -258,7 +251,7 @@ const Hero = () => {
           'AI/ML Student',
           'AWS Architect',
           'Cybersecurity Enthusiast',
-          'Ethical  Hacking Explorer',
+          'Ethical Hacking Explorer',
           'Tech Writer/Educator',
           'Web App Security Analyst',
           'Responsive Design',
@@ -289,7 +282,6 @@ const Hero = () => {
     };
   }, []);
 
-  // Check for reduced motion preference
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
@@ -299,13 +291,10 @@ const Hero = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Initialize particles - but make sure they're contained to the Hero section
   useEffect(() => {
-    // Function to initialize particles - prevents duplicate initialization
     const initializeParticles = async () => {
       await loadFull(window.tsParticles);
-      if (particlesInitialized.current || prefersReducedMotion ||
-        typeof window === 'undefined' || !window.tsParticles) {
+      if (particlesInitialized.current || prefersReducedMotion || typeof window === 'undefined' || !window.tsParticles) {
         return;
       }
 
@@ -313,7 +302,6 @@ const Hero = () => {
       if (!heroParticlesContainer) return;
 
       try {
-        // Store the container reference for cleanup
         particlesContainerRef.current = await window.tsParticles.load({
           id: "hero-particles",
           options: {
@@ -324,7 +312,6 @@ const Hero = () => {
                 value: 30,
                 density: {
                   enable: true,
-                  // area: 1500  // This is the correct property in v3
                   width: 1500,
                   height: 1500
                 }
@@ -332,7 +319,7 @@ const Hero = () => {
               color: { value: "#2e86de" },
               shape: {
                 type: "triangle",
-                options: {  // In v3, stroke is defined in options
+                options: {
                   triangle: {
                     sides: 3
                   }
@@ -350,17 +337,17 @@ const Hero = () => {
                 direction: "none",
                 random: true,
                 outModes: {
-                  default: "bounce"  // In v3, outModes is an object with default property
+                  default: "bounce"
                 },
                 attract: { enable: false }
               }
             },
             interactivity: {
-              detectsOn: "window",  // Changed from canvas to window, as detectsOn is deprecated
+              detectsOn: "window",
               events: {
                 onHover: { enable: true, mode: "bubble" },
                 onClick: { enable: false },
-                resize: { enable: true }  // In v3, resize is an object
+                resize: { enable: true }
               },
               modes: {
                 bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
@@ -371,22 +358,17 @@ const Hero = () => {
           }
         });
 
-
-
-
         particlesInitialized.current = true;
       } catch (error) {
         console.error("Failed to initialize particles:", error);
       }
     };
 
-    // Attempt to initialize immediately if script is already loaded
     if (window.tsParticles && !particlesInitialized.current) {
       initializeParticles();
     }
 
     return () => {
-      // Clean up particles when component unmounts
       if (particlesContainerRef.current && particlesInitialized.current) {
         try {
           particlesContainerRef.current.destroy();
@@ -398,7 +380,6 @@ const Hero = () => {
     };
   }, [prefersReducedMotion]);
 
-  // Handle script load event
   const handleTsParticlesLoad = () => {
     if (typeof window !== 'undefined' && window.tsParticles && !particlesInitialized.current && !prefersReducedMotion) {
       const initializeParticles = async () => {
@@ -413,7 +394,6 @@ const Hero = () => {
                   value: 30,
                   density: {
                     enable: true,
-                    //area: 1500  // Changed from value to area
                     width: 1500,
                     height: 1500
                   }
@@ -421,41 +401,41 @@ const Hero = () => {
                 color: { value: "#2e86de" },
                 shape: {
                   type: "triangle",
-                  options: {  // In v3, stroke is defined in options
+                  options: {
                     triangle: {
                       sides: 3
                     }
                   }
                 },
                 opacity: {
-                  value: { min: 0.1, max: 0.3 }  // Changed from random: true
+                  value: { min: 0.1, max: 0.3 }
                 },
                 size: {
-                  value: { min: 2, max: 6 }  // Changed from random: true
+                  value: { min: 2, max: 6 }
                 },
                 move: {
                   enable: true,
                   speed: 1.5,
                   random: true,
                   outModes: {
-                    default: "bounce"  // In v3, outModes is an object with default property
+                    default: "bounce"
                   },
                   direction: "none",
                   attract: { enable: false }
                 }
               },
               interactivity: {
-                detectsOn: "window",  // Changed from canvas to window
+                detectsOn: "window",
                 events: {
                   onHover: { enable: true, mode: "bubble" },
                   onClick: { enable: false },
-                  resize: { enable: true }  // In v3, resize is an object
+                  resize: { enable: true }
                 },
                 modes: {
                   bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
                 }
               },
-              detectRetina: true,  // Changed from retina_detect
+              detectRetina: true,
               pauseOnBlur: true
             }
           });
@@ -469,7 +449,18 @@ const Hero = () => {
       initializeParticles();
     }
   };
-  // Cycle through testimonials
+
+  // Initialize BMC button manually if needed
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.BMC) {
+      try {
+        window.BMC.init();
+      } catch (error) {
+        console.error("Failed to initialize BMC button:", error);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -478,7 +469,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  // Structured data for SEO
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -494,7 +484,6 @@ const Hero = () => {
     ]
   };
 
-  // Extract width value as a style to avoid inlining in JSX
   const proficiencyStyle = (percentage: number) => ({
     width: `${percentage}%`,
   });
@@ -517,7 +506,7 @@ const Hero = () => {
         <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-blue-300/20 to-purple-300/20 blur-3xl"></div>
       </div>
 
-      {/* Optimized particles effect with tsParticles - CONTAINED within the hero section */}
+      {/* tsParticles Script */}
       <Script
         id="tsparticles-script"
         src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"
@@ -525,7 +514,23 @@ const Hero = () => {
         strategy="lazyOnload"
       />
 
-      {/* IMPORTANT: Fixed container for tsParticles with explicit dimensions */}
+      {/* Buy me a coffee Script */}
+      <Script
+        id="bmc-script"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+        strategy="afterInteractive"
+        data-name="bmc-button"
+        data-slug="BRAN.DON"
+        data-color="#FFDD00"
+        data-emoji=""
+        data-font="Cookie"
+        data-text="Coffee?"
+        data-outline-color="#000000"
+        data-font-color="#000000"
+        data-coffee-color="#ffffff"
+      />
+
+      {/* Particles container */}
       <div
         id="hero-particles"
         className="absolute inset-0 z-0"
@@ -535,8 +540,8 @@ const Hero = () => {
           position: 'absolute',
           top: 0,
           left: 0,
-          overflow: 'hidden', // Important to keep particles contained
-          pointerEvents: 'none' // Allow interactions with elements beneath
+          overflow: 'hidden',
+          pointerEvents: 'none'
         }}
       ></div>
 
@@ -548,7 +553,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          {/* Availability badge - made clickable */}
+          {/* Availability badge */}
           <Link href="/contact" className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
             <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
             Available for projects
@@ -562,7 +567,7 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I&apos;m Edwin Ogola</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I'm Edwin Ogola</span>
               <br />
               <span className="inline-flex text-gray-800 dark:text-gray-100">
                 <span ref={typedElementRef} className="typed-text"></span>
@@ -627,7 +632,7 @@ const Hero = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-gray-700 dark:text-gray-300 italic mb-2">&quot;{testimonials[activeTestimonial].quote}&quot;</p>
+                <p className="text-gray-700 dark:text-gray-300 italic mb-2">"{testimonials[activeTestimonial].quote}"</p>
                 <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                   {testimonials[activeTestimonial].author}, <span className="font-normal text-gray-600 dark:text-gray-400">{testimonials[activeTestimonial].position}</span>
                 </p>
@@ -661,7 +666,7 @@ const Hero = () => {
           </div>
 
           {/* Social links */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <a
               href="https://github.com/edogola4"
               target="_blank"
@@ -691,6 +696,7 @@ const Hero = () => {
             </a>
           </div>
 
+          {/* Tech Stack */}
           <div className="pt-4">
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Tech Stack</p>
             <div className="flex flex-wrap gap-6">
@@ -712,8 +718,6 @@ const Hero = () => {
                       title={item.title}
                       aria-label={item.title}
                     />
-
-                    {/* Skill proficiency tooltip */}
                     <AnimatePresence>
                       {selectedTech?.title === item.title && (
                         <motion.div
@@ -739,7 +743,6 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Worked with logos */}
           {/* Worked with logos */}
           <div className="pt-4">
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Trusted By</p>
@@ -771,9 +774,8 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative"
+          className="relative flex flex-col items-center"
         >
-          {/* Custom tilt effect without react-tilt dependency */}
           <motion.div
             ref={tiltRef}
             style={{
@@ -781,15 +783,11 @@ const Hero = () => {
               rotateX: prefersReducedMotion ? 0 : tilt.x,
               rotateY: prefersReducedMotion ? 0 : tilt.y,
               scale: prefersReducedMotion ? 1 : (tilt.x !== 0 || tilt.y !== 0) ? 1.05 : 1,
-              //transition: { duration: 0.2 }
             }}
             transition={{ duration: 0.2 }}
             className="w-full max-w-lg mx-auto aspect-square"
           >
-            {/* Enhanced background glow effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/30 to-secondary-500/30 rounded-full blur-3xl animate-pulse"></div>
-
-            {/* Decorative elements */}
             <motion.div
               className="absolute -right-6 -top-6 w-20 h-20 bg-yellow-400/20 dark:bg-yellow-400/10 rounded-full blur-md z-0"
               animate={{ scale: [1, 1.1, 1], opacity: [0.7, 0.9, 0.7] }}
@@ -800,8 +798,6 @@ const Hero = () => {
               animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
               transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", delay: 1 }}
             />
-
-            {/* Profile image with subtle gradient overlay */}
             <div className="relative bg-white dark:bg-gray-800 rounded-full overflow-hidden border-8 border-white dark:border-gray-800 shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
               <Image
@@ -816,10 +812,31 @@ const Hero = () => {
               />
             </div>
           </motion.div>
+
+          {/* Buy me a coffee button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6 bmc-button"
+            style={{ minHeight: '40px' }}
+            data-name="bmc-button"
+            data-slug="BRAN.DON"
+            data-color="#FFDD00"
+            data-emoji=""
+            data-font="Cookie"
+            data-text="Coffee?"
+            data-outline-color="#000000"
+            data-font-color="#000000"
+            data-coffee-color="#ffffff"
+          >
+            {/* Fallback content for debugging */}
+            <span className="text-sm text-gray-500 dark:text-gray-400">Loading Buy me a coffee...</span>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Enhanced scroll indicator with animated dot trail */}
+      {/* Scroll indicator */}
       {!prefersReducedMotion && (
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
@@ -837,8 +854,6 @@ const Hero = () => {
             tabIndex={0}
           >
             <span className="text-sm text-gray-500 dark:text-gray-400 mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">Scroll Down</span>
-
-            {/* Animated dots trail */}
             <div className="relative h-8 w-6 flex justify-center">
               <motion.div
                 className="w-1.5 h-1.5 rounded-full bg-primary-500 absolute"
