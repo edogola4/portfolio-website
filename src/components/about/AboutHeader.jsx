@@ -62,7 +62,7 @@ export default function AboutHeader() {
             About Me
           </h1>
           <p className="mt-6 text-xl text-gray-600 dark:text-gray-300">
-            I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
+            I&apos;m Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             {[
