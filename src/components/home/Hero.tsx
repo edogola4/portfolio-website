@@ -567,7 +567,7 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I'm Edwin Ogola</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I&apos;m Edwin Ogola</span>
               <br />
               <span className="inline-flex text-gray-800 dark:text-gray-100">
                 <span ref={typedElementRef} className="typed-text"></span>
@@ -632,7 +632,10 @@ const Hero = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-gray-700 dark:text-gray-300 italic mb-2">"{testimonials[activeTestimonial].quote}"</p>
+                {/*<p className="text-gray-700 dark:text-gray-300 italic mb-2">"{testimonials[activeTestimonial].quote}"</p>*/}
+                <p className="text-gray-700 dark:text-gray-300 italic mb-2">
+                  &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
+                </p>
                 <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                   {testimonials[activeTestimonial].author}, <span className="font-normal text-gray-600 dark:text-gray-400">{testimonials[activeTestimonial].position}</span>
                 </p>

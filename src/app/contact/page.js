@@ -35,28 +35,30 @@ const ContactForm = () => {
         setMounted(true);
     }, []);
 
-    const validateField = (name, value) => {
-        let error = '';
 
-        switch (name) {
-            case 'name':
-                if (!value.trim()) error = 'Name is required';
-                else if (value.trim().length < 2) error = 'Name must be at least 2 characters';
-                break;
-            case 'email':
-                if (!value.trim()) error = 'Email is required';
-                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = 'Email is invalid';
-                break;
-            case 'message':
-                if (!value.trim()) error = 'Message is required';
-                else if (value.trim().length < 10) error = 'Message must be at least 10 characters';
-                break;
-            default:
-                break;
-        }
+const validateField = useCallback((name, value) => {
+  let error = '';
 
-        return error;
-    };
+  switch (name) {
+    case 'name':
+      if (!value.trim()) error = 'Name is required';
+      else if (value.trim().length < 2) error = 'Name must be at least 2 characters';
+      break;
+    case 'email':
+      if (!value.trim()) error = 'Email is required';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = 'Email is invalid';
+      break;
+    case 'message':
+      if (!value.trim()) error = 'Message is required';
+      else if (value.trim().length < 10) error = 'Message must be at least 10 characters';
+      break;
+    default:
+      break;
+  }
+
+  return error;
+}, []);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,19 +89,20 @@ const ContactForm = () => {
         }));
     };
 
-    const validateForm = () => {
-        const newErrors = {
-            name: validateField('name', formData.name),
-            email: validateField('email', formData.email),
-            message: validateField('message', formData.message)
-        };
 
-        setErrors(newErrors);
-        setTouched({ name: true, email: true, message: true });
+const validateForm = useCallback(() => {
+  const newErrors = {
+    name: validateField('name', formData.name),
+    email: validateField('email', formData.email),
+    message: validateField('message', formData.message)
+  };
 
-        // Return true if no errors
-        return !Object.values(newErrors).some(error => error);
-    };
+  setErrors(newErrors);
+  setTouched({ name: true, email: true, message: true });
+
+  return !Object.values(newErrors).some(error => error);
+}, [formData, validateField]);
+
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
@@ -148,7 +151,7 @@ const ContactForm = () => {
             setStatus('An error occurred. Please try again later.');
             setStatusType('error');
         }
-    }, [executeRecaptcha, formData]);
+    }, [executeRecaptcha, formData, validateForm]);
 
     const cardVariants = {
         hidden: { opacity: 0, y: 20 },
