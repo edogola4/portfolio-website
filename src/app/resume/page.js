@@ -1,7 +1,6 @@
 // src/app/resume/page.js
 
 import React, { Suspense } from 'react';
-import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
