@@ -9,7 +9,7 @@
 */
 @layer base {
   body {
-    @apply bg-[#f9fafb] text-[#111827] dark:bg-[#111827] dark:text-[#f9fafb] transition-colors duration-300;
+    @apply bg-background text-text transition-colors duration-300;
   }
   
   h1, h2, h3, h4, h5, h6 {

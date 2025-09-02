@@ -31,21 +31,21 @@ const Header = () => {
   ];
   
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/80 dark:bg-primary-950/80 backdrop-blur-md border-b border-primary-100 dark:border-primary-800">
       <div className="container-custom flex justify-between items-center py-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-bold text-2xl text-primary-600 dark:text-primary-400">
-            Edwin<span className="text-gray-800 dark:text-white">Ogola</span>
+        <Link href="/" className="flex items-center space-x-2 group">
+          <span className="font-bold text-2xl text-primary-600 dark:text-primary-400 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
+            Edwin<span className="text-text dark:text-text-light">Ogola</span>
           </span>
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 items-center">
+        <nav className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.path}
-              className="text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors"
+              className="text-text/80 hover:text-primary-600 dark:text-text-light/80 dark:hover:text-primary-400 transition-colors font-medium text-sm uppercase tracking-wider"
             >
               {item.name}
             </Link>
@@ -54,7 +54,7 @@ const Header = () => {
           {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="p-2 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-colors"
               aria-label="Toggle Dark Mode"
             >
               {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
@@ -63,41 +63,39 @@ const Header = () => {
         </nav>
         
         {/* Mobile Navigation Toggle */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center space-x-2">
           {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 mr-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="p-2 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-colors"
               aria-label="Toggle Dark Mode"
             >
               {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
             </button>
           )}
-          
           <button
             onClick={toggleMenu}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            aria-label="Toggle Menu"
+            className="p-2 rounded-md text-text/80 hover:bg-primary-100 dark:text-text-light/80 dark:hover:bg-primary-800 focus:outline-none transition-colors"
+            aria-label="Toggle menu"
           >
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
-      </div>
-      
-      {/* Mobile Navigation Menu */}
-      {isOpen && (
+
+        {/* Mobile Menu */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white dark:bg-gray-900 shadow-lg absolute w-full"
+          initial={{ opacity: 0, y: -10 }}
+          animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+          className={`${
+            isOpen ? 'block' : 'hidden'
+          } md:hidden absolute top-full left-0 right-0 bg-background dark:bg-primary-950/95 backdrop-blur-sm shadow-lg border-b border-primary-100 dark:border-primary-800 py-2 px-4`}
         >
-          <nav className="container-custom py-4 flex flex-col">
+          <nav className="flex flex-col space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.path}
-                className="py-3 px-4 text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors border-b border-gray-100 dark:border-gray-800"
+                className="block py-3 px-4 text-text/90 hover:bg-primary-50 dark:text-text-light/90 dark:hover:bg-primary-900/50 rounded-md transition-colors font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
@@ -105,7 +103,7 @@ const Header = () => {
             ))}
           </nav>
         </motion.div>
-      )}
+      </div>
     </header>
   );
 };
