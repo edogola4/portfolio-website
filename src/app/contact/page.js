@@ -18,7 +18,6 @@ import {
     AlertCircle,
     Loader
 } from 'lucide-react';
-import { SiX } from 'react-icons/si';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });

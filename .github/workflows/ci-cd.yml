@@ -8,7 +8,6 @@ on:
 
 env:
   NODE_VERSION: '20'
-  PNPM_VERSION: '8'
 
 jobs:
   lint:
@@ -18,26 +17,20 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v3
-      with:
-        version: ${{ env.PNPM_VERSION }}
-        run_install: false
-    
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'pnpm'
+        cache: 'npm'
         
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: npm ci
       
     - name: Run ESLint
-      run: pnpm lint
+      run: npm run lint
       
     - name: Type Check
-      run: pnpm type-check
+      run: npm run type-check
 
   build:
     name: Build
@@ -47,33 +40,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v3
-      with:
-        version: ${{ env.PNPM_VERSION }}
-        run_install: false
-    
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'pnpm'
+        cache: 'npm'
         
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      run: npm ci
       
-    - name: Build application
-      run: pnpm build
-      
-    - name: Export static files
-      run: pnpm export
-      
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build
-        path: .next/
-        retention-days: 5
+    - name: Build
+      run: npm run build
 
   deploy:
     name: Deploy to Vercel
