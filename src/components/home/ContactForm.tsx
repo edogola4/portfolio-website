@@ -37,11 +37,15 @@ const ContactForm = () => {
     router.push('/contact');
   };
 
-  const onSubmit = async () => {
+  // Fixed: Added the formData parameter to satisfy ESLint
+  const onSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
     setSubmitError('');
     
     try {
+      // You can now use formData if needed
+      console.log('Form data:', formData);
+      
       await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitSuccess(true);
       reset();
