@@ -55,6 +55,8 @@ declare module '*.webp' {
 // Extend the Window interface if you need to add custom properties to window
 declare global {
   interface Window {
-    // Add any custom window properties here
+    // Example of how to add custom window properties:
+    // myCustomFunction: () => void;
+    [key: string]: unknown;
   }
 }
