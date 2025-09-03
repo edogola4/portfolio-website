@@ -2,7 +2,7 @@
 // tailwind.config.cjs
 /** @type {import('tailwindcss').Config} */
 const typography = require('@tailwindcss/typography')
-const forms      = require('@tailwindcss/forms')
+const forms = require('@tailwindcss/forms')
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -10,18 +10,75 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Primary Color - Deep Slate Blue
         primary: {
-          50: '#eef5f3',
-          100: '#d5e7e2',
-          200: '#aacfc4',
-          300: '#79b0a2',
-          400: '#4d8b7c',
-          500: '#2c5e4f',
-          600: '#234e42',
-          700: '#1d3f36',
-          800: '#18332c',
-          900: '#132b25',
-          950: '#0a1613',
+          50: '#f5f7f8',
+          100: '#e0e6ea',
+          200: '#c1cdd5',
+          300: '#92a9b8',
+          400: '#5c7d94',
+          500: '#2c3e50',
+          600: '#263847',
+          700: '#1f2f3a',
+          800: '#1a2732',
+          900: '#16212b',
+          950: '#0f151c',
+        },
+        // Accent Color - Burnt Sienna
+        accent: {
+          50: '#fdf5f3',
+          100: '#fce8e4',
+          200: '#fad5cf',
+          300: '#f6b9ad',
+          400: '#ee8f7c',
+          500: '#e2725b',
+          600: '#ce4f35',
+          700: '#ac3f29',
+          800: '#8e3726',
+          900: '#763225',
+          950: '#3f1611',
+        },
+        // Tertiary Color - Sage Green
+        tertiary: {
+          50: '#f6f7f3',
+          100: '#ebeee5',
+          200: '#d8dec9',
+          300: '#b9c6a5',
+          400: '#8a9b68',
+          500: '#6d7f4f',
+          600: '#54653e',
+          700: '#414f32',
+          800: '#36402a',
+          900: '#2f3726',
+          950: '#171d11',
+        },
+        // Neutral Colors
+        neutral: {
+          50: '#f8f9fa',
+          100: '#f1f3f5',
+          200: '#e9ecef',
+          300: '#dee2e6',
+          400: '#ced4da',
+          500: '#adb5bd',
+          600: '#868e96',
+          700: '#495057',
+          800: '#343a40',
+          900: '#212529',
+          950: '#0a0c0d',
+        },
+        // Pale Gold for accents
+        gold: {
+          50: '#fbf8f2',
+          100: '#f5efdf',
+          200: '#e6c79c',
+          300: '#e0b97d',
+          400: '#d6a45b',
+          500: '#ce8e3e',
+          600: '#c07633',
+          700: '#9f5c2c',
+          800: '#804a2a',
+          900: '#693e27',
+          950: '#3a2113',
         },
         secondary: {
           50: '#fbf6f3',
