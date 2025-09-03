@@ -37,7 +37,7 @@ const ContactForm = () => {
     router.push('/contact');
   };
 
-  const onSubmit = async (_formData: FormData) => {  // Added type annotation
+  const onSubmit = async () => {
     setIsSubmitting(true);
     setSubmitError('');
     
