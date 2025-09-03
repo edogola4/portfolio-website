@@ -1,7 +1,7 @@
 // src/components/home/ContactForm.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -37,7 +37,7 @@ const ContactForm = () => {
     router.push('/contact');
   };
 
-  const onSubmit = async (formData: FormData) => {  // Added type annotation
+  const onSubmit = async (_formData: FormData) => {  // Added type annotation
     setIsSubmitting(true);
     setSubmitError('');
     
