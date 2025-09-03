@@ -8,7 +8,8 @@ import { Engine } from "@tsparticles/engine";
 import { Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { FiArrowRight } from 'react-icons/fi';
-import { FaReact, FaGithub, FaLinkedin, FaTwitter, FaStar } from 'react-icons/fa';
+import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
@@ -652,10 +653,24 @@ const Hero = () => {
               Browse My Projects <FiArrowRight className="text-lg" />
             </Link>
             <Link
-              href="/contact"
-              className="btn btn-outline px-6 py-3 border-2 border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+              href="#contact"
+              className="btn btn-outline group inline-flex items-center justify-center gap-2"
             >
               Get In Touch
+              <svg 
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="2" 
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
             </Link>
           </div>
 
@@ -686,7 +701,7 @@ const Hero = () => {
               aria-label="Twitter Profile"
               className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
             >
-              <FaTwitter className="w-6 h-6" />
+              <FaXTwitter className="w-5 h-5" />
             </a>
           </div>
 

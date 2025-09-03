@@ -1,6 +1,7 @@
 // src/components/layout/Footer.tsx
 import Link from 'next/link';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiPhone } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -40,7 +41,7 @@ const Footer = () => {
                 className="text-text/60 hover:text-primary-600 dark:text-text-light/60 dark:hover:text-primary-400 transition-colors"
                 aria-label="Twitter"
               >
-                <FiTwitter size={20} />
+                <FaXTwitter size={20} />
               </a>
             </div>
           </div>

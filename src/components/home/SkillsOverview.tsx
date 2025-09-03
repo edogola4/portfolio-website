@@ -109,8 +109,25 @@ const SkillsOverview = () => {
         </motion.div>
         
         <div className="text-center mt-12">
-          <Link href="/skills" className="btn btn-outline">
+          <Link 
+            href="/skills" 
+            className="btn btn-outline group inline-flex items-center justify-center gap-2"
+          >
             View All Skills & Services
+            <svg 
+              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              ></path>
+            </svg>
           </Link>
         </div>
       </div>
