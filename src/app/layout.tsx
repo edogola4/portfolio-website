@@ -1,4 +1,5 @@
 import { Inter, Fira_Code } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/context/ThemeContext';  // Use your custom provider
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -30,12 +31,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${firaCode.variable} font-sans`}>
+      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-background text-text antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow">
+              <div className="container-custom py-8">
+                {children}
+              </div>
+            </main>
             <Footer />
+            <Analytics />
           </div>
         </ThemeProvider>
       </body>

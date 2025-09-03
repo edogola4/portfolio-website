@@ -12,6 +12,7 @@ import {
     Github,
     Linkedin,
     MessageCircle,
+    X,
     ArrowRight,
     CheckCircle,
     AlertCircle,
@@ -539,7 +540,7 @@ const validateForm = useCallback(() => {
                                             whileHover="hover"
                                             className="bg-gray-100 dark:bg-gray-700 p-3 rounded-full hover:shadow-md transition-shadow"
                                         >
-                                            <SiX className="w-5 h-5 text-gray-700 dark:text-gray-200" />
+                                            <X className="w-5 h-5 text-gray-700 dark:text-gray-200" />
                                         </motion.a>
 
                                         <motion.a
