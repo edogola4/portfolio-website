@@ -1,5 +1,8 @@
 # Edwin Ogola Portfolio Website
 
+[![CI/CD Status](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml)
+[![Vercel](https://vercelbadge.vercel.app/api/edogola4/portfolio-website)](https://vercel.com/edogola4/portfolio-website)
+
 Welcome to my professional portfolio website! I’m Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world, designed to connect with potential employers and clients.
 
 ![Portfolio Screenshot](/public/images/portfolio-screenshot.png)
