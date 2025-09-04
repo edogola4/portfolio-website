@@ -1,0 +1,49 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# See the documentation for all configuration options:
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` in the `root` directory
+    directory: "/"
+    # Check for updates once a week (you can adjust this)
+    schedule:
+      interval: "weekly"
+      # Check for updates on Monday at 9am UTC
+      time: "09:00"
+      # Use timezone from the location below (Nairobi is UTC+3)
+      timezone: "Africa/Nairobi"
+    # Apply labels to any pull requests raised
+    labels:
+      - "dependencies"
+      - "javascript"
+    # Set the versioning strategy for npm updates
+    versioning-strategy: increase-if-necessary
+    # Open pull requests for version updates
+    open-pull-requests-limit: 5
+    # Only allow updates to the lockfile for patch and minor updates
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "development"
+    # Ignore major version updates (uncomment if you want to handle major updates manually)
+    # ignore:
+    #   - dependency-name: "*"
+    #     versions: ["*"]
+    #     update-types: ["version-update:semver-major"]
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    # Look for GitHub Actions in `.github/workflows`
+    directory: "/.github/workflows"
+    # Check for updates once a month
+    schedule:
+      interval: "monthly"
+    # Apply labels to any pull requests raised
+    labels:
+      - "github-actions"
+      - "dependencies"
+    # Open pull requests for version updates
+    open-pull-requests-limit: 3
