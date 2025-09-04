@@ -567,7 +567,7 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="text-[#2B2D42] dark:text-white">I'm Edwin Ogola</span>
+              <span className="text-[#2B2D42] dark:text-white">I&apos;m Edwin Ogola</span>
               <br />
               <span className="text-[#3A5A6B] dark:text-[#6B7F82] font-medium">
                 <span ref={typedElementRef} className="typed-text"></span>

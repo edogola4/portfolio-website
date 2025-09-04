@@ -116,7 +116,7 @@ const AboutPreview = memo<AboutPreviewProps>(({
           <div className="h-1 w-24 bg-[#3A5A6B] dark:bg-[#6B7F82] mx-auto mb-8 rounded-full"></div>
           
           <p className="text-lg text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6 leading-relaxed">
-            I'm a full-stack developer with a passion for building scalable web applications that solve real-world problems. 
+          I&apos;m a full-stack developer with a passion for building scalable web applications that solve real-world problems. 
             With expertise in modern JavaScript frameworks and cloud technologies, I create efficient and user-friendly digital experiences.
           </p>
           
