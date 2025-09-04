@@ -6,13 +6,11 @@ import { motion } from 'framer-motion';
 
 // Tech stack icons from react-icons
 import {
-    SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
-    SiNodedotjs, SiExpress, SiPython, SiDjango, SiGraphql,
-    SiMongodb, SiPostgresql, SiFirebase, SiRedis,
-    SiDocker, SiAmazon, // ✅ Use SiAmazon instead of SiAmazonaws
-    SiVercel, SiGithubactions
-  } from 'react-icons/si';
-  
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
+  SiNodedotjs, SiExpress, SiPython, SiDjango, SiGraphql,
+  SiMongodb, SiPostgresql, SiFirebase, SiRedis,
+  SiDocker, SiAmazon, SiVercel, SiGithubactions
+} from 'react-icons/si';
 
 const iconComponents = {
   react: SiReact,
@@ -90,7 +88,7 @@ function TechCard({ tech, index }) {
       vercel: '#000000',
       github: '#181717'
     };
-    return colors[icon] || '#6366F1'; // Default to indigo if not found
+    return colors[icon] || '#6B7F82';
   };
 
   return (
@@ -100,40 +98,40 @@ function TechCard({ tech, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ 
         scale: 1.03, 
-        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)'
       }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-800"
+      className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 sm:p-5 md:p-6 transition-all duration-300 border border-neutral-100 dark:border-neutral-700/50 hover:border-accent-100 dark:hover:border-accent-800/50 backdrop-blur-sm"
     >
-      <div className="flex items-center mb-4">
+      <div className="flex items-center mb-3 sm:mb-4">
         <motion.div
           whileHover={{ rotate: 360 }}
           transition={{ type: "spring", duration: 1 }}
           style={{ color: getIconColor(tech.icon) }}
-          className="text-3xl mr-3"
+          className="text-2xl sm:text-3xl mr-2 sm:mr-3"
         >
           {IconComponent && <IconComponent />}
         </motion.div>
-        <span className="font-semibold text-lg text-gray-800 dark:text-gray-200">
+        <span className="font-semibold text-base sm:text-lg text-primary-800 dark:text-white">
           {tech.name}
         </span>
       </div>
       
       <div className="relative pt-1">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300">
+        <div className="flex items-center justify-between mb-1 sm:mb-2">
+          <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
             Proficiency
           </span>
-          <span className="text-xs font-semibold inline-block text-indigo-600 dark:text-indigo-300">
+          <span className="text-xs font-semibold text-accent-700 dark:text-accent-300">
             {tech.level}%
           </span>
         </div>
-        <div className="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
+        <div className="overflow-hidden h-1.5 sm:h-2 mb-2 sm:mb-4 text-xs flex rounded-full bg-neutral-100 dark:bg-neutral-700/50">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${tech.level}%` }}
             transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-blue-500 to-indigo-600"
-          ></motion.div>
+            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-accent-500 to-accent-600"
+          />
         </div>
       </div>
     </motion.div>
@@ -183,73 +181,73 @@ export default function TechStack() {
   ];
 
   return (
-    <section id="tech-stack" className="py-16">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="text-center mb-12">
-          <motion.h2 
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white inline-block"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">
-              Technical Stack
-            </span>
-          </motion.h2>
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: "80px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mt-2 rounded-full"
-          />
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
-          >
-            These are the technologies I work with regularly. I'm always expanding my toolkit and exploring new technologies to improve my development capabilities.
-          </motion.p>
-        </div>
-
-        <div className="space-y-16">
-          {techCategories.map((category, categoryIndex) => (
-            <motion.div 
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
-              className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow-lg"
+    <section id="tech-stack" className="py-10 sm:py-12 md:py-16 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <motion.h2 
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary-800 dark:text-white"
             >
-              <div className="flex items-center mb-8">
-                <motion.h3 
-                  className="text-2xl font-bold text-gray-900 dark:text-white"
-                  initial={{ x: -20 }}
-                  animate={{ x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {category.title}
-                </motion.h3>
-                <div className="ml-4 h-px bg-gradient-to-r from-indigo-500 to-transparent flex-grow" />
-              </div>
-              
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {category.technologies.map((tech, techIndex) => (
-                  <TechCard 
-                    key={techIndex} 
-                    tech={tech} 
-                    index={techIndex}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+              Technical Stack
+            </motion.h2>
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "80px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="h-1 bg-gradient-to-r from-accent-500 to-accent-600 mx-auto mt-3 sm:mt-4 rounded-full"
+            />
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto px-4 sm:px-6"
+            >
+              These are the technologies I work with regularly. I'm always expanding my toolkit and exploring new technologies to improve my development capabilities.
+            </motion.p>
+          </div>
+
+          <div className="space-y-6 sm:space-y-8 md:space-y-10">
+            {techCategories.map((category, categoryIndex) => (
+              <motion.div 
+                key={categoryIndex}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+                className="bg-neutral-50/50 dark:bg-neutral-900/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 backdrop-blur-sm border border-neutral-100 dark:border-neutral-800/50"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center mb-6 sm:mb-8">
+                  <motion.h3 
+                    className="text-xl sm:text-2xl font-bold text-primary-800 dark:text-white mb-2 sm:mb-0"
+                    initial={{ x: -20 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {category.title}
+                  </motion.h3>
+                  <div className="hidden sm:block h-px sm:ml-4 bg-gradient-to-r from-accent-500/30 to-transparent flex-grow" />
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
+                  {category.technologies.map((tech, techIndex) => (
+                    <TechCard 
+                      key={techIndex} 
+                      tech={tech} 
+                      index={techIndex}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

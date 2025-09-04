@@ -15,16 +15,15 @@ export default function AboutHeader() {
     script.src = 'https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js';
     script.setAttribute('data-name', 'bmc-button');
     script.setAttribute('data-slug', 'BRAN.DON');
-    script.setAttribute('data-color', '#FFDD00');
+    script.setAttribute('data-color', '#E07A5F');
     script.setAttribute('data-emoji', '');
-    script.setAttribute('data-font', 'Cookie');
+    script.setAttribute('data-font', 'Inter');
     script.setAttribute('data-text', 'Buy me a coffee');
-    script.setAttribute('data-outline-color', '#000000');
-    script.setAttribute('data-font-color', '#000000');
-    script.setAttribute('data-coffee-color', '#ffffff');
+    script.setAttribute('data-outline-color', '#2C5E4F');
+    script.setAttribute('data-font-color', '#2B2D42');
+    script.setAttribute('data-coffee-color', '#2B2D42');
     
     script.onload = () => {
-      // Force the button to render after script loads
       if (window.BMC) {
         window.BMC.init();
       }
@@ -32,7 +31,6 @@ export default function AboutHeader() {
     
     document.head.appendChild(script);
     
-    // Cleanup function to remove script when component unmounts
     return () => {
       const existingScript = document.querySelector('script[data-name="bmc-button"]');
       if (existingScript) {
@@ -42,74 +40,105 @@ export default function AboutHeader() {
   }, []);
 
   return (
-    <section className="relative">
-      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-        <div className="lg:w-1/3">
-          <div className="relative w-full aspect-square max-w-sm mx-auto">
+    <section className="relative bg-neutral-50 dark:bg-neutral-900/30 rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-sm border border-neutral-100 dark:border-neutral-800/50">
+      <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-10 xl:gap-12">
+        {/* Profile Image */}
+        <div className="w-full sm:w-2/3 md:w-1/2 lg:w-2/5 xl:w-1/3">
+          <div className="relative w-full aspect-square max-w-xs mx-auto group">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 -z-10 group-hover:opacity-30 transition-opacity duration-300"></div>
             <Image
               src="/images/profile.jpg"
               alt="Edwin Ogola"
-              fill
-              sizes="(max-width: 768px) 100vw, 384px"
-              className="object-cover rounded-2xl shadow-2xl"
+              width={400}
+              height={400}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300"
               priority
+              unoptimized={true}
+              key={Date.now()}
             />
-            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10 dark:ring-white/10"></div>
+            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-primary-100/50 group-hover:ring-primary-200/70 transition-all duration-300"></div>
           </div>
         </div>
-        <div className="lg:w-2/3">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+        
+        {/* Content */}
+        <div className="w-full lg:w-3/5 xl:w-2/3">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary-800 dark:text-white text-center lg:text-left">
             About Me
           </h1>
-          <p className="mt-6 text-xl text-gray-600 dark:text-gray-300">
-            I&apos;m Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
+          
+          <p className="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
+            I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          
+          {/* Social Links */}
+          <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
             {[
-              { href: 'https://github.com/edogola4', icon: FaGithub, label: 'GitHub Profile', name: 'GitHub' },
-              { href: 'https://www.linkedin.com/in/brandon-ogola-b77063232/', icon: FaLinkedin, label: 'LinkedIn Profile', name: 'LinkedIn' },
-              { href: 'https://x.com/BrandonOgola', icon: SiX, label: 'X Profile', name: '' },
-            ].map(({ href, icon: Icon, label, name }) => (
+              { 
+                href: 'https://github.com/edogola4', 
+                icon: FaGithub, 
+                label: 'GitHub Profile', 
+                name: 'GitHub',
+                bgColor: 'bg-gray-900 hover:bg-gray-800',
+                textColor: 'text-white',
+                iconColor: 'text-white',
+                className: 'flex-1 sm:flex-none text-center'
+              },
+              { 
+                href: 'https://www.linkedin.com/in/brandon-ogola-b77063232/', 
+                icon: FaLinkedin, 
+                label: 'LinkedIn Profile', 
+                name: 'LinkedIn',
+                bgColor: 'bg-[#0A66C2] hover:bg-[#004182]',
+                textColor: 'text-white',
+                iconColor: 'text-white',
+                className: 'flex-1 sm:flex-none text-center'
+              },
+              { 
+                href: 'https://x.com/BrandonOgola', 
+                icon: SiX, 
+                label: 'X Profile', 
+                //name: '',
+                bgColor: 'bg-gray-800 hover:bg-gray-700',
+                textColor: 'text-white',
+                iconColor: 'text-white',
+                className: 'flex-1 sm:flex-none text-center'
+              },
+            ].map(({ href, icon: Icon, label, name, bgColor, textColor, iconColor, className }) => (
               <a
                 key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 aria-label={label}
-                className="inline-flex items-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 focus:border-current focus:bg-canvas focus:text-canvas-text dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 dark:focus:bg-canvas dark:focus:text-canvas-text"
+                className={`inline-flex items-center justify-center sm:justify-start rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base font-medium transition-all duration-200 ${bgColor} ${textColor} hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 ${className}`}
               >
-                <Icon className="mr-2 h-5 w-5" aria-hidden="true" />
-                {name}
+                <Icon className={`mr-2 h-4 w-4 ${iconColor}`} aria-hidden="true" />
+                <span className="whitespace-nowrap">{name}</span>
               </a>
             ))}
           </div>
           
           {/* Buy Me A Coffee Button */}
-          <div className="mt-6">
+          <div className="mt-6 sm:mt-8 text-center lg:text-left">
             <a 
               href="https://www.buymeacoffee.com/BRAN.DON" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg px-6 py-3 text-base font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
+              className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold transition-all duration-200 transform hover:scale-[1.02] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500"
               style={{
-                backgroundColor: '#FFDD00',
-                color: '#000000',
-                border: '2px solid #000000',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                backgroundColor: '#E07A5F',
+                color: '#FFFFFF',
+                border: '1px solid #d96b50',
+                minWidth: '180px'
               }}
             >
-              <span className="text-lg mr-2">☕</span>
-              Buy me a coffee
+              <span className="mr-2">☕</span>
+              <span>Buy me a coffee</span>
             </a>
           </div>
-          
-          {/* Support Message */}
-          {/*<p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-            Love my work? Support me with a coffee! ☕
-          </p>*/}
         </div>
       </div>
-      <div className="mt-12 border-t border-gray-200 dark:border-gray-800"></div>
     </section>
   );
 }
