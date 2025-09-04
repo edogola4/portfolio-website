@@ -72,9 +72,9 @@ const SkillsOverview = () => {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-20 bg-beige-50 dark:bg-slate-900">
       <div className="container-custom">
-        <h2 className="section-heading">Skills Overview</h2>
+        <h2 className="section-heading text-slate-800 dark:text-beige-50">Skills Overview</h2>
         
         <motion.div
           ref={ref}
@@ -87,19 +87,19 @@ const SkillsOverview = () => {
             <motion.div
               key={skill.category}
               variants={itemVariants}
-              className="card p-6"
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-slate-100 dark:border-slate-700"
             >
               <div className="flex items-center mb-4">
-                <div className="p-3 rounded-full bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 mr-4">
+                <div className="p-3 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-beige-100 mr-4">
                   {skill.icon}
                 </div>
-                <h3 className="text-xl font-bold">{skill.category}</h3>
+                <h3 className="text-xl font-bold text-slate-800 dark:text-beige-50">{skill.category}</h3>
               </div>
               
               <ul className="space-y-2">
                 {skill.technologies.map((tech) => (
-                  <li key={tech} className="flex items-center text-gray-700 dark:text-gray-300">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
+                  <li key={tech} className="flex items-center text-slate-700 dark:text-beige-100">
+                    <span className="w-2 h-2 bg-terracotta-500 rounded-full mr-2"></span>
                     {tech}
                   </li>
                 ))}
@@ -111,11 +111,11 @@ const SkillsOverview = () => {
         <div className="text-center mt-12">
           <Link 
             href="/skills" 
-            className="btn btn-outline group inline-flex items-center justify-center gap-2"
+            className="inline-flex items-center px-6 py-3 border-2 border-slate-700 dark:border-beige-100 text-slate-700 dark:text-beige-100 font-medium rounded-lg hover:bg-slate-700 hover:text-beige-50 dark:hover:bg-beige-100 dark:hover:text-slate-800 transition-colors duration-300 group"
           >
             View All Skills & Services
             <svg 
-              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+              className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24" 

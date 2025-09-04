@@ -100,9 +100,9 @@ const clientLogos = [
 
 // Highlights/Stats to showcase achievements
 const highlights = [
-  { icon: IoRocketOutline, value: '15+', label: 'Projects Delivered', color: 'from-blue-500 to-purple-500' },
-  { icon: FaStar, value: '100%', label: 'Client Satisfaction', color: 'from-yellow-500 to-orange-500' },
-  { icon: IoStatsChart, value: '4+', label: 'Years Experience', color: 'from-green-500 to-teal-500' },
+  { icon: IoRocketOutline, value: '15+', label: 'Projects Delivered', color: 'from-[#2C5E4F] to-[#6B7F82]' },
+  { icon: FaStar, value: '100%', label: 'Client Satisfaction', color: 'from-[#E07A5F] to-[#2C5E4F]' },
+  { icon: IoStatsChart, value: '4+', label: 'Years Experience', color: 'from-[#6B7F82] to-[#2C5E4F]' },
 ];
 
 // Define correctly typed icon variants for framer-motion
@@ -316,7 +316,7 @@ const Hero = () => {
                   height: 1500
                 }
               },
-              color: { value: "#2e86de" },
+              color: { value: "#3A5A6B" },
               shape: {
                 type: "triangle",
                 options: {
@@ -398,7 +398,7 @@ const Hero = () => {
                     height: 1500
                   }
                 },
-                color: { value: "#2e86de" },
+                color: { value: "#3A5A6B" },
                 shape: {
                   type: "triangle",
                   options: {
@@ -490,7 +490,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden"
+      className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-[#F8F5F0] to-[#EFEAE2] dark:from-[#1E2A35] dark:to-[#141E26] overflow-hidden"
       id="hero"
     >
       {/* SEO Structured Data */}
@@ -501,9 +501,9 @@ const Hero = () => {
 
       {/* Background geometric patterns */}
       <div className="absolute inset-0 -z-10 opacity-30 dark:opacity-20 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary-300/20 to-secondary-300/20 blur-3xl"></div>
-        <div className="absolute top-1/3 -left-24 w-72 h-72 rounded-full bg-gradient-to-br from-secondary-300/20 to-primary-300/20 blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-blue-300/20 to-purple-300/20 blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#3A5A6B]/10 to-[#6B7F82]/10 blur-3xl"></div>
+        <div className="absolute top-1/3 -left-24 w-72 h-72 rounded-full bg-gradient-to-br from-[#E07A5F]/10 to-[#3A5A6B]/10 blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-[#6B7F82]/10 to-[#3A5A6B]/10 blur-3xl"></div>
       </div>
 
       {/* tsParticles Script */}
@@ -521,13 +521,13 @@ const Hero = () => {
         strategy="afterInteractive"
         data-name="bmc-button"
         data-slug="BRAN.DON"
-        data-color="#FFDD00"
+        data-color="#E07A5F"
         data-emoji=""
-        data-font="Cookie"
-        data-text="Coffee?"
-        data-outline-color="#000000"
-        data-font-color="#000000"
-        data-coffee-color="#ffffff"
+        data-font="Inter"
+        data-text="Buy me a coffee"
+        data-outline-color="#3A5A6B"
+        data-font-color="#2B2D42"
+        data-coffee-color="#2B2D42"
       />
 
       {/* Particles container */}
@@ -554,10 +554,10 @@ const Hero = () => {
           className="space-y-6"
         >
           {/* Availability badge */}
-          <Link href="/contact" className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+          <Link href="/contact" className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-[#3A5A6B] text-[#F8F5F0] dark:bg-[#6B7F82] dark:text-white shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
+            <span className="w-2 h-2 bg-[#E07A5F] rounded-full mr-2 animate-pulse"></span>
             Available for projects
-            <BsArrowUpRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <BsArrowUpRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#F8F5F0] dark:text-white" />
           </Link>
 
           <div>
@@ -567,16 +567,16 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I&apos;m Edwin Ogola</span>
+              <span className="text-[#2B2D42] dark:text-white">I'm Edwin Ogola</span>
               <br />
-              <span className="inline-flex text-gray-800 dark:text-gray-100">
+              <span className="text-[#3A5A6B] dark:text-[#6B7F82] font-medium">
                 <span ref={typedElementRef} className="typed-text"></span>
               </span>
             </motion.h1>
 
             <motion.p
               style={{ opacity: subtitleOpacity }}
-              className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6"
+              className="text-xl md:text-2xl text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6"
             >
               Building AI-powered web applications that solve unique challenges in East African markets
             </motion.p>
@@ -598,13 +598,13 @@ const Hero = () => {
                 <motion.div
                   key={highlight.label}
                   variants={fadeInUp}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-3 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                  className="bg-white/80 dark:bg-[#1E2A35] rounded-xl p-3 shadow-sm border border-[#e8e2d6] dark:border-[#3A5A6B]/30 hover:shadow-md transition-shadow"
                 >
-                  <div className={`w-10 h-10 mb-2 rounded-lg flex items-center justify-center bg-gradient-to-br ${highlight.color} text-white`}>
+                  <div className={`w-10 h-10 mb-2 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#3A5A6B] to-[#6B7F82] text-white`}>
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{highlight.value}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{highlight.label}</p>
+                  <h3 className="text-2xl font-bold text-[#2B2D42] dark:text-white">{highlight.value}</h3>
+                  <p className="text-sm text-[#2B2D42]/80 dark:text-[#F8F5F0]/80">{highlight.label}</p>
                 </motion.div>
               );
             })}
@@ -612,7 +612,7 @@ const Hero = () => {
 
           {/* Testimonial carousel */}
           <motion.div
-            className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 mb-6 overflow-hidden"
+            className="relative bg-white/80 dark:bg-[#1E2A35] rounded-xl p-4 shadow-sm border border-[#e8e2d6] dark:border-[#3A5A6B]/30 mb-6 overflow-hidden"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
@@ -645,7 +645,7 @@ const Hero = () => {
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeTestimonial === index ? 'bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeTestimonial === index ? 'bg-[#3A5A6B]' : 'bg-gray-300 dark:bg-gray-600'}`}
                   onClick={() => setActiveTestimonial(index)}
                   aria-label={`View testimonial ${index + 1}`}
                 />
@@ -656,19 +656,18 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/projects"
-              className="btn btn-primary flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="btn btn-primary flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] text-[#F8F5F0] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[#3A5A6B]/30"
             >
               Browse My Projects <FiArrowRight className="text-lg" />
             </Link>
             <Link
               href="#contact"
-              className="btn btn-outline group inline-flex items-center justify-center gap-2"
+              className="btn btn-outline group inline-flex items-center justify-center gap-2 border-2 border-[#3A5A6B] text-[#3A5A6B] dark:border-[#6B7F82] dark:text-[#6B7F82] hover:bg-[#3A5A6B] hover:text-[#F8F5F0] dark:hover:bg-[#6B7F82] dark:hover:text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1"
             >
               Get In Touch
               <svg 
                 className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
+                fill="currentColor" 
                 viewBox="0 0 24 24" 
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -689,7 +688,7 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
             >
               <FaGithub className="w-6 h-6" />
             </a>
@@ -698,7 +697,7 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>
@@ -707,7 +706,7 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
             >
               <FaXTwitter className="w-5 h-5" />
             </a>
@@ -715,7 +714,7 @@ const Hero = () => {
 
           {/* Tech Stack */}
           <div className="pt-4">
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Tech Stack</p>
+            <p className="text-sm font-medium text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-3">Tech Stack</p>
             <div className="flex flex-wrap gap-6">
               {iconData.map((item, index) => {
                 const Icon = item.icon;
@@ -741,16 +740,16 @@ const Hero = () => {
                           initial={{ opacity: 0, y: 10, scale: 0.9 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.1 } }}
-                          className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 z-10 w-32 pointer-events-none"
+                          className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1E2A35] rounded-lg shadow-lg p-2 z-10 w-32 pointer-events-none border border-[#e8e2d6] dark:border-[#3A5A6B]/30"
                         >
-                          <p className="text-center text-sm font-medium">{item.title}</p>
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full mt-1">
+                          <p className="text-center text-sm font-medium text-[#2B2D42] dark:text-[#F8F5F0]">{item.title}</p>
+                          <div className="w-full bg-[#e8e2d6] dark:bg-[#3A5A6B]/30 h-2 rounded-full mt-1">
                             <div
-                              className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full"
+                              className="bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] h-2 rounded-full"
                               style={proficiencyStyle(item.proficiency)}
                             ></div>
                           </div>
-                          <p className="text-xs text-center mt-1">{item.proficiency}%</p>
+                          <p className="text-xs text-center mt-1 text-[#2B2D42]/80 dark:text-[#F8F5F0]/80">{item.proficiency}%</p>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -762,7 +761,7 @@ const Hero = () => {
 
           {/* Worked with logos */}
           <div className="pt-4">
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Trusted By</p>
+            <p className="text-sm font-medium text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-3">Trusted By</p>
             <div className="flex flex-wrap items-center gap-6">
               {clientLogos.map((client, index) => (
                 <motion.div
@@ -804,18 +803,18 @@ const Hero = () => {
             transition={{ duration: 0.2 }}
             className="w-full max-w-lg mx-auto aspect-square"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/30 to-secondary-500/30 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3A5A6B]/30 to-[#6B7F82]/30 rounded-full blur-3xl animate-pulse"></div>
             <motion.div
-              className="absolute -right-6 -top-6 w-20 h-20 bg-yellow-400/20 dark:bg-yellow-400/10 rounded-full blur-md z-0"
+              className="absolute -right-6 -top-6 w-20 h-20 bg-[#E07A5F]/20 dark:bg-[#E07A5F]/10 rounded-full blur-md z-0"
               animate={{ scale: [1, 1.1, 1], opacity: [0.7, 0.9, 0.7] }}
               transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
             />
             <motion.div
-              className="absolute -left-4 bottom-8 w-16 h-16 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-md z-0"
+              className="absolute -left-4 bottom-8 w-16 h-16 bg-[#6B7F82]/20 dark:bg-[#6B7F82]/10 rounded-full blur-md z-0"
               animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
               transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", delay: 1 }}
             />
-            <div className="relative bg-white dark:bg-gray-800 rounded-full overflow-hidden border-8 border-white dark:border-gray-800 shadow-xl">
+            <div className="relative bg-white dark:bg-[#1E2A35] rounded-full overflow-hidden border-8 border-white dark:border-[#1E2A35] shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
               <Image
                 src="/images/profile.png"
@@ -831,25 +830,31 @@ const Hero = () => {
           </motion.div>
 
           {/* Buy me a coffee button */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-6 bmc-button"
-            style={{ minHeight: '40px' }}
+            style={{
+              minHeight: '40px',
+              '--bmc-button-color': '#E07A5F',
+              '--bmc-button-text-color': '#2B2D42',
+              '--bmc-button-outline-color': '#3A5A6B',
+              '--bmc-button-hover-color': '#d86a4f',
+              '--bmc-button-font': 'Inter, sans-serif',
+            }}
             data-name="bmc-button"
             data-slug="BRAN.DON"
-            data-color="#FFDD00"
+            data-color="#E07A5F"
             data-emoji=""
-            data-font="Cookie"
-            data-text="Coffee?"
-            data-outline-color="#000000"
-            data-font-color="#000000"
-            data-coffee-color="#ffffff"
+            data-font="Inter"
+            data-text="Buy me a coffee"
+            data-outline-color="#3A5A6B"
+            data-font-color="#2B2D42"
+            data-coffee-color="#2B2D42"
           >
-            {/* Fallback content for debugging */}
             <span className="text-sm text-gray-500 dark:text-gray-400">Loading Buy me a coffee...</span>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 
@@ -870,10 +875,10 @@ const Hero = () => {
             aria-label="Scroll down"
             tabIndex={0}
           >
-            <span className="text-sm text-gray-500 dark:text-gray-400 mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">Scroll Down</span>
+            <span className="text-sm text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-2 group-hover:text-[#3A5A6B] dark:group-hover:text-[#6B7F82] transition-colors">Scroll Down</span>
             <div className="relative h-8 w-6 flex justify-center">
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B] dark:bg-[#6B7F82] absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.8, 1, 0.8]
@@ -886,7 +891,7 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500/70 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B]/70 dark:bg-[#6B7F82]/70 absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.6, 0.8, 0.6]
@@ -899,7 +904,7 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500/40 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B]/40 dark:bg-[#6B7F82]/40 absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.4, 0.6, 0.4]

@@ -91,7 +91,7 @@ const AboutPreview = memo<AboutPreviewProps>(({
 
   return (
     <section 
-      className={`about-preview py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 transition-colors duration-200 ${className}`}
+      className={`about-preview py-16 sm:py-20 lg:py-24 bg-[#F8F5F0] dark:bg-[#1E2A35] transition-colors duration-200 ${className}`}
       aria-labelledby="about-preview-heading"
       role="region"
       style={{
@@ -107,45 +107,31 @@ const AboutPreview = memo<AboutPreviewProps>(({
           {...motionProps}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Main heading with proper semantic structure */}
           <h2 
             id="about-preview-heading"
-            className="section-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
+            className="text-3xl md:text-4xl font-bold mb-6 text-[#2B2D42] dark:text-[#F8F5F0]"
           >
             About Me
           </h2>
+          <div className="h-1 w-24 bg-[#3A5A6B] dark:bg-[#6B7F82] mx-auto mb-8 rounded-full"></div>
           
-          {/* Content wrapper for better text flow */}
-          <div className="prose prose-lg sm:prose-xl max-w-none mx-auto">
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-              I&apos;m a passionate{' '}
-              <span className="font-semibold text-primary-600 dark:text-primary-400">
-                Full Stack Software Engineer
-              </span>{' '}
-              with expertise in building scalable web applications that solve real problems 
-              for businesses and communities across East Africa.
-            </p>
-            
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-              With a focus on{' '}
-              <span className="font-medium">React, Node.js, and modern cloud technologies</span>, 
-              I create efficient, user-friendly solutions that work reliably even in challenging 
-              connectivity environments.
-            </p>
-          </div>
+          <p className="text-lg text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6 leading-relaxed">
+            I'm a full-stack developer with a passion for building scalable web applications that solve real-world problems. 
+            With expertise in modern JavaScript frameworks and cloud technologies, I create efficient and user-friendly digital experiences.
+          </p>
           
-          {/* Call-to-action section */}
-          <div className="flex flex-wrap gap-4 justify-center mt-8">
+          <p className="text-lg text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-8 leading-relaxed">
+            My journey in tech started with a curiosity about how things work, which led me to pursue a career in software development. 
+            I specialize in building responsive, accessible, and performant web applications using the latest technologies.
+          </p>
+          
+          <div className="mt-10">
             <Link 
               href="/about" 
-              className="btn btn-outline group inline-flex items-center px-6 py-3 text-base font-medium rounded-lg border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-400 dark:hover:text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 hover:transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 about-cta-button"
-              aria-label="Learn more about my background and experience"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#3A5A6B] hover:bg-[#2B3D4D] dark:bg-[#6B7F82] dark:hover:bg-[#5A6D72] transition-colors duration-200"
             >
-              Learn More About Me 
-              <FiArrowRight 
-                className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" 
-                aria-hidden="true"
-              />
+              Learn More About Me
+              <FiArrowRight className="ml-2" />
             </Link>
           </div>
         </motion.div>
