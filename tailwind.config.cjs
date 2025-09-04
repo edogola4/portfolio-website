@@ -125,6 +125,53 @@ module.exports = {
           DEFAULT: '#F5F1E9',  // Warm Off-White
           dark: '#1a1f1d',     // Dark background for dark mode
         },
+        contact: {
+          primary: {
+            DEFAULT: '#2C5E4F',
+            light: '#3D7A6B',
+            dark: '#1A3A30',
+            muted: '#E8F0ED',
+          },
+          secondary: {
+            DEFAULT: '#D4A373',
+            light: '#E8C4A8',
+            dark: '#B5865E',
+          },
+          neutral: {
+            DEFAULT: '#F8F4E9',
+            light: '#FCFAF5',
+            dark: '#E8E4D9',
+            darker: '#D8D4C9',
+          },
+          text: {
+            DEFAULT: '#2B2D42',
+            light: '#4A4E69',
+            muted: '#6C757D',
+            onPrimary: '#FFFFFF',
+            dark: '#E2E8F0',  // Brighter text for dark mode
+          },
+          accent: {
+            DEFAULT: '#5E8B8B',
+            light: '#7FA7A7',
+            dark: '#4A6B6B',
+          },
+          status: {
+            success: '#4A7C59',
+            error: '#C1666B',
+            warning: '#D4A373',
+            info: '#5E8B8B',
+          },
+          dark: {
+            bg: '#111827',  // Darker background
+            surface: '#1F2937',  // Darker surface for cards/forms
+            border: '#374151',  // Brighter borders for better visibility
+            text: {
+              primary: '#F3F4F6',  // Brighter text
+              secondary: '#D1D5DB',  // Secondary text
+              muted: '#9CA3AF',  // Muted text
+            }
+          }
+        }
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
