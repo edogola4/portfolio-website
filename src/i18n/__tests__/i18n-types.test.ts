@@ -14,15 +14,14 @@ acceptSupportedLocale('sw');
 acceptSupportedLocale('xx');
 
 // Type guard should narrow string | undefined to SupportedLocale
-let maybeLocale: string | undefined;
-maybeLocale = 'en';
+const maybeLocale: string | undefined = 'en';
 if (isSupportedLocale(maybeLocale)) {
   const narrowed: SupportedLocale = maybeLocale;
   void narrowed;
 }
 
 // When not supported, it should NOT narrow
-let badLocale: string | undefined = 'xx';
+const badLocale: string | undefined = 'xx';
 if (isSupportedLocale(badLocale)) {
   // This block should not narrow for 'xx' at runtime, but type system
   // can only see the guard; we ensure direct assignment without guard fails.
