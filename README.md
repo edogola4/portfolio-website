@@ -9,12 +9,31 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/edogola4/portfolio-website/graphs/commit-activity)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+## Versions
+- Next.js: 15.3.2
+- next-intl: 3.26.5
+- React: 19.1.0
+- TypeScript: see `package.json`
+
+## Quick Links
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Scripts](#-scripts)
+- [Internationalization (next-intl v3)](#-internationalization-next-intl-v3)
+- [Images configuration](#-images-configuration)
+- [Development notes](#-development-notes)
+- [Troubleshooting (i18n)](#-troubleshooting-i18n)
+- [Project Structure](#-project-structure)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
 Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world.
 
 ## 🚀 Features
 
-- **Modern Stack**: Built with Next.js 14, React 19, and TypeScript
+- **Modern Stack**: Built with Next.js 15, React 19, and TypeScript
 - **Responsive Design**: Optimized for all devices with mobile-first approach
 - **Dark/Light Mode**: Seamless theme switching with `next-themes`
 - **Interactive UI**: Smooth animations with Framer Motion
@@ -28,7 +47,7 @@ Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Soft
 ## 🛠️ Tech Stack
 
 ### Core
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom themes
 - **Animation**: [Framer Motion](https://www.framer.com/motion/)
@@ -49,6 +68,126 @@ Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Soft
 - **Hosting**: [Vercel](https://vercel.com/)
 - **CI/CD**: GitHub Actions
 - **Dependency Updates**: Dependabot
+
+## 🌍 Internationalization (next-intl v3)
+
+This project uses `next-intl@^3.26.5` with App Router.
+
+- Locales: `en`, `sw`
+- All routes are prefixed: `/en`, `/sw` (see `next-intl.config.mjs` and `middleware.ts`)
+
+Key files:
+- `next-intl.config.mjs`
+- `middleware.ts`
+- `src/i18n/request.ts`
+- `src/app/[locale]/layout.tsx`
+
+Request config (no deprecated imports):
+```ts
+// src/i18n/request.ts
+import {getRequestConfig} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+
+export default getRequestConfig(async ({requestLocale}) => {
+  const locale = await requestLocale;
+
+  if (!['en', 'sw'].includes(locale)) {
+    notFound();
+  }
+
+  const messages = (await import(`./locales/${locale}.json`)).default;
+  return {locale, messages};
+});
+```
+
+Layout awaits route params (Next.js 15 requirement for layouts):
+```tsx
+// src/app/[locale]/layout.tsx
+export default async function LocaleLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: 'en' | 'sw' }>
+}) {
+  const {locale} = await params;
+  unstable_setRequestLocale(locale);
+  const messages = await getMessages();
+
+  return <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>;
+}
+```
+
+Generate static params for localized routes:
+```ts
+export function generateStaticParams() {
+  return [{locale: 'en'}, {locale: 'sw'}];
+}
+```
+
+Message files live in:
+- `src/i18n/locales/en.json`
+- `src/i18n/locales/sw.json`
+
+## 🖼️ Images configuration
+
+Next.js 15 deprecates `images.domains`. This project uses `images.remotePatterns` in `next.config.ts`:
+```ts
+// next.config.ts
+images: {
+  remotePatterns: [
+    {protocol: 'https', hostname: 'placekitten.com'}
+  ]
+}
+```
+
+## 🧰 Development notes
+
+- If you change i18n or routing config, clear the Next.js cache to avoid stale builds:
+  - `rm -rf .next && npm run dev`
+- Access localized routes with prefixes:
+  - English: `http://localhost:3000/en`
+  - Swahili: `http://localhost:3000/sw`
+- If you see deprecation notices, ensure you’re using the patterns shown above for next-intl v3.
+
+## 🧪 Troubleshooting (i18n)
+
+- __Deprecated or missing request locale API__
+  - Symptom: Attempted import error or TypeError for `requestLocale` from `next-intl/server`.
+  - Fix: Don’t import `requestLocale`. Use the `requestLocale` provided by `getRequestConfig` callback and await it:
+    ```ts
+    export default getRequestConfig(async ({requestLocale}) => {
+      const locale = await requestLocale;
+      // ...
+    });
+    ```
+
+- __“params should be awaited” in layouts__
+  - Symptom: Error like: `Route "/[locale]" used params.locale. params should be awaited ...`.
+  - Fix: In `src/app/[locale]/layout.tsx`, type `params` as a Promise and `await` it:
+    ```tsx
+    export default async function LocaleLayout({params}: {params: Promise<{locale: 'en' | 'sw'}>}) {
+      const {locale} = await params;
+      // ...
+    }
+    ```
+
+- __Unexpected 404 for a locale__
+  - Symptom: `notFound()` triggered or missing messages.
+  - Checks:
+    - Ensure the locale is in `locales` in `next-intl.config.mjs` and `middleware.ts`.
+    - Ensure a messages file exists at `src/i18n/locales/<locale>.json`.
+
+- __Routes not prefixed with locale__
+  - Symptom: Hitting `/about` instead of `/en/about` or `/sw/about`.
+  - Fix: Ensure `localePrefix: 'always'` is set in `next-intl.config.mjs` and `middleware.ts` matcher covers `/` and `/(en|sw)/:path*`.
+
+- __Stale builds / odd runtime errors after i18n changes__
+  - Fix: Clear cache: `rm -rf .next && npm run dev`.
+
+- __Image domain config deprecation__
+  - Symptom: Warning about `images.domains` being deprecated.
+  - Fix: Use `images.remotePatterns` in `next.config.ts`.
 
 ## 📂 Project Structure
 

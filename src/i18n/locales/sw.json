@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Nyumbani",
+    "about": "Kuhusu",
+    "projects": "Miradi",
+    "blog": "Blogi",
+    "contact": "Mawasiliano",
+    "resume": "Wasifu",
+    "skills": "Ujuzi"
+  },
+  "hero": {
+    "title": "Mhandisi wa Programu (Full Stack)",
+    "subtitle": "Kutengeneza programu za wavuti zinazokadiriwa kwa masoko ya Afrika Mashariki"
+  },
+  "contact": {
+    "heading": "Wasiliana"
+  },
+  "footer": {
+    "tagline": "Mhandisi wa Programu (Full Stack) anayejenga tovuti zinazokadiriwa kwa masoko ya Afrika Mashariki.",
+    "quickLinks": "Viungo vya Haraka",
+    "getInTouch": "Wasiliana Nasi",
+    "contactCta": "Nitafute",
+    "rights": "Haki zote zimehifadhiwa."
+  }
+}

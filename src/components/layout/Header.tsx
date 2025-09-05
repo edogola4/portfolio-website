@@ -3,6 +3,8 @@
 // src/components/layout/Header.tsx
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 import { motion } from 'framer-motion';
@@ -11,6 +13,10 @@ const Header = () => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const t = useTranslations();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   
   useEffect(() => {
     setMounted(true);
@@ -21,19 +27,35 @@ const Header = () => {
   };
   
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Resume', path: '/resume' },
-    { name: 'Contact', path: '/contact' },
+    { key: 'nav.home', path: '/' },
+    { key: 'nav.about', path: '/about' },
+    { key: 'nav.projects', path: '/projects' },
+    { key: 'nav.skills', path: '/skills' },
+    { key: 'nav.blog', path: '/blog' },
+    { key: 'nav.resume', path: '/resume' },
+    { key: 'nav.contact', path: '/contact' },
   ];
+
+  const withLocale = (path: string) => `/${locale}${path}`;
+
+  const switchLocale = (nextLocale: 'en' | 'sw') => {
+    if (nextLocale === locale) return;
+    // Replace leading locale segment
+    const parts = pathname.split('/');
+    if (parts[1] === 'en' || parts[1] === 'sw') {
+      parts[1] = nextLocale;
+    } else {
+      // If no locale prefix (should not happen with localePrefix: 'always'), prefix it
+      parts.splice(1, 0, nextLocale);
+    }
+    const target = parts.join('/') || `/${nextLocale}`;
+    router.replace(target);
+  };
   
   return (
     <header className="sticky top-0 z-50 bg-background/80 dark:bg-primary-950/80 backdrop-blur-md border-b border-primary-100 dark:border-primary-800">
       <div className="container-custom flex justify-between items-center py-4">
-        <Link href="/" className="flex items-center space-x-2 group">
+        <Link href={withLocale('/')} className="flex items-center space-x-2 group">
           <span className="font-bold text-2xl text-primary-600 dark:text-primary-400 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
             Edwin<span className="text-text dark:text-text-light">Ogola</span>
           </span>
@@ -43,14 +65,36 @@ const Header = () => {
         <nav className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <Link
-              key={item.name}
-              href={item.path}
+              key={item.key}
+              href={withLocale(item.path)}
               className="text-text/80 hover:text-primary-600 dark:text-text-light/80 dark:hover:text-primary-400 transition-colors font-medium text-sm uppercase tracking-wider"
             >
-              {item.name}
+              {t(item.key)}
             </Link>
           ))}
           
+          {/* Language Switcher */}
+          <div className="flex items-center gap-2 pl-2 border-l border-primary-200 dark:border-primary-700 ml-2">
+            <button
+              type="button"
+              onClick={() => switchLocale('en')}
+              className={`px-2 py-1 text-xs font-semibold rounded ${locale === 'en' ? 'bg-primary-600 text-white' : 'text-text/70 hover:text-primary-600 dark:text-text-light/70 dark:hover:text-primary-400'}`}
+              aria-pressed={locale === 'en'}
+              aria-label="Switch language to English"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => switchLocale('sw')}
+              className={`px-2 py-1 text-xs font-semibold rounded ${locale === 'sw' ? 'bg-primary-600 text-white' : 'text-text/70 hover:text-primary-600 dark:text-text-light/70 dark:hover:text-primary-400'}`}
+              aria-pressed={locale === 'sw'}
+              aria-label="Badilisha lugha kuwa Kiswahili"
+            >
+              SW
+            </button>
+          </div>
+
           {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -93,12 +137,12 @@ const Header = () => {
           <nav className="flex flex-col space-y-1">
             {navItems.map((item) => (
               <Link
-                key={item.name}
-                href={item.path}
+                key={item.key}
+                href={withLocale(item.path)}
                 className="block py-3 px-4 text-text/90 hover:bg-primary-50 dark:text-text-light/90 dark:hover:bg-primary-900/50 rounded-md transition-colors font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {t(item.key)}
               </Link>
             ))}
           </nav>

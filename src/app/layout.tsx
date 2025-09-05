@@ -1,8 +1,9 @@
+import type { Metadata } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
+// import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/context/ThemeContext';  // Use your custom provider
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+// import Header from '@/components/layout/Header';
+// import Footer from '@/components/layout/Footer';
 //import '@/styles/globals.css';
 import './globals.css';
 
@@ -18,10 +19,40 @@ const firaCode = Fira_Code({
   variable: '--font-fira-code',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: 'Edwin Ogola | Full Stack Software Engineer',
   description: 'Building scalable web applications focused on East African markets',
-  keywords: 'software engineer, web developer, east africa, full stack, react, next.js',
+  keywords: ['software engineer', 'web developer', 'east africa', 'full stack', 'react', 'next.js'],
+  alternates: {
+    canonical: '/en',
+    languages: {
+      en: '/en',
+      sw: '/sw'
+    }
+  },
+  openGraph: {
+    type: 'website',
+    url: '/en',
+    title: 'Edwin Ogola | Full Stack Software Engineer',
+    description: 'Building scalable web applications focused on East African markets',
+    siteName: 'Edwin Ogola Portfolio',
+    images: [
+      {
+        url: '/images/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Edwin Ogola Portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Edwin Ogola | Full Stack Software Engineer',
+    description: 'Building scalable web applications focused on East African markets',
+    images: ['/images/og-default.jpg'],
+    creator: '@edwin_ogola',
+  },
 };
 
 export default function RootLayout({
@@ -33,16 +64,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${firaCode.variable} font-sans bg-background text-text antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">
-              <div className="container-custom py-8">
-                {children}
-              </div>
-            </main>
-            <Footer />
-            <Analytics />
-          </div>
+          {/* Locale-specific layout will render Header/Footer/Analytics */}
+          {children}
         </ThemeProvider>
       </body>
     </html>

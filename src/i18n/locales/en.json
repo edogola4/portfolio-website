@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "resume": "Resume",
+    "skills": "Skills"
+  },
+  "hero": {
+    "title": "Full Stack Software Engineer",
+    "subtitle": "Building scalable web applications for East African markets"
+  },
+  "contact": {
+    "heading": "Get in touch"
+  },
+  "footer": {
+    "tagline": "Full Stack Software Engineer building scalable web applications focused on East African markets.",
+    "quickLinks": "Quick Links",
+    "getInTouch": "Get In Touch",
+    "contactCta": "Contact Me",
+    "rights": "All rights reserved."
+  }
+}

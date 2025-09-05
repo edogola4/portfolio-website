@@ -1,12 +1,11 @@
-// src/app/page.tsx
+// src/app/[locale]/page.tsx
 import Hero from '@/components/home/Hero';
 import AboutPreview from '@/components/home/AboutPreview';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import SkillsOverview from '@/components/home/SkillsOverview';
 import ContactForm from '@/components/home/ContactForm';
-import { redirect } from 'next/navigation';
 
-export default function HomePage() {
+export default function LocalizedHomePage() {
   return (
     <div>
       <Hero />
@@ -16,8 +15,4 @@ export default function HomePage() {
       <ContactForm />
     </div>
   );
-}
-
-export function RootRedirect() {
-  redirect('/en');
 }
