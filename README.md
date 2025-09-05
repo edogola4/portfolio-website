@@ -8,7 +8,7 @@
 [![GitHub PRs](https://img.shields.io/github/issues-pr/edogola4/portfolio-website)](https://github.com/edogola4/portfolio-website/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/edogola4/portfolio-website/graphs/commit-activity)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=edogola4/portfolio-website)](https://dependabot.com)
+
 
 Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world.
 
