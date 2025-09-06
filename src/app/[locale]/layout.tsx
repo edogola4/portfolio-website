@@ -1,9 +1,6 @@
 import {NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import { Analytics } from '@vercel/analytics/react';
 
 export function generateStaticParams() {
   return [{locale: 'en'}, {locale: 'sw'}];
@@ -22,15 +19,9 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <div className="container-custom py-8">
-            {children}
-          </div>
-        </main>
-        <Footer />
-        <Analytics />
+      {/* Content wrapper specific to localized pages */}
+      <div className="container-custom py-8">
+        {children}
       </div>
     </NextIntlClientProvider>
   );
