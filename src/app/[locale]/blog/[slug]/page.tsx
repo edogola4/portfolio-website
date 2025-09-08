@@ -3,12 +3,12 @@ type Params = {
   slug: string;
 };
 
-export default async function BlogPostPage({
+export default function BlogPostPage({
   params
 }: {
-  params: Promise<Params>;
+  params: Params;
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   // Placeholder content until real CMS/data is wired up
   return (
