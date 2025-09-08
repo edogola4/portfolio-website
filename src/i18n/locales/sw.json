@@ -15,6 +15,18 @@
   "contact": {
     "heading": "Wasiliana"
   },
+  "home": {
+    "viewAllProjects": "Tazama miradi yote",
+    "availableForProjects": "Napatikana kwa miradi",
+    "browseProjects": "Tazama Miradi Yangu",
+    "getInTouchCta": "Wasiliana Nami",
+    "messageSent": "Ujumbe Umetumwa!",
+    "messageSentDesc": "Asante kwa kuwasiliana. Nitarudi kwako hivi karibuni.",
+    "sendAnotherMessage": "Tuma Ujumbe Mwingine",
+    "sending": "Inatuma...",
+    "sendMessage": "Tuma Ujumbe",
+    "viewFullContactForm": "Fungua Fomu Kamili ya Mawasiliano"
+  },
   "footer": {
     "tagline": "Mhandisi wa Programu (Full Stack) anayejenga tovuti zinazokadiriwa kwa masoko ya Afrika Mashariki.",
     "quickLinks": "Viungo vya Haraka",
