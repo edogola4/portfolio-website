@@ -1,5 +1,23 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "main"
+    ],
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "tailwindCSS.includeLanguages": {
+        "typescript": "javascript",
+        "typescriptreact": "javascript"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.experimental.classRegex": [
+        "class\\w*\\s*:?\\s*[\"'`]([^\"'`]*)[\"'`]",
+        "class\\w*\\s*:?\\s*[\"'`]([^\"'`]*)[\"'`]"
     ]
 }

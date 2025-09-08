@@ -6,6 +6,96 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: 'class',
   theme: {
+    colors: {
+      // Primary Colors
+      primary: {
+        50: '#f0f7f5',
+        100: '#d9ede7',
+        200: '#b7dbd0',
+        300: '#86c0b0',
+        400: '#5aa08d',
+        500: '#2C5E4F', // Base primary
+        600: '#1f4a3e',
+        700: '#1a3b32',
+        800: '#17302a',
+        900: '#152923',
+      },
+      // Secondary Colors
+      secondary: {
+        50: '#fdf8f3',
+        100: '#f9ecdf',
+        200: '#f2d6bd',
+        300: '#e9b98f',
+        400: '#e09a67',
+        500: '#D4A373', // Base secondary (terracotta)
+        600: '#c58452',
+        700: '#a86a43',
+        800: '#86563a',
+        900: '#6e4832',
+      },
+      // Accent Colors
+      accent: {
+        50: '#f8f4f6',
+        100: '#f0e8ec',
+        200: '#dfd1d9',
+        300: '#c7aab8',
+        400: '#ac7e94',
+        500: '#5D2E46', // Deep plum
+        600: '#4d2540',
+        700: '#3f1d35',
+        800: '#351a2e',
+        900: '#2f1829',
+      },
+      // Success
+      success: {
+        50: '#f1f7f3',
+        100: '#ddeee1',
+        200: '#bdddc7',
+        300: '#8fc5a4',
+        400: '#5ea67e',
+        500: '#4A7C59', // Muted teal
+        600: '#3a6448',
+        700: '#2f513b',
+        800: '#284232',
+        900: '#22372b',
+      },
+      // Error
+      error: {
+        50: '#fef2f2',
+        100: '#fee2e2',
+        200: '#fecaca',
+        300: '#fca5a5',
+        400: '#f87171',
+        500: '#E56B6F', // Deep coral
+        600: '#dc2626',
+        700: '#b91c1c',
+        800: '#991b1b',
+        900: '#7f1d1d',
+      },
+      // Neutrals
+      gray: {
+        50: '#faf9f7',
+        100: '#f1efeb',
+        200: '#e0dcd5',
+        300: '#c9c2b8',
+        400: '#b0a698',
+        500: '#8a8176',
+        600: '#6b645b',
+        700: '#575149',
+        800: '#3d3933',
+        900: '#2B2D42', // Text color
+      },
+      // Background
+      background: {
+        light: '#F8F1E9', // Soft ivory
+        dark: '#1a1a1a',
+      },
+      // Utility colors
+      white: '#ffffff',
+      black: '#000000',
+      transparent: 'transparent',
+      current: 'currentColor',
+    },
     screens: {
       'xs': '400px',
       'sm': '640px',
