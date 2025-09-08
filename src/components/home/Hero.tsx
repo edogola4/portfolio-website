@@ -13,6 +13,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
+import { useLocale, useTranslations } from 'next-intl';
 import {
   SiNextdotjs,
   SiTypescript,
@@ -213,6 +214,8 @@ const Hero = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const particlesInitialized = useRef(false);
   const particlesContainerRef = useRef<Container | null | undefined>(undefined);
+  const locale = useLocale();
+  const t = useTranslations('home');
 
   const testimonials = [
     {
@@ -554,9 +557,9 @@ const Hero = () => {
           className="space-y-6"
         >
           {/* Availability badge */}
-          <Link href="/contact" className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-[#3A5A6B] text-[#F8F5F0] dark:bg-[#6B7F82] dark:text-white shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
+          <Link href={`/${locale}/contact`} className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-[#3A5A6B] text-[#F8F5F0] dark:bg-[#6B7F82] dark:text-white shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
             <span className="w-2 h-2 bg-[#E07A5F] rounded-full mr-2 animate-pulse"></span>
-            Available for projects
+            {t('availableForProjects')}
             <BsArrowUpRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#F8F5F0] dark:text-white" />
           </Link>
 
@@ -655,16 +658,16 @@ const Hero = () => {
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/projects"
+              href={`/${locale}/projects`}
               className="btn btn-primary flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] text-[#F8F5F0] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[#3A5A6B]/30"
             >
-              Browse My Projects <FiArrowRight className="text-lg" />
+              {t('browseProjects')} <FiArrowRight className="text-lg" />
             </Link>
             <Link
               href="#contact"
               className="btn btn-outline group inline-flex items-center justify-center gap-2 border-2 border-[#3A5A6B] text-[#3A5A6B] dark:border-[#6B7F82] dark:text-[#6B7F82] hover:bg-[#3A5A6B] hover:text-[#F8F5F0] dark:hover:bg-[#6B7F82] dark:hover:text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1"
             >
-              Get In Touch
+              {t('getInTouchCta')}
               <svg 
                 className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
                 fill="currentColor" 

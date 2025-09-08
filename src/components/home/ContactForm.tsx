@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiSend, FiCheck, FiAlertCircle, FiArrowRight } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 
 type FormData = {
   name: string;
@@ -16,6 +17,8 @@ type FormData = {
 
 const ContactForm = () => {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useTranslations('home');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -34,7 +37,7 @@ const ContactForm = () => {
   }
 
   const handleViewFullForm = () => {
-    router.push('/contact');
+    router.push(`/${locale}/contact`);
   };
 
   // Fixed: Added the formData parameter to satisfy ESLint
@@ -82,16 +85,16 @@ const ContactForm = () => {
                 <FiCheck className="w-8 h-8 text-green-700 dark:text-green-400" />
               </div>
               <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                Message Sent!
+                {t('messageSent')}
               </h4>
               <p className="text-slate-700 dark:text-slate-300 mb-6">
-                Thank you for reaching out. I&apos;ll get back to you soon.
+                {t('messageSentDesc')}
               </p>
               <button
                 onClick={() => setSubmitSuccess(false)}
                 className="px-6 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-medium rounded-lg transition-colors duration-200 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 dark:focus:ring-offset-slate-800"
               >
-                Send Another Message
+                {t('sendAnotherMessage')}
               </button>
             </div>
           ) : (
@@ -186,12 +189,12 @@ const ContactForm = () => {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Sending...
+                      {t('sending')}
                     </>
                   ) : (
                     <>
                       <FiSend className="w-5 h-5 mr-2" />
-                      Send Message
+                      {t('sendMessage')}
                     </>
                   )}
                 </button>
@@ -212,7 +215,7 @@ const ContactForm = () => {
             onClick={handleViewFullForm}
             className="w-full flex items-center justify-center text-slate-600 hover:text-slate-700 dark:text-beige-100 dark:hover:text-beige-50 font-medium transition-colors duration-200"
           >
-            View Full Contact Form <FiArrowRight className="ml-2 w-4 h-4" />
+            {t('viewFullContactForm')} <FiArrowRight className="ml-2 w-4 h-4" />
           </button>
         </div>
       </motion.div>
