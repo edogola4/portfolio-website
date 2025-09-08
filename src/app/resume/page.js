@@ -22,6 +22,40 @@ export default function ResumePage() {
         <h2 className="text-2xl font-semibold text-primary-700 dark:text-white mb-10 pb-2 border-b border-neutral-200 dark:border-neutral-700">Professional Experience</h2>
         
         <div className="space-y-10">
+          {/* Operations Intern */}
+          <div className="group relative pl-10 border-l-2 border-accent-300 dark:border-accent-600 hover:border-accent-500 transition-colors">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent-500 group-hover:bg-accent-600 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
+            <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
+                <div className="mb-3 md:mb-0">
+                  <h3 className="text-xl font-bold text-primary-800 dark:text-white mb-1">Operations Intern</h3>
+                  <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
+                    <span className="font-medium">TechCorp Solutions</span>
+                    <span className="mx-2 text-neutral-400">•</span>
+                    <span>Nairobi, Kenya</span>
+                  </div>
+                </div>
+                <div className="px-4 py-1.5 bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300 text-sm font-medium rounded-full border border-accent-100 dark:border-accent-800/50 whitespace-nowrap">
+                  May 2025 - Aug 2025
+                </div>
+              </div>
+              <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+                Supported core operations by analyzing processes, documenting workflows, and collaborating across teams to implement improvements.
+              </p>
+              <ul className="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+                <li>
+                  Analyzed operational processes and created data-driven reports using Python and Excel, identifying efficiency improvements that reduced processing time by 20%.
+                </li>
+                <li>
+                  Collaborated with cross-functional teams to gather requirements and translate business needs into technical specifications.
+                </li>
+                <li>
+                  Developed automated workflows and documentation systems that streamlined operations for a team of 12 members.
+                </li>
+              </ul>
+            </div>
+          </div>
+
           {/* Senior Software Engineer */}
           <div className="group relative pl-10 border-l-2 border-primary-300 dark:border-primary-600 hover:border-primary-500 transition-colors">
             <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-500 group-hover:bg-accent-500 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
