@@ -249,20 +249,18 @@ const Hero = () => {
     if (typedElementRef.current) {
       typedRef.current = new Typed(typedElementRef.current, {
         strings: [
-          'Full Stack Dev',
-          'East Africa Tech',
-          'AI/ML Student',
-          'AWS Architect',
-          'Cybersecurity Enthusiast',
-          'Ethical Hacking Explorer',
-          'Tech Writer/Educator',
-          'Web App Security Analyst',
-          'Responsive Design',
-          'API Expert',
-          'DB Architect',
-          'M-Pesa Integration Specialist',
-          'PWA Developer',
-          'Optimization Expert'
+          'Full‑Stack Developer',
+          'AI/ML (NLP) Engineer',
+          'React • Node.js • TS',
+          'Cloud‑Native on AWS',
+          'REST & WebSockets',
+          'M‑Pesa Integration',
+          'CI/CD • GitHub Actions',
+          'Data‑Driven Solutions',
+          'Microservices Architecture',
+          'Technical Writer',
+          'Open Source Contributor',
+          'Performance Optimization'
         ],
         typeSpeed: 60,
         backSpeed: 40,
