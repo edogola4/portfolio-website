@@ -15,7 +15,6 @@ import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
 import Head from 'next/head';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
 import {
   SiNextdotjs,
   SiTypescript,
