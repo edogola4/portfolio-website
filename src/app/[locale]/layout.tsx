@@ -1,6 +1,8 @@
 import {NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 export function generateStaticParams() {
   return [{locale: 'en'}, {locale: 'sw'}];
@@ -19,10 +21,12 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <Header />
       {/* Content wrapper specific to localized pages */}
       <div className="container-custom py-8">
         {children}
       </div>
+      <Footer />
     </NextIntlClientProvider>
   );
 }

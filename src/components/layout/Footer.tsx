@@ -1,3 +1,5 @@
+"use client";
+
 // src/components/layout/Footer.tsx
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
