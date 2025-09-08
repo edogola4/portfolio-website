@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 
 // This would come from your data source
 const featuredProjects = [
@@ -42,6 +44,8 @@ const FeaturedProjects = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const locale = useLocale();
+  const t = useTranslations('home');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -138,6 +142,15 @@ const FeaturedProjects = () => {
             </motion.div>
           ))}
         </motion.div>
+        {/* View all projects CTA */}
+        <div className="mt-12 text-center">
+          <Link
+            href={`/${locale}/projects`}
+            className="inline-flex items-center justify-center px-5 py-3 rounded-md text-sm font-semibold bg-[#3A5A6B] text-white hover:bg-[#2B3D4D] dark:bg-[#6B7F82] dark:hover:bg-[#5A6D72] transition-colors"
+          >
+            {t('viewAllProjects', {defaultMessage: 'View all projects'})}
+          </Link>
+        </div>
       </div>
     </section>
   );
