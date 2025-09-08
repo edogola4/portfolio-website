@@ -20,7 +20,7 @@
     "dompurify": "^3.2.6",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.12",
-    "googleapis": "^149.0.0",
+    "googleapis": "^159.0.0",
     "lucide-react": "^0.506.0",
     "next": "^15.3.2",
     "next-intl": "^3.26.5",
