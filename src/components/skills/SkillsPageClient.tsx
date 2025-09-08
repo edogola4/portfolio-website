@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 import { testimonials, skillCategories, allSkills } from '@/data/testimonials';
@@ -252,7 +253,7 @@ export default function SkillsPageClient() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">What People Say</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Don't just take my word for it. Here's what colleagues and clients have to say about working with me.
+            Don&apos;t just take my word for it. Here&apos;s what colleagues and clients have to say about working with me.
           </p>
         </div>
 
@@ -286,7 +287,7 @@ export default function SkillsPageClient() {
               
               <div className="relative">
                 <FaQuoteLeft className="text-gray-200 text-3xl absolute -top-2 -left-1" />
-                <p className="text-gray-700 pl-6 mb-4 italic">"{testimonial.content}"</p>
+                <p className="text-gray-700 pl-6 mb-4 italic">&quot;{testimonial.content}&quot;</p>
               </div>
               
               <div className="flex items-center">
@@ -310,13 +311,13 @@ export default function SkillsPageClient() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-bold mb-4">Let's Build Something Amazing Together</h2>
+        <h2 className="text-2xl font-bold mb-4">Let&apos;s Build Something Amazing Together</h2>
         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-          I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. 
-          Whether you need a full-stack application, API development, or technical consulting, I'm here to help.
+          I&apos;m always excited to discuss new projects, creative ideas, or opportunities to be part of your vision. 
+          Whether you need a full-stack application, API development, or technical consulting, I&apos;m here to help.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
           >
@@ -324,8 +325,8 @@ export default function SkillsPageClient() {
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/resume"
             className="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-8 rounded-lg border border-gray-200 transition-all duration-300 hover:shadow-md hover:-translate-y-1"
           >
@@ -333,7 +334,7 @@ export default function SkillsPageClient() {
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>
