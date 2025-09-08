@@ -8,30 +8,7 @@ import {
   FaChartLine,
   FaCogs,
   FaTools,
-  FaUsers,
-  FaLaptopCode,
-  FaTerminal,
-  FaSlack,
-  FaTrello,
-  FaSass,
-  FaNpm,
-  FaYarn,
-  FaGithub,
-  FaGitlab,
-  FaDocker,
-  FaAws,
-  FaGoogle,
-  FaMicrosoft,
-  FaApple,
-  FaAndroid,
-  FaFigma,
-  FaSketch,
-  FaPython,
-  FaJava,
-  FaNodeJs,
-  FaReact,
-  FaVuejs,
-  FaAngular
+  FaUsers
 } from 'react-icons/fa';
 
 // Note: Removed non-existent icons: 
