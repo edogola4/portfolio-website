@@ -13,7 +13,9 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
+import Head from 'next/head';
 import { useLocale, useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import {
   SiNextdotjs,
   SiTypescript,
@@ -216,6 +218,8 @@ const Hero = () => {
   const particlesContainerRef = useRef<Container | null | undefined>(undefined);
   const locale = useLocale();
   const t = useTranslations('home');
+  
+  // SEO Metadata - Moved to page metadata in layout files
 
   const testimonials = [
     {
@@ -253,7 +257,7 @@ const Hero = () => {
           'AI/ML (NLP) Engineer',
           'React • Node.js • TS',
           'Cloud‑Native on AWS',
-          'REST & WebSockets',
+          'REST  WebSockets',
           'M‑Pesa Integration',
           'CI/CD • GitHub Actions',
           'Data‑Driven Solutions',
@@ -490,15 +494,62 @@ const Hero = () => {
   });
 
   return (
-    <section
-      className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-[#F8F5F0] to-[#EFEAE2] dark:from-[#1E2A35] dark:to-[#141E26] overflow-hidden"
-      id="hero"
-    >
-      {/* SEO Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+    <>
+      <Head>
+        <title>Edwin Ogola - Full Stack Developer & AI Enthusiast</title>
+        <meta name="description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta name="keywords" content="full stack developer, AI enthusiast, web development, AI/ML, cloud architecture" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Edwin Ogola" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://edwinogola.com" />
+        <meta property="og:title" content="Edwin Ogola - Full Stack Developer & AI Enthusiast" />
+        <meta property="og:description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta property="og:image" content="https://edwinogola.com/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://edwinogola.com" />
+        <meta property="twitter:title" content="Edwin Ogola - Full Stack Developer & AI Enthusiast" />
+        <meta property="twitter:description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta property="twitter:image" content="https://edwinogola.com/images/og-image.jpg" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://edwinogola.com" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Edwin Ogola",
+            "url": "https://edwinogola.com",
+            "sameAs": [
+              "https://github.com/edogola4",
+              "https://linkedin.com/in/edwin-ogola",
+              "https://twitter.com/edwinogola"
+            ],
+            "jobTitle": "Full Stack Developer & AI Enthusiast",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Freelance"
+            },
+            "description": "I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications."
+          })}
+        </script>
+      </Head>
+      
+      <section
+        className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-[#F8F5F0] to-[#EFEAE2] dark:from-[#1E2A35] dark:to-[#141E26] overflow-hidden"
+        id="hero"
+      >
+        {/* SEO Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
 
       {/* Background geometric patterns */}
       <div className="absolute inset-0 -z-10 opacity-30 dark:opacity-20 overflow-hidden pointer-events-none">
@@ -816,7 +867,18 @@ const Hero = () => {
               transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", delay: 1 }}
             />
             <div className="relative bg-white dark:bg-[#1E2A35] rounded-full overflow-hidden border-8 border-white dark:border-[#1E2A35] shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute inset-0 z-0 opacity-30 dark:opacity-20 pointer-events-none">
+                <iframe 
+                  src="https://my.spline.design/particles-3b8a1d4c1f5b5e5e5e5e5e5e5e5e5e5e/" 
+                  frameBorder="0" 
+                  width="100%" 
+                  height="100%"
+                  style={{ position: 'absolute', top: 0, left: 0, border: 'none' }}
+                  title="Particle animation background"
+                  aria-hidden="true"
+                  loading="lazy"
+                />
+              </div>
               <Image
                 src="/images/profile.png"
                 alt="Edwin Ogola"
@@ -922,6 +984,7 @@ const Hero = () => {
         </motion.div>
       )}
     </section>
+    </>
   );
 };
 

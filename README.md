@@ -1,4 +1,4 @@
-# Edwin Ogola Portfolio Website
+# Edwin Ogola - Portfolio Website
 
 [![CI/CD Status](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml)
 [![Vercel](https://vercelbadge.vercel.app/api/edogola4/portfolio-website)](https://vercel.com/edogola4/portfolio-website)
@@ -8,12 +8,17 @@
 [![GitHub PRs](https://img.shields.io/github/issues-pr/edogola4/portfolio-website)](https://github.com/edogola4/portfolio-website/pulls)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/edogola4/portfolio-website/graphs/commit-activity)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.2-black.svg)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.0-61DAFB.svg)](https://reactjs.org/)
 
-## Versions
-- Next.js: 15.3.2
-- next-intl: 3.26.5
-- React: 19.1.0
-- TypeScript: see `package.json`
+## 🚀 Latest Updates
+
+- **Enhanced Hero Component**: Completely revamped with smooth animations and interactive elements
+- **SEO Optimized**: Added comprehensive metadata and structured data for better search visibility
+- **Performance**: Optimized images and animations for faster load times
+- **Accessibility**: Improved keyboard navigation and ARIA labels
+- **Internationalization**: Full support for English (en) and Swahili (sw)
 
 ## Quick Links
 - [Features](#-features)
@@ -36,13 +41,16 @@ Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Soft
 - **Modern Stack**: Built with Next.js 15, React 19, and TypeScript
 - **Responsive Design**: Optimized for all devices with mobile-first approach
 - **Dark/Light Mode**: Seamless theme switching with `next-themes`
-- **Interactive UI**: Smooth animations with Framer Motion
+- **Interactive UI**: Smooth animations with Framer Motion and Typed.js
 - **Form Handling**: Robust form validation with React Hook Form and Zod
-- **Contact Form**: Secure email functionality with Nodemailer and SendGrid
-- **Google reCAPTCHA**: Spam protection for contact forms
+- **SEO Optimized**: Comprehensive metadata and structured data
+- **Performance**: Optimized images, code splitting, and lazy loading
+- **Accessibility**: WCAG 2.1 compliant with proper ARIA labels
+- **Internationalization**: Full support for English (en) and Swahili (sw)
 - **Analytics**: Integrated with Vercel Analytics
 - **Particle Effects**: Dynamic background with tsparticles
-- **Performance**: Optimized for fast loading and SEO
+- **Contact Form**: Secure email functionality with Nodemailer and SendGrid
+- **Google reCAPTCHA**: Spam protection for contact forms
 
 ## 🛠️ Tech Stack
 
@@ -50,8 +58,11 @@ Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Soft
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom themes
-- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/), [Typed.js](https://mattboldt.com/demos/typed-js/)
 - **Icons**: [Lucide Icons](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/)
+- **i18n**: [next-intl](https://next-intl-docs.vercel.app/) v3.26.5
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/), [Zod](https://zod.dev/)
+- **Particles**: [tsparticles](https://particles.js.org/)
 
 ### Form Handling
 - [React Hook Form](https://react-hook-form.com/)
@@ -282,9 +293,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📫 Contact
 
-- **Email**: [Your Email](mailto:your.email@example.com)
-- **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- **Portfolio**: [Your Portfolio](https://yourportfolio.com)
+- **Email**: [edwin.ogola@example.com](mailto:edwin.ogola@example.com)
+- **LinkedIn**: [Edwin Ogola](https://linkedin.com/in/edwinogola)
+- **GitHub**: [edogola4](https://github.com/edogola4)
+- **Portfolio**: [edwinogola.com](https://edwinogola.com)
 
 ## 🙏 Acknowledgments
 
