@@ -10,7 +10,7 @@
         "typescriptreact": "javascript"
     },
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "css.validate": false,
     "scss.validate": false,
