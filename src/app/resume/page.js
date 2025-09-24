@@ -17,7 +17,7 @@ export default function ResumePage() {
           </p>
         </div>
         <Link 
-          href="/files/edwin-ogola-resume.pdf" 
+          href="/files/Edwin_B__Ogola_CV.pdf" 
           download
           className="bg-[#D45D42] hover:bg-[#B84C35] text-white px-8 py-3.5 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
         >
