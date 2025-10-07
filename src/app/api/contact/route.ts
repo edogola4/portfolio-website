@@ -1,13 +1,30 @@
-// src/app/api/contact/route.js
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '../../../utils/emailService';
 import axios from 'axios';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export async function POST(request) {
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+  subject?: string;
+  budget?: string;
+  timeline?: string;
+  token: string;
+}
+
+interface RecaptchaResponse {
+  success: boolean;
+  score?: number;
+  challenge_ts?: string;
+  hostname?: string;
+  'error-codes'?: string[];
+}
+
+export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const data = await request.json() as ContactFormData;
     const { name, email, message, subject, budget, timeline, token } = data;
 
     // Validate required fields
@@ -27,20 +44,19 @@ export async function POST(request) {
     }
 
     // ✅ Verify reCAPTCHA token with Google
-    const recaptchaResponse = await axios.post(
+    const recaptchaResponse = await axios.post<RecaptchaResponse>(
       'https://www.google.com/recaptcha/api/siteverify',
       null,
       {
         params: {
-          secret: process.env.RECAPTCHA_SECRET_KEY, // In .env.local
+          secret: process.env.RECAPTCHA_SECRET_KEY,
           response: token,
         },
       }
     );
 
     const recaptchaData = recaptchaResponse.data;
-
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
+    if (!recaptchaData.success || (recaptchaData.score && recaptchaData.score < 0.5)) {
       return NextResponse.json(
         { success: false, error: 'reCAPTCHA validation failed. Please try again.' },
         { status: 400 }
@@ -74,7 +90,7 @@ ${timeline ? `<p><strong>Timeline:</strong> ${timeline}</p>` : ''}
     // 🚀 Send email
     await sendEmail({
       from: `"Contact Form" <${email}>`,
-      to: process.env.CONTACT_EMAIL,
+      to: process.env.CONTACT_EMAIL || '',
       subject: emailSubject,
       text: emailText,
       html: emailHtml
@@ -85,7 +101,8 @@ ${timeline ? `<p><strong>Timeline:</strong> ${timeline}</p>` : ''}
       { status: 200 }
     );
   } catch (err) {
-    console.error('Contact API error:', err.response?.data || err.message);
+    const error = err as { response?: { data?: unknown }; message?: string };
+    console.error('Contact API error:', error.response?.data || error.message);
     return NextResponse.json(
       { success: false, error: 'Server error—please try again later.' },
       { status: 500 }
