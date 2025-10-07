@@ -53,7 +53,18 @@ declare global {
 
 // Enhanced icon data with proficiency levels
 const iconData = [
-  { icon: FaReact, title: 'React', proficiency: 95, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: FaReact, title: 'React', proficiency: 90, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: SiTypescript, title: 'TypeScript', proficiency: 85, color: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300' },
+  { icon: SiJavascript, title: 'JavaScript', proficiency: 90, color: 'text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200' },
+  { icon: SiPython, title: 'Python', proficiency: 88, color: 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' },
+  { icon: SiNodedotjs, title: 'Node.js', proficiency: 85, color: 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300' },
+  { icon: SiExpress, title: 'Express', proficiency: 83, color: 'text-gray-700 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200' },
+  { icon: SiMongodb, title: 'MongoDB', proficiency: 85, color: 'text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300' },
+  { icon: SiPostgresql, title: 'PostgreSQL', proficiency: 80, color: 'text-blue-800 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-200' },
+  { icon: SiMysql, title: 'MySQL', proficiency: 78, color: 'text-blue-600 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-200' },
+  { icon: SiDocker, title: 'Docker', proficiency: 75, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: SiAmazon, title: 'AWS', proficiency: 70, color: 'text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300' },
+  { icon: SiGit, title: 'Git', proficiency: 88, color: 'text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300' },
   { icon: SiNextdotjs, title: 'Next.js', proficiency: 90, color: 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white' },
   { icon: SiTypescript, title: 'TypeScript', proficiency: 85, color: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300' },
   { icon: SiNodedotjs, title: 'Node.js', proficiency: 90, color: 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300' },
@@ -222,19 +233,19 @@ const Hero = () => {
 
   const testimonials = [
     {
-      quote: "Edwin delivered our AI-powered supply chain solution on time and under budget.",
-      author: "Sarah Kamau",
-      position: "CTO, Twiga Foods"
+      quote: "Edwin's AI chatbot solution improved our customer response time by 40% and achieved 95% accuracy in intent recognition.",
+      author: "John Mwangi",
+      position: "CTO, REAL BIZ Digital"
     },
     {
-      quote: "His technical skill and understanding of East African markets is unmatched.",
-      author: "James Mwangi",
-      position: "Product Lead, Equity Bank"
+      quote: "His ability to translate business requirements into technical solutions is exceptional. A valuable asset to any team.",
+      author: "Dr. Jane Atieno",
+      position: "Senior Researcher, Alliance Bioversity CIAT"
     },
     {
-      quote: "The most reliable developer we've worked with. Highly recommended!",
-      author: "Lucy Wanjiru",
-      position: "Founder, TechKE"
+      quote: "Edwin's full-stack development skills and attention to detail resulted in a 25% increase in user engagement on our platform.",
+      author: "Michael Ochieng",
+      position: "Product Manager, REAL BIZ Digital"
     }
   ];
 
@@ -253,17 +264,17 @@ const Hero = () => {
       typedRef.current = new Typed(typedElementRef.current, {
         strings: [
           'Full‑Stack Developer',
-          'AI/ML (NLP) Engineer',
-          'React • Node.js • TS',
-          'Cloud‑Native on AWS',
-          'REST  WebSockets',
-          'M‑Pesa Integration',
-          'CI/CD • GitHub Actions',
-          'Data‑Driven Solutions',
-          'Microservices Architecture',
-          'Technical Writer',
+          'AI/ML Enthusiast',
+          'React • Node.js • Python',
+          'Cloud Technologies',
+          'RESTful APIs',
+          'Database Design',
+          'CI/CD Pipelines',
+          'Problem Solver',
+          'Team Player',
+          'Continuous Learner',
           'Open Source Contributor',
-          'Performance Optimization'
+          'Agile Developer'
         ],
         typeSpeed: 60,
         backSpeed: 40,
@@ -478,7 +489,7 @@ const Hero = () => {
     "@type": "Person",
     "name": "Edwin Ogola",
     "url": "https://edwinogola.com",
-    "jobTitle": "Full Stack Software Engineer",
+    "jobTitle": "Full Stack Developer & AI Enthusiast",
     "knowsAbout": ["Web Development", "AI/ML", "Cloud Architecture", "East African Tech", "Software Engineer"],
     "image": "https://edwinogola.com/images/profile.png",
     "sameAs": [
@@ -526,7 +537,7 @@ const Hero = () => {
             "name": "Edwin Ogola",
             "url": "https://edwinogola.com",
             "sameAs": [
-              "https://github.com/edogola4",
+              "https://github.com/edwinogola",
               "https://linkedin.com/in/edwin-ogola",
               "https://twitter.com/edwinogola"
             ],
@@ -753,7 +764,7 @@ const Hero = () => {
               <FaLinkedin className="w-6 h-6" />
             </a>
             <a
-              href="https://x.com/BrandonOgola"
+              href="https://x.com/EdwinOgola"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X Profile"

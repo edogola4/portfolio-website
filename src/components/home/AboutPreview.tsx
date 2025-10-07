@@ -116,13 +116,11 @@ const AboutPreview = memo<AboutPreviewProps>(({
           <div className="h-1 w-24 bg-[#3A5A6B] dark:bg-[#6B7F82] mx-auto mb-8 rounded-full"></div>
           
           <p className="text-lg text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6 leading-relaxed">
-          I&apos;m a full-stack developer with a passion for building scalable web applications that solve real-world problems. 
-            With expertise in modern JavaScript frameworks and cloud technologies, I create efficient and user-friendly digital experiences.
+            I&apos;m a passionate Full-Stack Developer with expertise in JavaScript, Python, and AI/ML integration. With hands-on experience from my studies at the University of Nairobi and intensive programs at ALX Africa and Moringa School, I specialize in building intelligent web applications that deliver real business value.
           </p>
           
           <p className="text-lg text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-8 leading-relaxed">
-            My journey in tech started with a curiosity about how things work, which led me to pursue a career in software development. 
-            I specialize in building responsive, accessible, and performant web applications using the latest technologies.
+            My technical journey has been shaped by a strong foundation in computer science principles and practical experience in developing AI-powered solutions. I&apos;m particularly proud of building an AI chatbot that achieved 95% accuracy in intent recognition and improved operational efficiency by 20% for my previous employer.
           </p>
           
           <div className="mt-10">
