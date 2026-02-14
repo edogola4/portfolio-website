@@ -111,11 +111,11 @@ const clientLogos = [
   { name: 'M-KOPA', logo: '/images/Clients/client4.png' },
 ];
 
-// Highlights/Stats to showcase achievements
+// Highlights/Stats to showcase senior-level achievements
 const highlights = [
-  { icon: IoRocketOutline, value: '15+', label: 'Projects Delivered', color: 'from-[#2C5E4F] to-[#6B7F82]' },
-  { icon: FaStar, value: '100%', label: 'Client Satisfaction', color: 'from-[#E07A5F] to-[#2C5E4F]' },
-  { icon: IoStatsChart, value: '4+', label: 'Years Experience', color: 'from-[#6B7F82] to-[#2C5E4F]' },
+  { icon: IoRocketOutline, value: '3+', label: 'Years Enterprise Experience', color: 'from-[#3A5A6B] to-[#6B7F82]' },
+  { icon: FaStar, value: '15+', label: 'Large-scale Projects', color: 'from-[#E07A5F] to-[#D4673D]' },
+  { icon: IoStatsChart, value: 'Cloud-Native', label: 'System Architect', color: 'from-[#6B9FB1] to-[#3A5A6B]' },
 ];
 
 // Define correctly typed icon variants for framer-motion
@@ -263,22 +263,16 @@ const Hero = () => {
     if (typedElementRef.current) {
       typedRef.current = new Typed(typedElementRef.current, {
         strings: [
-          'Full‑Stack Developer',
-          'AI/ML Enthusiast',
-          'React • Node.js • Python',
-          'Cloud Technologies',
-          'RESTful APIs',
-          'Database Design',
-          'CI/CD Pipelines',
-          'Problem Solver',
-          'Team Player',
-          'Continuous Learner',
-          'Open Source Contributor',
-          'Agile Developer'
+          'Scaling enterprise systems',
+          'Building cloud architectures',
+          'Designing distributed systems',
+          '.NET & Azure specialist',
+          'Production-grade backend engineer',
+          'Infrastructure as Code expert'
         ],
-        typeSpeed: 60,
-        backSpeed: 40,
-        backDelay: 1500,
+        typeSpeed: 50,
+        backSpeed: 35,
+        backDelay: 2000,
         startDelay: 300,
         loop: true,
         smartBackspace: true,
@@ -629,18 +623,18 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="text-[#2B2D42] dark:text-white">I&apos;m Edwin Ogola</span>
+              <span className="text-[#2B2D42] dark:text-white">Senior Software Engineer</span>
               <br />
-              <span className="text-[#3A5A6B] dark:text-[#6B7F82] font-medium">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] dark:from-[#6B9FB1] dark:to-[#9BB8C3] font-bold">
                 <span ref={typedElementRef} className="typed-text"></span>
               </span>
             </motion.h1>
 
             <motion.p
               style={{ opacity: subtitleOpacity }}
-              className="text-xl md:text-2xl text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6"
+              className="text-xl md:text-2xl text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6 leading-relaxed"
             >
-              Building AI-powered web applications that solve unique challenges in East African markets
+              Architecting scalable systems and building enterprise cloud solutions. Expertise in .NET, Azure, distributed systems, and production-grade backend engineering.
             </motion.p>
           </div>
 
@@ -660,13 +654,13 @@ const Hero = () => {
                 <motion.div
                   key={highlight.label}
                   variants={fadeInUp}
-                  className="bg-white/80 dark:bg-[#1E2A35] rounded-xl p-3 shadow-sm border border-[#e8e2d6] dark:border-[#3A5A6B]/30 hover:shadow-md transition-shadow"
+                  className="bg-white/60 dark:bg-[#1E2A35]/60 backdrop-blur-sm rounded-lg p-4 border border-[#e8e2d6] dark:border-[#3A5A6B]/40 hover:bg-white/80 dark:hover:bg-[#1E2A35]/80 hover:border-[#3A5A6B]/60 transition-all duration-300"
                 >
-                  <div className={`w-10 h-10 mb-2 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#3A5A6B] to-[#6B7F82] text-white`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-12 h-12 mb-3 rounded-lg flex items-center justify-center bg-gradient-to-br ${highlight.color} text-white`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#2B2D42] dark:text-white">{highlight.value}</h3>
-                  <p className="text-sm text-[#2B2D42]/80 dark:text-[#F8F5F0]/80">{highlight.label}</p>
+                  <h3 className="text-2xl font-bold text-[#2B2D42] dark:text-white mb-1">{highlight.value}</h3>
+                  <p className="text-sm text-[#2B2D42]/75 dark:text-[#F8F5F0]/75 font-medium">{highlight.label}</p>
                 </motion.div>
               );
             })}
@@ -674,7 +668,7 @@ const Hero = () => {
 
           {/* Testimonial carousel */}
           <motion.div
-            className="relative bg-white/80 dark:bg-[#1E2A35] rounded-xl p-4 shadow-sm border border-[#e8e2d6] dark:border-[#3A5A6B]/30 mb-6 overflow-hidden"
+            className="relative bg-white/60 dark:bg-[#1E2A35]/60 backdrop-blur-sm rounded-lg p-5 border border-[#e8e2d6] dark:border-[#3A5A6B]/40 mb-8 overflow-hidden"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
@@ -715,68 +709,91 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <div className="flex flex-wrap gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 pt-2"
+          >
             <Link
               href={`/${locale}/projects`}
-              className="btn btn-primary flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] text-[#F8F5F0] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[#3A5A6B]/30"
+              className="btn btn-primary flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] text-[#F8F5F0] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-semibold"
             >
-              {t('browseProjects')} <FiArrowRight className="text-lg" />
+              View Projects <FiArrowRight className="text-lg" />
             </Link>
-            <Link
-              href="#contact"
-              className="btn btn-outline group inline-flex items-center justify-center gap-2 border-2 border-[#3A5A6B] text-[#3A5A6B] dark:border-[#6B7F82] dark:text-[#6B7F82] hover:bg-[#3A5A6B] hover:text-[#F8F5F0] dark:hover:bg-[#6B7F82] dark:hover:text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1"
+            
+            <a
+              href="/files/Brandon_Resume.pdf"
+              download="Brandon_Ogola_Resume.pdf"
+              className="btn btn-secondary flex items-center justify-center gap-2 px-8 py-3 border-2 border-[#3A5A6B] text-[#3A5A6B] dark:border-[#6B7F82] dark:text-[#6B7F82] rounded-lg hover:bg-[#3A5A6B]/5 dark:hover:bg-[#6B7F82]/10 transition-all duration-300 transform hover:-translate-y-1 font-semibold"
             >
-              {t('getInTouchCta')}
-              <svg 
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                fill="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
+              Download Resume
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            </a>
+
+            <Link
+              href={`/${locale}/contact`}
+              className="btn btn-outline flex items-center justify-center gap-2 px-8 py-3 border-2 border-[#E07A5F] text-[#E07A5F] dark:border-[#F4A261] dark:text-[#F4A261] rounded-lg hover:bg-[#E07A5F]/5 dark:hover:bg-[#F4A261]/10 transition-all duration-300 transform hover:-translate-y-1 font-semibold"
+            >
+              Contact Me
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </Link>
-          </div>
+          </motion.div>
 
-          {/* Social links */}
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="https://github.com/edogola4"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
-            >
-              <FaGithub className="w-6 h-6" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
-            >
-              <FaLinkedin className="w-6 h-6" />
-            </a>
-            <a
-              href="https://x.com/EdwinOgola"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-[#3A5A6B] dark:hover:text-[#6B7F82] transition-colors"
-            >
-              <FaXTwitter className="w-5 h-5" />
-            </a>
-          </div>
+          {/* Social & CTA Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-6 pt-2"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium text-[#2B2D42]/70 dark:text-[#F8F5F0]/70">Connect:</span>
+              <a
+                href="https://github.com/edogola4"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-[#3A5A6B]/10 dark:hover:bg-[#6B7F82]/10 hover:text-[#3A5A6B] dark:hover:text-[#6B9FB1] transition-all duration-300"
+                title="GitHub"
+              >
+                <FaGithub className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-500/10 dark:hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+                title="LinkedIn"
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://x.com/EdwinOgola"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition-all duration-300"
+                title="X (Twitter)"
+              >
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+            </div>
+          </motion.div>
 
           {/* Tech Stack */}
-          <div className="pt-4">
-            <p className="text-sm font-medium text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-3">Tech Stack</p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="pt-8 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
+          >
+            <p className="text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0] mb-4 uppercase tracking-wide">Tech Stack</p>
             <div className="flex flex-wrap gap-6">
               {iconData.map((item, index) => {
                 const Icon = item.icon;
@@ -792,7 +809,7 @@ const Hero = () => {
                     className="relative"
                   >
                     <Icon
-                      className={`w-8 h-8 transition-all duration-300 cursor-pointer ${selectedTech?.title === item.title ? 'scale-125' : 'hover:scale-110'} ${item.color}`}
+                      className={`w-9 h-9 transition-all duration-300 cursor-pointer filter ${selectedTech?.title === item.title ? 'scale-125 drop-shadow-lg' : 'hover:scale-110 opacity-75 hover:opacity-100'} ${item.color}`}
                       title={item.title}
                       aria-label={item.title}
                     />
@@ -802,12 +819,12 @@ const Hero = () => {
                           initial={{ opacity: 0, y: 10, scale: 0.9 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.1 } }}
-                          className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1E2A35] rounded-lg shadow-lg p-2 z-10 w-32 pointer-events-none border border-[#e8e2d6] dark:border-[#3A5A6B]/30"
+                          className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1E2A35] rounded-lg shadow-xl p-3 z-10 w-40 pointer-events-none border border-[#e8e2d6] dark:border-[#3A5A6B]/40"
                         >
-                          <p className="text-center text-sm font-medium text-[#2B2D42] dark:text-[#F8F5F0]">{item.title}</p>
-                          <div className="w-full bg-[#e8e2d6] dark:bg-[#3A5A6B]/30 h-2 rounded-full mt-1">
+                          <p className="text-center text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0]">{item.title}</p>
+                          <div className="w-full bg-[#e8e2d6] dark:bg-[#3A5A6B]/30 h-2 rounded-full mt-2">
                             <div
-                              className="bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] h-2 rounded-full"
+                              className="bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] h-2 rounded-full transition-all duration-300"
                               style={proficiencyStyle(item.proficiency)}
                             ></div>
                           </div>
@@ -819,32 +836,38 @@ const Hero = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Worked with logos */}
-          <div className="pt-4">
-            <p className="text-sm font-medium text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-3">Trusted By</p>
-            <div className="flex flex-wrap items-center gap-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="pt-8 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
+          >
+            <p className="text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0] mb-4 uppercase tracking-wide">Trusted By Enterprise Companies</p>
+            <div className="flex flex-wrap items-center gap-8">
               {clientLogos.map((client, index) => (
                 <motion.div
                   key={client.name}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.7 }}
-                  whileHover={{ opacity: 1, scale: 1.05 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="h-10 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                  animate={{ opacity: 0.6 }}
+                  whileHover={{ opacity: 1, scale: 1.08 }}
+                  transition={{ delay: index * 0.15 }}
+                  className="h-11 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                  title={client.name}
                 >
                   <Image
                     src={client.logo}
-                    alt={client.name}
+                    alt={`${client.name} logo`}
                     width={120}
-                    height={40}
+                    height={44}
                     className="h-full w-auto object-contain"
                   />
                 </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
