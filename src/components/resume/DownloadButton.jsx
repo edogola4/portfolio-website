@@ -4,6 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const DownloadButton = () => {
+  const handleDownload = () => {
+    // Optional: Add any download logic here if needed
+  };
+
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}

@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "resume": "Resume",
+    "skills": "Skills"
+  },
+  "hero": {
+    "title": "Full Stack Software Engineer",
+    "subtitle": "Building scalable web applications for East African markets"
+  },
+  "contact": {
+    "heading": "Get in touch"
+  },
+  "home": {
+    "viewAllProjects": "View all projects",
+    "availableForProjects": "Available for projects",
+    "browseProjects": "Browse My Projects",
+    "getInTouchCta": "Get In Touch",
+    "messageSent": "Message Sent!",
+    "messageSentDesc": "Thank you for reaching out. I'll get back to you soon.",
+    "sendAnotherMessage": "Send Another Message",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "viewFullContactForm": "View Full Contact Form"
+  },
+  "footer": {
+    "tagline": "Full Stack Software Engineer building scalable web applications focused on East African markets.",
+    "quickLinks": "Quick Links",
+    "getInTouch": "Get In Touch",
+    "contactCta": "Contact Me",
+    "rights": "All rights reserved."
+  }
+}

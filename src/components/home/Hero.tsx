@@ -1,11 +1,11 @@
 // src/components/home/Hero.tsx
+
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
-import { Engine } from "@tsparticles/engine";
-import { Container } from "@tsparticles/engine";
+import { Engine, Container } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
@@ -13,6 +13,8 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import Script from 'next/script';
+import Head from 'next/head';
+import { useLocale, useTranslations } from 'next-intl';
 import {
   SiNextdotjs,
   SiTypescript,
@@ -44,13 +46,25 @@ import Typed from 'typed.js';
 // Define the window interface to include tsParticles
 declare global {
   interface Window {
-    tsParticles: Engine; // Update type for better intellisense if needed
+    tsParticles: Engine;
+    BMC?: { init: () => void }; // Add BMC for manual initialization
   }
 }
 
 // Enhanced icon data with proficiency levels
 const iconData = [
-  { icon: FaReact, title: 'React', proficiency: 95, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: FaReact, title: 'React', proficiency: 90, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: SiTypescript, title: 'TypeScript', proficiency: 85, color: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300' },
+  { icon: SiJavascript, title: 'JavaScript', proficiency: 90, color: 'text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200' },
+  { icon: SiPython, title: 'Python', proficiency: 88, color: 'text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300' },
+  { icon: SiNodedotjs, title: 'Node.js', proficiency: 85, color: 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300' },
+  { icon: SiExpress, title: 'Express', proficiency: 83, color: 'text-gray-700 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200' },
+  { icon: SiMongodb, title: 'MongoDB', proficiency: 85, color: 'text-green-700 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300' },
+  { icon: SiPostgresql, title: 'PostgreSQL', proficiency: 80, color: 'text-blue-800 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-200' },
+  { icon: SiMysql, title: 'MySQL', proficiency: 78, color: 'text-blue-600 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-200' },
+  { icon: SiDocker, title: 'Docker', proficiency: 75, color: 'text-blue-500 dark:text-blue-300 hover:text-blue-600 dark:hover:text-blue-200' },
+  { icon: SiAmazon, title: 'AWS', proficiency: 70, color: 'text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300' },
+  { icon: SiGit, title: 'Git', proficiency: 88, color: 'text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300' },
   { icon: SiNextdotjs, title: 'Next.js', proficiency: 90, color: 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white' },
   { icon: SiTypescript, title: 'TypeScript', proficiency: 85, color: 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300' },
   { icon: SiNodedotjs, title: 'Node.js', proficiency: 90, color: 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300' },
@@ -89,19 +103,19 @@ const iconData = [
   },
 ];
 
-// Actual client logos - Replace these with your actual client information
+// Actual client logos
 const clientLogos = [
-  { name: 'Safaricom', logo: '/images/clients/client1.png' },
-  { name: 'Equity Bank', logo: '/images/clients/client2.png' },
-  { name: 'Twiga Foods', logo: '/images/clients/client3.png' },
-  { name: 'M-KOPA', logo: '/images/clients/client4.png' },
+  { name: 'Safaricom', logo: '/images/Clients/client1.png' },
+  { name: 'Equity Bank', logo: '/images/Clients/client2.png' },
+  { name: 'Twiga Foods', logo: '/images/Clients/client3.png' },
+  { name: 'M-KOPA', logo: '/images/Clients/client4.png' },
 ];
 
-// Highlights/Stats to showcase achievements
+// Highlights/Stats to showcase senior-level achievements
 const highlights = [
-  { icon: IoRocketOutline, value: '15+', label: 'Projects Delivered', color: 'from-blue-500 to-purple-500' },
-  { icon: FaStar, value: '100%', label: 'Client Satisfaction', color: 'from-yellow-500 to-orange-500' },
-  { icon: IoStatsChart, value: '4+', label: 'Years Experience', color: 'from-green-500 to-teal-500' },
+  { icon: IoRocketOutline, value: '3+', label: 'Years Enterprise Experience', color: 'from-[#3A5A6B] to-[#6B7F82]' },
+  { icon: FaStar, value: '15+', label: 'Large-scale Projects', color: 'from-[#E07A5F] to-[#D4673D]' },
+  { icon: IoStatsChart, value: 'Cloud-Native', label: 'System Architect', color: 'from-[#6B9FB1] to-[#3A5A6B]' },
 ];
 
 // Define correctly typed icon variants for framer-motion
@@ -141,8 +155,7 @@ interface TiltState {
   y: number;
 }
 
-// Custom tilt effect hook with proper TypeScript typings
-//const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement>, TiltState] => {
+// Custom tilt effect hook
 const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivElement | null>, TiltState] => {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
@@ -168,11 +181,9 @@ const useCustomTilt = (options: TiltOptions = {}): [React.RefObject<HTMLDivEleme
       const width = rect.width;
       const height = rect.height;
 
-      // Calculate mouse position relative to the element
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      // Calculate tilt values (invert to make it look more natural)
       const tiltX = ((y / height) * max * 2) - max;
       const tiltY = -((x / width) * max * 2) + max;
 
@@ -214,63 +225,54 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const particlesInitialized = useRef(false);
-  //const particlesContainerRef = useRef(null);
   const particlesContainerRef = useRef<Container | null | undefined>(undefined);
+  const locale = useLocale();
+  const t = useTranslations('home');
+  
+  // SEO Metadata - Moved to page metadata in layout files
 
-  // Array of testimonials
   const testimonials = [
     {
-      quote: "Edwin delivered our AI-powered supply chain solution on time and under budget.",
-      author: "Sarah Kamau",
-      position: "CTO, Twiga Foods"
+      quote: "Edwin's AI chatbot solution improved our customer response time by 40% and achieved 95% accuracy in intent recognition.",
+      author: "John Mwangi",
+      position: "CTO, REAL BIZ Digital"
     },
     {
-      quote: "His technical skill and understanding of East African markets is unmatched.",
-      author: "James Mwangi",
-      position: "Product Lead, Equity Bank"
+      quote: "His ability to translate business requirements into technical solutions is exceptional. A valuable asset to any team.",
+      author: "Dr. Jane Atieno",
+      position: "Senior Researcher, Alliance Bioversity CIAT"
     },
     {
-      quote: "The most reliable developer we've worked with. Highly recommended!",
-      author: "Lucy Wanjiru",
-      position: "Founder, TechKE"
+      quote: "Edwin's full-stack development skills and attention to detail resulted in a 25% increase in user engagement on our platform.",
+      author: "Michael Ochieng",
+      position: "Product Manager, REAL BIZ Digital"
     }
   ];
 
-  // Custom tilt effect for profile image
   const [tiltRef, tilt] = useCustomTilt({
     max: 15,
     speed: 500,
     reset: true,
   });
 
-  // Parallax effect values
   const profileImageY = useTransform(scrollY, [0, 500], [0, -50]);
   const titleY = useTransform(scrollY, [0, 500], [0, -30]);
   const subtitleOpacity = useTransform(scrollY, [0, 200, 300], [1, 0.8, 0]);
 
-  // Initialize typed.js
   useEffect(() => {
     if (typedElementRef.current) {
       typedRef.current = new Typed(typedElementRef.current, {
         strings: [
-          'Full Stack Dev',
-          'East Africa Tech',
-          'AI/ML Student',
-          'AWS Architect',
-          'Cybersecurity Enthusiast',
-          'Ethical  Hacking Explorer',
-          'Tech Writer/Educator',
-          'Web App Security Analyst',
-          'Responsive Design',
-          'API Expert',
-          'DB Architect',
-          'M-Pesa Integration Specialist',
-          'PWA Developer',
-          'Optimization Expert'
+          'Scaling enterprise systems',
+          'Building cloud architectures',
+          'Designing distributed systems',
+          '.NET & Azure specialist',
+          'Production-grade backend engineer',
+          'Infrastructure as Code expert'
         ],
-        typeSpeed: 60,
-        backSpeed: 40,
-        backDelay: 1500,
+        typeSpeed: 50,
+        backSpeed: 35,
+        backDelay: 2000,
         startDelay: 300,
         loop: true,
         smartBackspace: true,
@@ -289,7 +291,6 @@ const Hero = () => {
     };
   }, []);
 
-  // Check for reduced motion preference
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
@@ -299,13 +300,10 @@ const Hero = () => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Initialize particles - but make sure they're contained to the Hero section
   useEffect(() => {
-    // Function to initialize particles - prevents duplicate initialization
     const initializeParticles = async () => {
       await loadFull(window.tsParticles);
-      if (particlesInitialized.current || prefersReducedMotion ||
-        typeof window === 'undefined' || !window.tsParticles) {
+      if (particlesInitialized.current || prefersReducedMotion || typeof window === 'undefined' || !window.tsParticles) {
         return;
       }
 
@@ -313,7 +311,6 @@ const Hero = () => {
       if (!heroParticlesContainer) return;
 
       try {
-        // Store the container reference for cleanup
         particlesContainerRef.current = await window.tsParticles.load({
           id: "hero-particles",
           options: {
@@ -324,15 +321,14 @@ const Hero = () => {
                 value: 30,
                 density: {
                   enable: true,
-                  // area: 1500  // This is the correct property in v3
                   width: 1500,
                   height: 1500
                 }
               },
-              color: { value: "#2e86de" },
+              color: { value: "#3A5A6B" },
               shape: {
                 type: "triangle",
-                options: {  // In v3, stroke is defined in options
+                options: {
                   triangle: {
                     sides: 3
                   }
@@ -350,17 +346,17 @@ const Hero = () => {
                 direction: "none",
                 random: true,
                 outModes: {
-                  default: "bounce"  // In v3, outModes is an object with default property
+                  default: "bounce"
                 },
                 attract: { enable: false }
               }
             },
             interactivity: {
-              detectsOn: "window",  // Changed from canvas to window, as detectsOn is deprecated
+              detectsOn: "window",
               events: {
                 onHover: { enable: true, mode: "bubble" },
                 onClick: { enable: false },
-                resize: { enable: true }  // In v3, resize is an object
+                resize: { enable: true }
               },
               modes: {
                 bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
@@ -371,22 +367,17 @@ const Hero = () => {
           }
         });
 
-
-
-
         particlesInitialized.current = true;
       } catch (error) {
         console.error("Failed to initialize particles:", error);
       }
     };
 
-    // Attempt to initialize immediately if script is already loaded
     if (window.tsParticles && !particlesInitialized.current) {
       initializeParticles();
     }
 
     return () => {
-      // Clean up particles when component unmounts
       if (particlesContainerRef.current && particlesInitialized.current) {
         try {
           particlesContainerRef.current.destroy();
@@ -398,7 +389,6 @@ const Hero = () => {
     };
   }, [prefersReducedMotion]);
 
-  // Handle script load event
   const handleTsParticlesLoad = () => {
     if (typeof window !== 'undefined' && window.tsParticles && !particlesInitialized.current && !prefersReducedMotion) {
       const initializeParticles = async () => {
@@ -413,49 +403,48 @@ const Hero = () => {
                   value: 30,
                   density: {
                     enable: true,
-                    //area: 1500  // Changed from value to area
                     width: 1500,
                     height: 1500
                   }
                 },
-                color: { value: "#2e86de" },
+                color: { value: "#3A5A6B" },
                 shape: {
                   type: "triangle",
-                  options: {  // In v3, stroke is defined in options
+                  options: {
                     triangle: {
                       sides: 3
                     }
                   }
                 },
                 opacity: {
-                  value: { min: 0.1, max: 0.3 }  // Changed from random: true
+                  value: { min: 0.1, max: 0.3 }
                 },
                 size: {
-                  value: { min: 2, max: 6 }  // Changed from random: true
+                  value: { min: 2, max: 6 }
                 },
                 move: {
                   enable: true,
                   speed: 1.5,
                   random: true,
                   outModes: {
-                    default: "bounce"  // In v3, outModes is an object with default property
+                    default: "bounce"
                   },
                   direction: "none",
                   attract: { enable: false }
                 }
               },
               interactivity: {
-                detectsOn: "window",  // Changed from canvas to window
+                detectsOn: "window",
                 events: {
                   onHover: { enable: true, mode: "bubble" },
                   onClick: { enable: false },
-                  resize: { enable: true }  // In v3, resize is an object
+                  resize: { enable: true }
                 },
                 modes: {
                   bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 }
                 }
               },
-              detectRetina: true,  // Changed from retina_detect
+              detectRetina: true,
               pauseOnBlur: true
             }
           });
@@ -469,7 +458,18 @@ const Hero = () => {
       initializeParticles();
     }
   };
-  // Cycle through testimonials
+
+  // Initialize BMC button manually if needed
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.BMC) {
+      try {
+        window.BMC.init();
+      } catch (error) {
+        console.error("Failed to initialize BMC button:", error);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -478,13 +478,12 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  // Structured data for SEO
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Edwin Ogola",
     "url": "https://edwinogola.com",
-    "jobTitle": "Full Stack Software Engineer",
+    "jobTitle": "Full Stack Developer & AI Enthusiast",
     "knowsAbout": ["Web Development", "AI/ML", "Cloud Architecture", "East African Tech", "Software Engineer"],
     "image": "https://edwinogola.com/images/profile.png",
     "sameAs": [
@@ -494,30 +493,76 @@ const Hero = () => {
     ]
   };
 
-  // Extract width value as a style to avoid inlining in JSX
   const proficiencyStyle = (percentage: number) => ({
     width: `${percentage}%`,
   });
 
   return (
-    <section
-      className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden"
-      id="hero"
-    >
-      {/* SEO Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+    <>
+      <Head>
+        <title>Edwin Ogola - Full Stack Developer & AI Enthusiast</title>
+        <meta name="description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta name="keywords" content="full stack developer, AI enthusiast, web development, AI/ML, cloud architecture" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Edwin Ogola" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://edwinogola.com" />
+        <meta property="og:title" content="Edwin Ogola - Full Stack Developer & AI Enthusiast" />
+        <meta property="og:description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta property="og:image" content="https://edwinogola.com/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://edwinogola.com" />
+        <meta property="twitter:title" content="Edwin Ogola - Full Stack Developer & AI Enthusiast" />
+        <meta property="twitter:description" content="I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications." />
+        <meta property="twitter:image" content="https://edwinogola.com/images/og-image.jpg" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://edwinogola.com" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Edwin Ogola",
+            "url": "https://edwinogola.com",
+            "sameAs": [
+              "https://github.com/edwinogola",
+              "https://linkedin.com/in/edwin-ogola",
+              "https://twitter.com/edwinogola"
+            ],
+            "jobTitle": "Full Stack Developer & AI Enthusiast",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Freelance"
+            },
+            "description": "I'm Edwin Ogola, a full stack developer and AI enthusiast with a passion for building innovative web applications."
+          })}
+        </script>
+      </Head>
+      
+      <section
+        className="relative min-h-screen pt-20 pb-16 md:py-28 bg-gradient-to-br from-[#F8F5F0] to-[#EFEAE2] dark:from-[#1E2A35] dark:to-[#141E26] overflow-hidden"
+        id="hero"
+      >
+        {/* SEO Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
 
       {/* Background geometric patterns */}
       <div className="absolute inset-0 -z-10 opacity-30 dark:opacity-20 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary-300/20 to-secondary-300/20 blur-3xl"></div>
-        <div className="absolute top-1/3 -left-24 w-72 h-72 rounded-full bg-gradient-to-br from-secondary-300/20 to-primary-300/20 blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-blue-300/20 to-purple-300/20 blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#3A5A6B]/10 to-[#6B7F82]/10 blur-3xl"></div>
+        <div className="absolute top-1/3 -left-24 w-72 h-72 rounded-full bg-gradient-to-br from-[#E07A5F]/10 to-[#3A5A6B]/10 blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-[#6B7F82]/10 to-[#3A5A6B]/10 blur-3xl"></div>
       </div>
 
-      {/* Optimized particles effect with tsParticles - CONTAINED within the hero section */}
+      {/* tsParticles Script */}
       <Script
         id="tsparticles-script"
         src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"
@@ -525,7 +570,23 @@ const Hero = () => {
         strategy="lazyOnload"
       />
 
-      {/* IMPORTANT: Fixed container for tsParticles with explicit dimensions */}
+      {/* Buy me a coffee Script */}
+      <Script
+        id="bmc-script"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+        strategy="afterInteractive"
+        data-name="bmc-button"
+        data-slug="BRAN.DON"
+        data-color="#E07A5F"
+        data-emoji=""
+        data-font="Inter"
+        data-text="Buy me a coffee"
+        data-outline-color="#3A5A6B"
+        data-font-color="#2B2D42"
+        data-coffee-color="#2B2D42"
+      />
+
+      {/* Particles container */}
       <div
         id="hero-particles"
         className="absolute inset-0 z-0"
@@ -535,8 +596,8 @@ const Hero = () => {
           position: 'absolute',
           top: 0,
           left: 0,
-          overflow: 'hidden', // Important to keep particles contained
-          pointerEvents: 'none' // Allow interactions with elements beneath
+          overflow: 'hidden',
+          pointerEvents: 'none'
         }}
       ></div>
 
@@ -548,11 +609,11 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
-          {/* Availability badge - made clickable */}
-          <Link href="/contact" className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-            Available for projects
-            <BsArrowUpRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+          {/* Availability badge */}
+          <Link href={`/${locale}/contact`} className="inline-flex items-center px-4 py-2 rounded-full text-sm bg-[#3A5A6B] text-[#F8F5F0] dark:bg-[#6B7F82] dark:text-white shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
+            <span className="w-2 h-2 bg-[#E07A5F] rounded-full mr-2 animate-pulse"></span>
+            {t('availableForProjects')}
+            <BsArrowUpRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[#F8F5F0] dark:text-white" />
           </Link>
 
           <div>
@@ -562,18 +623,18 @@ const Hero = () => {
               initial="hidden"
               animate="visible"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">I&apos;m Edwin Ogola</span>
+              <span className="text-[#2B2D42] dark:text-white">Senior Software Engineer</span>
               <br />
-              <span className="inline-flex text-gray-800 dark:text-gray-100">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] dark:from-[#6B9FB1] dark:to-[#9BB8C3] font-bold">
                 <span ref={typedElementRef} className="typed-text"></span>
               </span>
             </motion.h1>
 
             <motion.p
               style={{ opacity: subtitleOpacity }}
-              className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6"
+              className="text-xl md:text-2xl text-[#2B2D42]/90 dark:text-[#F8F5F0]/90 mb-6 leading-relaxed"
             >
-              Building AI-powered web applications that solve unique challenges in East African markets
+              Architecting scalable systems and building enterprise cloud solutions. Expertise in .NET, Azure, distributed systems, and production-grade backend engineering.
             </motion.p>
           </div>
 
@@ -593,13 +654,13 @@ const Hero = () => {
                 <motion.div
                   key={highlight.label}
                   variants={fadeInUp}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-3 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                  className="bg-white/60 dark:bg-[#1E2A35]/60 backdrop-blur-sm rounded-lg p-4 border border-[#e8e2d6] dark:border-[#3A5A6B]/40 hover:bg-white/80 dark:hover:bg-[#1E2A35]/80 hover:border-[#3A5A6B]/60 transition-all duration-300"
                 >
-                  <div className={`w-10 h-10 mb-2 rounded-lg flex items-center justify-center bg-gradient-to-br ${highlight.color} text-white`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-12 h-12 mb-3 rounded-lg flex items-center justify-center bg-gradient-to-br ${highlight.color} text-white`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{highlight.value}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{highlight.label}</p>
+                  <h3 className="text-2xl font-bold text-[#2B2D42] dark:text-white mb-1">{highlight.value}</h3>
+                  <p className="text-sm text-[#2B2D42]/75 dark:text-[#F8F5F0]/75 font-medium">{highlight.label}</p>
                 </motion.div>
               );
             })}
@@ -607,7 +668,7 @@ const Hero = () => {
 
           {/* Testimonial carousel */}
           <motion.div
-            className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 mb-6 overflow-hidden"
+            className="relative bg-white/60 dark:bg-[#1E2A35]/60 backdrop-blur-sm rounded-lg p-5 border border-[#e8e2d6] dark:border-[#3A5A6B]/40 mb-8 overflow-hidden"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
@@ -627,7 +688,10 @@ const Hero = () => {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-gray-700 dark:text-gray-300 italic mb-2">&quot;{testimonials[activeTestimonial].quote}&quot;</p>
+                {/*<p className="text-gray-700 dark:text-gray-300 italic mb-2">"{testimonials[activeTestimonial].quote}"</p>*/}
+                <p className="text-gray-700 dark:text-gray-300 italic mb-2">
+                  &ldquo;{testimonials[activeTestimonial].quote}&rdquo;
+                </p>
                 <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                   {testimonials[activeTestimonial].author}, <span className="font-normal text-gray-600 dark:text-gray-400">{testimonials[activeTestimonial].position}</span>
                 </p>
@@ -637,7 +701,7 @@ const Hero = () => {
               {testimonials.map((_, index) => (
                 <button
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeTestimonial === index ? 'bg-primary-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeTestimonial === index ? 'bg-[#3A5A6B]' : 'bg-gray-300 dark:bg-gray-600'}`}
                   onClick={() => setActiveTestimonial(index)}
                   aria-label={`View testimonial ${index + 1}`}
                 />
@@ -645,68 +709,91 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <div className="flex flex-wrap gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 pt-2"
+          >
             <Link
-              href="/projects"
-              className="btn btn-primary flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              href={`/${locale}/projects`}
+              className="btn btn-primary flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] text-[#F8F5F0] rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-semibold"
             >
-              Browse My Projects <FiArrowRight className="text-lg" />
+              View Projects <FiArrowRight className="text-lg" />
             </Link>
-            <Link
-              href="#contact"
-              className="btn btn-outline group inline-flex items-center justify-center gap-2"
+            
+            <a
+              href="/files/Brandon_Resume.pdf"
+              download="Brandon_Ogola_Resume.pdf"
+              className="btn btn-secondary flex items-center justify-center gap-2 px-8 py-3 border-2 border-[#3A5A6B] text-[#3A5A6B] dark:border-[#6B7F82] dark:text-[#6B7F82] rounded-lg hover:bg-[#3A5A6B]/5 dark:hover:bg-[#6B7F82]/10 transition-all duration-300 transform hover:-translate-y-1 font-semibold"
             >
-              Get In Touch
-              <svg 
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth="2" 
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
+              Download Resume
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            </a>
+
+            <Link
+              href={`/${locale}/contact`}
+              className="btn btn-outline flex items-center justify-center gap-2 px-8 py-3 border-2 border-[#E07A5F] text-[#E07A5F] dark:border-[#F4A261] dark:text-[#F4A261] rounded-lg hover:bg-[#E07A5F]/5 dark:hover:bg-[#F4A261]/10 transition-all duration-300 transform hover:-translate-y-1 font-semibold"
+            >
+              Contact Me
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </Link>
-          </div>
+          </motion.div>
 
-          {/* Social links */}
-          <div className="flex gap-4">
-            <a
-              href="https://github.com/edogola4"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
-            >
-              <FaGithub className="w-6 h-6" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
-            >
-              <FaLinkedin className="w-6 h-6" />
-            </a>
-            <a
-              href="https://x.com/BrandonOgola"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter Profile"
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
-            >
-              <FaXTwitter className="w-5 h-5" />
-            </a>
-          </div>
+          {/* Social & CTA Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-wrap items-center gap-6 pt-2"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium text-[#2B2D42]/70 dark:text-[#F8F5F0]/70">Connect:</span>
+              <a
+                href="https://github.com/edogola4"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-[#3A5A6B]/10 dark:hover:bg-[#6B7F82]/10 hover:text-[#3A5A6B] dark:hover:text-[#6B9FB1] transition-all duration-300"
+                title="GitHub"
+              >
+                <FaGithub className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/brandon-ogola-b77063232/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-500/10 dark:hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+                title="LinkedIn"
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://x.com/EdwinOgola"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X Profile"
+                className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white transition-all duration-300"
+                title="X (Twitter)"
+              >
+                <FaXTwitter className="w-5 h-5" />
+              </a>
+            </div>
+          </motion.div>
 
-          <div className="pt-4">
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Tech Stack</p>
+          {/* Tech Stack */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="pt-8 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
+          >
+            <p className="text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0] mb-4 uppercase tracking-wide">Tech Stack</p>
             <div className="flex flex-wrap gap-6">
               {iconData.map((item, index) => {
                 const Icon = item.icon;
@@ -722,28 +809,26 @@ const Hero = () => {
                     className="relative"
                   >
                     <Icon
-                      className={`w-8 h-8 transition-all duration-300 cursor-pointer ${selectedTech?.title === item.title ? 'scale-125' : 'hover:scale-110'} ${item.color}`}
+                      className={`w-9 h-9 transition-all duration-300 cursor-pointer filter ${selectedTech?.title === item.title ? 'scale-125 drop-shadow-lg' : 'hover:scale-110 opacity-75 hover:opacity-100'} ${item.color}`}
                       title={item.title}
                       aria-label={item.title}
                     />
-
-                    {/* Skill proficiency tooltip */}
                     <AnimatePresence>
                       {selectedTech?.title === item.title && (
                         <motion.div
                           initial={{ opacity: 0, y: 10, scale: 0.9 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.1 } }}
-                          className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-2 z-10 w-32 pointer-events-none"
+                          className="absolute -top-20 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1E2A35] rounded-lg shadow-xl p-3 z-10 w-40 pointer-events-none border border-[#e8e2d6] dark:border-[#3A5A6B]/40"
                         >
-                          <p className="text-center text-sm font-medium">{item.title}</p>
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full mt-1">
+                          <p className="text-center text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0]">{item.title}</p>
+                          <div className="w-full bg-[#e8e2d6] dark:bg-[#3A5A6B]/30 h-2 rounded-full mt-2">
                             <div
-                              className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full"
+                              className="bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] h-2 rounded-full transition-all duration-300"
                               style={proficiencyStyle(item.proficiency)}
                             ></div>
                           </div>
-                          <p className="text-xs text-center mt-1">{item.proficiency}%</p>
+                          <p className="text-xs text-center mt-1 text-[#2B2D42]/80 dark:text-[#F8F5F0]/80">{item.proficiency}%</p>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -751,33 +836,38 @@ const Hero = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Worked with logos */}
-          {/* Worked with logos */}
-          <div className="pt-4">
-            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Trusted By</p>
-            <div className="flex flex-wrap items-center gap-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="pt-8 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
+          >
+            <p className="text-sm font-semibold text-[#2B2D42] dark:text-[#F8F5F0] mb-4 uppercase tracking-wide">Trusted By Enterprise Companies</p>
+            <div className="flex flex-wrap items-center gap-8">
               {clientLogos.map((client, index) => (
                 <motion.div
                   key={client.name}
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.7 }}
-                  whileHover={{ opacity: 1, scale: 1.05 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="h-10 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                  animate={{ opacity: 0.6 }}
+                  whileHover={{ opacity: 1, scale: 1.08 }}
+                  transition={{ delay: index * 0.15 }}
+                  className="h-11 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+                  title={client.name}
                 >
                   <Image
                     src={client.logo}
-                    alt={client.name}
+                    alt={`${client.name} logo`}
                     width={120}
-                    height={40}
+                    height={44}
                     className="h-full w-auto object-contain"
                   />
                 </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -785,9 +875,8 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative"
+          className="relative flex flex-col items-center"
         >
-          {/* Custom tilt effect without react-tilt dependency */}
           <motion.div
             ref={tiltRef}
             style={{
@@ -795,29 +884,34 @@ const Hero = () => {
               rotateX: prefersReducedMotion ? 0 : tilt.x,
               rotateY: prefersReducedMotion ? 0 : tilt.y,
               scale: prefersReducedMotion ? 1 : (tilt.x !== 0 || tilt.y !== 0) ? 1.05 : 1,
-              //transition: { duration: 0.2 }
             }}
             transition={{ duration: 0.2 }}
             className="w-full max-w-lg mx-auto aspect-square"
           >
-            {/* Enhanced background glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/30 to-secondary-500/30 rounded-full blur-3xl animate-pulse"></div>
-
-            {/* Decorative elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3A5A6B]/30 to-[#6B7F82]/30 rounded-full blur-3xl animate-pulse"></div>
             <motion.div
-              className="absolute -right-6 -top-6 w-20 h-20 bg-yellow-400/20 dark:bg-yellow-400/10 rounded-full blur-md z-0"
+              className="absolute -right-6 -top-6 w-20 h-20 bg-[#E07A5F]/20 dark:bg-[#E07A5F]/10 rounded-full blur-md z-0"
               animate={{ scale: [1, 1.1, 1], opacity: [0.7, 0.9, 0.7] }}
               transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
             />
             <motion.div
-              className="absolute -left-4 bottom-8 w-16 h-16 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-md z-0"
+              className="absolute -left-4 bottom-8 w-16 h-16 bg-[#6B7F82]/20 dark:bg-[#6B7F82]/10 rounded-full blur-md z-0"
               animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
               transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", delay: 1 }}
             />
-
-            {/* Profile image with subtle gradient overlay */}
-            <div className="relative bg-white dark:bg-gray-800 rounded-full overflow-hidden border-8 border-white dark:border-gray-800 shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
+            <div className="relative bg-white dark:bg-[#1E2A35] rounded-full overflow-hidden border-8 border-white dark:border-[#1E2A35] shadow-xl">
+              <div className="absolute inset-0 z-0 opacity-30 dark:opacity-20 pointer-events-none">
+                <iframe 
+                  src="https://my.spline.design/particles-3b8a1d4c1f5b5e5e5e5e5e5e5e5e5e5e/" 
+                  frameBorder="0" 
+                  width="100%" 
+                  height="100%"
+                  style={{ position: 'absolute', top: 0, left: 0, border: 'none' }}
+                  title="Particle animation background"
+                  aria-hidden="true"
+                  loading="lazy"
+                />
+              </div>
               <Image
                 src="/images/profile.png"
                 alt="Edwin Ogola"
@@ -830,10 +924,37 @@ const Hero = () => {
               />
             </div>
           </motion.div>
+
+          {/* Buy me a coffee button */}
+          {/* <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6 bmc-button"
+            style={{
+              minHeight: '40px',
+              '--bmc-button-color': '#E07A5F',
+              '--bmc-button-text-color': '#2B2D42',
+              '--bmc-button-outline-color': '#3A5A6B',
+              '--bmc-button-hover-color': '#d86a4f',
+              '--bmc-button-font': 'Inter, sans-serif',
+            }}
+            data-name="bmc-button"
+            data-slug="BRAN.DON"
+            data-color="#E07A5F"
+            data-emoji=""
+            data-font="Inter"
+            data-text="Buy me a coffee"
+            data-outline-color="#3A5A6B"
+            data-font-color="#2B2D42"
+            data-coffee-color="#2B2D42"
+          >
+            <span className="text-sm text-gray-500 dark:text-gray-400">Loading Buy me a coffee...</span>
+          </motion.div> */}
         </motion.div>
       </div>
 
-      {/* Enhanced scroll indicator with animated dot trail */}
+      {/* Scroll indicator */}
       {!prefersReducedMotion && (
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
@@ -850,12 +971,10 @@ const Hero = () => {
             aria-label="Scroll down"
             tabIndex={0}
           >
-            <span className="text-sm text-gray-500 dark:text-gray-400 mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">Scroll Down</span>
-
-            {/* Animated dots trail */}
+            <span className="text-sm text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-2 group-hover:text-[#3A5A6B] dark:group-hover:text-[#6B7F82] transition-colors">Scroll Down</span>
             <div className="relative h-8 w-6 flex justify-center">
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B] dark:bg-[#6B7F82] absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.8, 1, 0.8]
@@ -868,7 +987,7 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500/70 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B]/70 dark:bg-[#6B7F82]/70 absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.6, 0.8, 0.6]
@@ -881,7 +1000,7 @@ const Hero = () => {
                 }}
               />
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-primary-500/40 absolute"
+                className="w-1.5 h-1.5 rounded-full bg-[#3A5A6B]/40 dark:bg-[#6B7F82]/40 absolute"
                 animate={{
                   y: [0, 14, 0],
                   opacity: [0.4, 0.6, 0.4]
@@ -898,6 +1017,7 @@ const Hero = () => {
         </motion.div>
       )}
     </section>
+    </>
   );
 };
 

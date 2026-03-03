@@ -1,33 +1,77 @@
 // src/app/resume/page.js
 
+'use client';
+
 import React from 'react';
 import DownloadButton from '@/components/resume/DownloadButton';
-
-export const metadata = {
-  title: 'Resume | Edwin Ogola - Full Stack Software Engineer',
-  description: 'Professional resume and career timeline of Edwin Ogola, Full Stack Software Engineer specializing in web applications for East African markets.',
-};
+import Link from 'next/link';
 
 export default function ResumePage() {
   return (
-    <main className="container mx-auto px-4 py-12 max-w-5xl">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+    <main className="container mx-auto px-4 py-12 max-w-5xl bg-[#F7F7F7] dark:bg-[#1E1E1E]">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
         <div className="mb-6 md:mb-0">
-          <h1 className="text-4xl font-bold text-primary-800 dark:text-white mb-3 font-display">Resume</h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300">
-            My professional experience, education, and skills
+          <h1 className="text-4xl font-bold text-[#1E3F2B] dark:text-[#E8F5E9] mb-3 font-display">Professional Resume</h1>
+          <p className="text-lg text-[#5A6A6F] dark:text-neutral-300">
+            A comprehensive overview of my professional journey and expertise
           </p>
         </div>
-        <DownloadButton className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg" />
+        <Link 
+          href="/files/Edwin_B__Ogola_CV.pdf" 
+          download
+          className="bg-[#D45D42] hover:bg-[#B84C35] text-white px-8 py-3.5 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+          Download Full CV
+        </Link>
       </div>
 
       <section className="mb-20">
-        <h2 className="text-2xl font-semibold text-primary-700 dark:text-white mb-10 pb-2 border-b border-neutral-200 dark:border-neutral-700">Professional Experience</h2>
+        <div className="flex items-center mb-10">
+          <h2 className="text-2xl font-semibold text-[#1E3F2B] dark:text-[#E8F5E9] pr-4">Professional Experience</h2>
+          <div className="flex-1 border-t border-[#1E3F2B]/30 dark:border-[#E8F5E9]/30"></div>
+        </div>
         
         <div className="space-y-10">
+          {/* Operations Intern */}
+          <div className="group relative pl-10 border-l-2 border-[#D4A017] dark:border-[#E8B949] hover:border-[#D45D42] transition-all duration-300">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#D4A017] group-hover:bg-[#D45D42] transition-colors duration-300 ring-4 ring-white dark:ring-[#1E3F2B]"></div>
+            <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
+                <div className="mb-3 md:mb-0">
+                  <h3 className="text-xl font-bold text-primary-800 dark:text-white mb-1">Operations Intern</h3>
+                  <div className="flex items-center text-sm text-neutral-600 dark:text-neutral-400">
+                    <span className="font-medium">TechCorp Solutions</span>
+                    <span className="mx-2 text-neutral-400">•</span>
+                    <span>Nairobi, Kenya</span>
+                  </div>
+                </div>
+                <div className="px-4 py-1.5 bg-[#F8F1E5] dark:bg-[#2D2318] text-[#D45D42] dark:text-[#E89A7B] text-sm font-medium rounded-full border border-[#F0E0D0] dark:border-[#4A3A2A] whitespace-nowrap shadow-sm">
+                  May 2025 - Aug 2025
+                </div>
+              </div>
+              <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+                Supported core operations by analyzing processes, documenting workflows, and collaborating across teams to implement improvements.
+              </p>
+              <ul className="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+                <li>
+                  Analyzed operational processes and created data-driven reports using Python and Excel, identifying efficiency improvements that reduced processing time by 20%.
+                </li>
+                <li>
+                  Collaborated with cross-functional teams to gather requirements and translate business needs into technical specifications.
+                </li>
+                <li>
+                  Developed automated workflows and documentation systems that streamlined operations for a team of 12 members.
+                </li>
+              </ul>
+            </div>
+          </div>
+
           {/* Senior Software Engineer */}
-          <div className="group relative pl-10 border-l-2 border-primary-300 dark:border-primary-600 hover:border-primary-500 transition-colors">
-            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary-500 group-hover:bg-accent-500 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
+          <div className="group relative pl-10 border-l-2 border-[#1E3F2B] dark:border-[#4A8C5E] hover:border-[#D45D42] transition-all duration-300">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#1E3F2B] dark:bg-[#4A8C5E] group-hover:bg-[#D45D42] transition-colors duration-300 ring-4 ring-white dark:ring-[#1E3F2B]"></div>
             <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
                 <div className="mb-3 md:mb-0">
@@ -61,8 +105,8 @@ export default function ResumePage() {
           </div>
 
           {/* Full Stack Developer */}
-          <div className="group relative pl-10 border-l-2 border-tertiary-300 dark:border-tertiary-600 hover:border-tertiary-500 transition-colors">
-            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-tertiary-500 group-hover:bg-accent-500 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
+          <div className="group relative pl-10 border-l-2 border-[#D4A017] dark:border-[#E8B949] hover:border-[#D45D42] transition-all duration-300">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#D4A017] dark:bg-[#E8B949] group-hover:bg-[#D45D42] transition-colors duration-300 ring-4 ring-white dark:ring-[#1E3F2B]"></div>
             <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
                 <div className="mb-3 md:mb-0">
@@ -96,8 +140,8 @@ export default function ResumePage() {
           </div>
 
           {/* Web Developer */}
-          <div className="group relative pl-10 border-l-2 border-gold-300 dark:border-gold-600 hover:border-gold-500 transition-colors">
-            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold-500 group-hover:bg-accent-500 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
+          <div className="group relative pl-10 border-l-2 border-[#1E3F2B] dark:border-[#4A8C5E] hover:border-[#D45D42] transition-all duration-300">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#1E3F2B] dark:bg-[#4A8C5E] group-hover:bg-[#D45D42] transition-colors duration-300 ring-4 ring-white dark:ring-[#1E3F2B]"></div>
             <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
                 <div className="mb-3 md:mb-0">
@@ -131,8 +175,8 @@ export default function ResumePage() {
           </div>
 
           {/* Operational Intern */}
-          <div className="group relative pl-10 border-l-2 border-purple-500 hover:border-purple-600 transition-colors">
-            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-purple-500 group-hover:bg-accent-500 transition-colors ring-4 ring-white dark:ring-neutral-900"></div>
+          <div className="group relative pl-10 border-l-2 border-[#D4A017] dark:border-[#E8B949] hover:border-[#D45D42] transition-all duration-300">
+            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#D4A017] dark:bg-[#E8B949] group-hover:bg-[#D45D42] transition-colors duration-300 ring-4 ring-white dark:ring-[#1E3F2B]"></div>
             <div className="bg-white dark:bg-neutral-900/50 backdrop-blur-sm rounded-xl p-7 border border-neutral-100 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-5">
                 <div className="mb-3 md:mb-0">
@@ -143,7 +187,7 @@ export default function ResumePage() {
                     <span>Nairobi, Kenya</span>
                   </div>
                 </div>
-                <div className="px-4 py-1.5 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-sm font-medium rounded-full border border-purple-100 dark:border-purple-800/50 whitespace-nowrap">
+                <div className="px-4 py-1.5 bg-[#F8F1E5] dark:bg-[#2D2318] text-[#5A6A6F] dark:text-[#B0BEC5] text-sm font-medium rounded-full border border-[#F0E0D0] dark:border-[#4A3A2A] whitespace-nowrap shadow-sm">
                   Jan 2021 - Feb 2021
                 </div>
               </div>
@@ -324,7 +368,7 @@ export default function ResumePage() {
             <div className="flex flex-col h-full">
               <div className="flex-grow">
                 <div className="w-10 h-1.5 bg-accent-500 rounded-full mb-4"></div>
-                <h3 className="font-bold text-lg text-primary-800 dark:text-white mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">AWS Certified Solutions Architect - Associate</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">AWS Certified Solutions Architect - Associate</h3>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-4">Amazon Web Services</p>
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
@@ -340,7 +384,7 @@ export default function ResumePage() {
             <div className="flex flex-col h-full">
               <div className="flex-grow">
                 <div className="w-10 h-1.5 bg-tertiary-500 rounded-full mb-4"></div>
-                <h3 className="font-bold text-lg text-primary-800 dark:text-white mb-2 group-hover:text-tertiary-600 dark:group-hover:text-tertiary-400 transition-colors">MongoDB Certified Developer</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-tertiary-600 dark:group-hover:text-tertiary-400 transition-colors">MongoDB Certified Developer</h3>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-4">MongoDB, Inc.</p>
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
@@ -356,7 +400,7 @@ export default function ResumePage() {
             <div className="flex flex-col h-full">
               <div className="flex-grow">
                 <div className="w-10 h-1.5 bg-gold-500 rounded-full mb-4"></div>
-                <h3 className="font-bold text-lg text-primary-800 dark:text-white mb-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">Professional Scrum Master I (PSM I)</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">Professional Scrum Master I (PSM I)</h3>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-4">Scrum.org</p>
               </div>
               <div className="mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
@@ -372,7 +416,7 @@ export default function ResumePage() {
             <div className="flex flex-col h-full">
               <div className="flex-grow">
                 <div className="w-10 h-1.5 bg-primary-500 rounded-full mb-4"></div>
-                <h3 className="font-bold text-lg text-primary-800 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Google Cloud Professional Cloud Architect</h3>
+                <h3 className="font-bold text-lg mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Google Cloud Professional Cloud Architect</h3>
                 <p className="text-neutral-600 dark:text-neutral-400 mb-4">Google Cloud</p>
                 <div className="mt-3">
                   <span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded-full">Cloud Architecture</span>

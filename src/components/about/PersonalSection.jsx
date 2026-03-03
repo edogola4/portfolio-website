@@ -18,7 +18,10 @@ const fadeInUp = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.6 }
+    transition: { 
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1]
+    }
   }
 };
 
@@ -27,7 +30,8 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.15,
+      delayChildren: 0.1
     }
   }
 };
@@ -35,187 +39,191 @@ const staggerContainer = {
 const InterestItem = ({ icon: Icon, children }) => (
   <motion.li 
     variants={fadeInUp}
-    className="flex items-start p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+    className="flex items-start p-2 sm:p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-300 group"
   >
-    <div className="flex-shrink-0 mr-3">
+    <div className="flex-shrink-0 mr-2 sm:mr-3">
       <motion.div
         whileHover={{ scale: 1.1, rotate: 5 }}
-        className="p-2 bg-indigo-100 dark:bg-indigo-900/50 rounded-full text-indigo-600 dark:text-indigo-300"
+        className="p-1.5 sm:p-2 bg-accent-50 dark:bg-accent-900/30 rounded-full text-accent-600 dark:text-accent-300 group-hover:bg-accent-100 dark:group-hover:bg-accent-800/40 transition-colors"
       >
-        <Icon size={18} className="stroke-current" />
+        <Icon size={16} className="stroke-current w-4 h-4 sm:w-[18px] sm:h-[18px]" />
       </motion.div>
     </div>
-    <div className="mt-1">{children}</div>
+    <div className="mt-0.5 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+      {children}
+    </div>
   </motion.li>
 );
 
 export default function PersonalSection() {
   return (
-    <section id="personal" className="py-12">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="relative"
-      >
-        {/* Visual background elements */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 1.5 }}
-          className="absolute -top-10 -right-10 h-64 w-64 bg-indigo-300 dark:bg-indigo-700 rounded-full filter blur-3xl opacity-10 z-0"
-        />
-        
+    <section id="personal" className="py-10 sm:py-14 md:py-16 lg:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          variants={fadeInUp}
-          className="relative z-10"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative"
         >
-          <motion.h2 
-            className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2"
-            whileInView={{ 
-              textShadow: ["0px 0px 0px rgba(99, 102, 241, 0)", "0px 0px 8px rgba(99, 102, 241, 0.3)", "0px 0px 0px rgba(99, 102, 241, 0)"],
-            }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 5 }}
-          >
-            Beyond Coding
-          </motion.h2>
+          {/* Visual background elements */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.1 }}
+            transition={{ duration: 1.5 }}
+            className="absolute -top-10 -right-10 h-48 w-48 sm:h-64 sm:w-64 bg-primary-400/20 dark:bg-primary-600/20 rounded-full filter blur-3xl opacity-10 z-0"
+          />
           
           <motion.div
             variants={fadeInUp}
-            className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-6"
-          />
-        </motion.div>
-
-        <motion.div 
-          variants={fadeInUp}
-          className="mt-6 space-y-8 text-gray-600 dark:text-gray-300"
-        >
-          <motion.p
-            className="text-lg leading-relaxed"
-            variants={fadeInUp}
+            className="relative z-10"
           >
-            When I'm not diving into code, I enjoy exploring the natural beauty of East Africa through hiking and photography. These activities not only provide a refreshing break but also inspire creative thinking that I bring back to my development work.
-          </motion.p>
+            <motion.h2 
+              className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-primary-800 dark:text-white mb-2 text-center sm:text-left"
+              whileInView={{ 
+                textShadow: ["0px 0px 0px rgba(44, 94, 79, 0)", "0px 0px 12px rgba(44, 94, 79, 0.3)", "0px 0px 0px rgba(44, 94, 79, 0)"],
+              }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 5 }}
+            >
+              Beyond Coding
+            </motion.h2>
+            
+            <motion.div
+              variants={fadeInUp}
+              className="h-1 w-16 sm:w-20 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full mb-6 sm:mb-8 mx-auto sm:mx-0"
+            />
+          </motion.div>
 
           <motion.div 
             variants={fadeInUp}
-            whileHover={{ scale: 1.01 }}
-            className="rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 p-6 border border-indigo-100 dark:border-indigo-800 shadow-md hover:shadow-lg transition-all duration-300"
+            className="space-y-6 sm:space-y-8 text-neutral-700 dark:text-neutral-300"
           >
-            <div className="flex items-center mb-3">
-              <Users className="h-5 w-5 text-indigo-600 dark:text-indigo-300 mr-2" />
-              <h3 className="font-semibold text-xl text-indigo-800 dark:text-indigo-300">
-                Community Involvement
-              </h3>
-            </div>
-            <p className="text-indigo-700 dark:text-indigo-300 pl-7"> 
-              I'm an active member of Nairobi's tech community, where I volunteer as a mentor for aspiring developers through the 
-              <motion.span 
-                className="font-medium mx-1"
-                whileHover={{ color: "#6366F1" }}
-              >
-                KamiLimu Mentorship Program
-              </motion.span>. 
-              I also organize monthly meetups for the 
-              <motion.span 
-                className="font-medium mx-1"
-                whileHover={{ color: "#6366F1" }}
-              >
-                Nairobi JavaScript Community
-              </motion.span>, 
-              fostering knowledge sharing and networking among local developers.
-            </p>
-          </motion.div>
-
-          <motion.div variants={fadeInUp}>
-            <div className="flex items-center mb-4">
-              <Coffee className="h-5 w-5 text-indigo-600 dark:text-indigo-400 mr-2" />
-              <h3 className="font-semibold text-xl text-gray-900 dark:text-white">
-                Interests & Hobbies
-              </h3>
-            </div>
-            
-            <motion.ul 
-              className="space-y-2 pl-2"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
+            <motion.p
+              className="text-base sm:text-lg leading-relaxed text-center sm:text-left"
+              variants={fadeInUp}
             >
-              <InterestItem icon={BookOpen}>
-                Reading tech blogs and books on software architecture and entrepreneurship
-              </InterestItem>
-              
-              <InterestItem icon={Mountain}>
-                Exploring new hiking trails around Mount Kenya and the Aberdare Ranges
-              </InterestItem>
-              
-              <InterestItem icon={Camera}>
-                Wildlife photography, with a focus on Kenya's rich biodiversity
-              </InterestItem>
-              
-              <InterestItem icon={Code}>
-                Contributing to open-source projects that focus on emerging market solutions
-              </InterestItem>
-            </motion.ul>
-          </motion.div>
+              When I'm not diving into code, I enjoy exploring the natural beauty of East Africa through hiking and photography. These activities not only provide a refreshing break but also inspire creative thinking that I bring back to my development work.
+            </motion.p>
 
-          {/* New visual element - image grid */}
-          <motion.div
-            variants={fadeInUp}
-            className="mt-8 rounded-xl overflow-hidden shadow-lg"
-          >
-            <div className="grid grid-cols-2 gap-1">
-              <motion.div 
-                whileHover={{ scale: 1.03 }}
-                className="relative aspect-square bg-gradient-to-br from-indigo-100 to-purple-200 dark:from-indigo-900 dark:to-purple-900 rounded-tl-xl overflow-hidden"
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Mountain className="h-12 w-12 text-indigo-600 dark:text-indigo-300" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
-                  <p className="text-white text-sm font-medium">Hiking Adventures</p>
-                </div>
-              </motion.div>
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{ scale: 1.01 }}
+              className="rounded-xl bg-gradient-to-br from-neutral-50 to-primary-50 dark:from-neutral-900/30 dark:to-primary-900/10 p-4 sm:p-6 border border-neutral-100 dark:border-neutral-800/50 shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div className="flex items-center mb-3">
+                <Users className="h-4 w-4 sm:h-5 sm:w-5 text-accent-600 dark:text-accent-400 mr-2" />
+                <h3 className="font-semibold text-lg sm:text-xl text-primary-800 dark:text-primary-200">
+                  Community Involvement
+                </h3>
+              </div>
+              <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 pl-6 sm:pl-7"> 
+                I'm an active member of Nairobi's tech community, where I volunteer as a mentor for aspiring developers through the 
+                <motion.span 
+                  className="font-medium mx-1 text-accent-700 dark:text-accent-300 hover:underline cursor-pointer"
+                  whileHover={{ color: "#E07A5F" }}
+                >
+                  KamiLimu Mentorship Program
+                </motion.span>. 
+                I also organize monthly meetups for the 
+                <motion.span 
+                  className="font-medium mx-1 text-accent-700 dark:text-accent-300 hover:underline cursor-pointer"
+                  whileHover={{ color: "#E07A5F" }}
+                >
+                  Nairobi JavaScript Community
+                </motion.span>, 
+                fostering knowledge sharing and networking among local developers.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <div className="flex items-center mb-3 sm:mb-4">
+                <Coffee className="h-4 w-4 sm:h-5 sm:w-5 text-accent-600 dark:text-accent-400 mr-2" />
+                <h3 className="font-semibold text-lg sm:text-xl text-primary-800 dark:text-white">
+                  Interests & Hobbies
+                </h3>
+              </div>
               
-              <motion.div 
-                whileHover={{ scale: 1.03 }}
-                className="relative aspect-square bg-gradient-to-br from-purple-100 to-pink-200 dark:from-purple-900 dark:to-pink-900 rounded-tr-xl overflow-hidden"
+              <motion.ul 
+                className="space-y-1.5 sm:space-y-2 pl-1 sm:pl-2"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Camera className="h-12 w-12 text-purple-600 dark:text-purple-300" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
-                  <p className="text-white text-sm font-medium">Photography</p>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                whileHover={{ scale: 1.03 }}
-                className="relative aspect-square bg-gradient-to-br from-blue-100 to-indigo-200 dark:from-blue-900 dark:to-indigo-900 rounded-bl-xl overflow-hidden"
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Users className="h-12 w-12 text-blue-600 dark:text-blue-300" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
-                  <p className="text-white text-sm font-medium">Community</p>
-                </div>
-              </motion.div>
-              
-              <motion.div 
-                whileHover={{ scale: 1.03 }}
-                className="relative aspect-square bg-gradient-to-br from-green-100 to-teal-200 dark:from-green-900 dark:to-teal-900 rounded-br-xl overflow-hidden"
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Lightbulb className="h-12 w-12 text-green-600 dark:text-green-300" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
-                  <p className="text-white text-sm font-medium">Innovation</p>
-                </div>
-              </motion.div>
-            </div>
+                <InterestItem icon={BookOpen}>
+                  Reading tech blogs and books on software architecture and entrepreneurship
+                </InterestItem>
+                
+                <InterestItem icon={Mountain}>
+                  Exploring new hiking trails around Mount Kenya and the Aberdare Ranges
+                </InterestItem>
+                
+                <InterestItem icon={Camera}>
+                  Wildlife photography, with a focus on Kenya's rich biodiversity
+                </InterestItem>
+                
+                <InterestItem icon={Code}>
+                  Contributing to open-source projects that focus on emerging market solutions
+                </InterestItem>
+              </motion.ul>
+            </motion.div>
+
+            {/* Visual element - image grid */}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-6 sm:mt-8 rounded-xl overflow-hidden shadow-lg border border-neutral-100 dark:border-neutral-800/50"
+            >
+              <div className="grid grid-cols-2 gap-0.5 sm:gap-1">
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="relative aspect-square bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/80 dark:to-primary-800/60 overflow-hidden"
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Mountain className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary-700 dark:text-primary-300" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
+                    <p className="text-white text-xs sm:text-sm font-medium">Hiking Adventures</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="relative aspect-square bg-gradient-to-br from-accent-100 to-accent-200 dark:from-accent-900/30 dark:to-accent-800/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Camera className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-accent-600 dark:text-accent-400" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
+                    <p className="text-white text-xs sm:text-sm font-medium">Photography</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="relative aspect-square bg-gradient-to-br from-secondary-100 to-secondary-200 dark:from-secondary-900/30 dark:to-secondary-800/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Users className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-secondary-700 dark:text-secondary-400" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
+                    <p className="text-white text-xs sm:text-sm font-medium">Community</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="relative aspect-square bg-gradient-to-br from-primary-200 to-accent-100 dark:from-primary-800/40 dark:to-accent-900/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Lightbulb className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary-600 dark:text-accent-400" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
+                    <p className="text-white text-xs sm:text-sm font-medium">Innovation</p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

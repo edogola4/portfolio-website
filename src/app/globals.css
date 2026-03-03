@@ -3,13 +3,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Animations */
+@import '../styles/animations.css';
+
 @layer base {
+  :root {
+    --color-primary: #2C5E4F;
+    --color-secondary: #D4A373;
+    --color-accent: #5D2E46;
+    --color-success: #4A7C59;
+    --color-error: #E56B6F;
+    --color-bg: #F8F1E9;
+    --color-text: #2B2D42;
+  }
+
   body {
-    @apply bg-background text-text transition-colors duration-300;
+    @apply bg-background-light text-gray-900 transition-colors duration-300;
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-primary-900 dark:text-white;
+    @apply font-bold text-primary-500;
+    color: var(--color-primary);
   }
   
   h1 { @apply text-4xl md:text-5xl; }
@@ -31,29 +47,30 @@
   
   /* Primary button */
   .btn-primary {
-    @apply bg-gradient-to-r from-accent-500 to-accent-600 text-white 
-           hover:from-accent-600 hover:to-accent-700 
-           focus:ring-accent-400
-           shadow-lg shadow-accent-500/20 hover:shadow-xl hover:shadow-accent-500/30;
+    @apply bg-primary-500 text-white 
+           hover:bg-primary-600
+           focus:ring-primary-400
+           shadow-lg shadow-primary-500/20 hover:shadow-xl hover:shadow-primary-500/30
+           transition-all duration-300 ease-in-out;
   }
   
   /* Secondary button */
   .btn-secondary {
-    @apply bg-gradient-to-r from-secondary-500 to-secondary-600 text-white
-           hover:from-secondary-600 hover:to-secondary-700
+    @apply bg-secondary-500 text-white
+           hover:bg-secondary-600
            focus:ring-secondary-400
-           shadow-lg shadow-secondary-500/20 hover:shadow-xl hover:shadow-secondary-500/30;
+           shadow-lg shadow-secondary-500/20 hover:shadow-xl hover:shadow-secondary-500/30
+           transition-all duration-300 ease-in-out;
   }
   
   /* Outline button */
   .btn-outline {
-    @apply bg-transparent border-2 border-accent-500 text-accent-600 dark:text-accent-400
-           hover:bg-accent-500 hover:text-white dark:hover:bg-accent-600
-           focus:ring-accent-300
+    @apply bg-transparent border-2 border-primary-500 text-primary-600
+           hover:bg-primary-500 hover:text-white
+           focus:ring-primary-300
            relative overflow-hidden z-10
-           before:absolute before:inset-0 before:bg-accent-500 before:opacity-0 
-           hover:before:opacity-10 before:transition-opacity before:duration-300
-           dark:before:bg-white dark:before:opacity-0 dark:hover:before:opacity-5;
+           before:absolute before:inset-0 before:bg-primary-500 before:opacity-0 
+           hover:before:opacity-10 before:transition-opacity before:duration-300;
   }
   
   /* Ghost button */
