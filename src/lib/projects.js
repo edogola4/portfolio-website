@@ -34,6 +34,12 @@ export const projects = [
       { value: '85%', label: 'ML prediction accuracy target' },
       { value: '<200ms', label: 'Target API response time' },
       { value: '$150B', label: 'Addressable market size' }
+    ],
+    languages: [
+      { name: 'C#', percentage: 89.2, color: '#178600' },
+      { name: 'HTML', percentage: 6.8, color: '#e34c26' },
+      { name: 'CSS', percentage: 2.4, color: '#563d7c' },
+      { name: 'JavaScript', percentage: 1.6, color: '#f1e05a' }
     ]
   },
   {
@@ -61,6 +67,12 @@ export const projects = [
       { value: '85%', label: 'Test coverage (Jest + Pytest)' },
       { value: '20+', label: 'REST API endpoints' },
       { value: '3', label: 'Client projects delivered' }
+    ],
+    languages: [
+      { name: 'TypeScript', percentage: 54.3, color: '#3178c6' },
+      { name: 'JavaScript', percentage: 38.7, color: '#f1e05a' },
+      { name: 'CSS', percentage: 4.2, color: '#563d7c' },
+      { name: 'HTML', percentage: 2.8, color: '#e34c26' }
     ]
   },
   {
@@ -83,6 +95,12 @@ export const projects = [
       'Implemented operational transformation logic to reconcile concurrent edits and maintain document consistency',
       'Used Redis pub/sub to broadcast events across microservice instances, enabling horizontal scaling of Socket.io',
       'Built a reconnection protocol that replays missed events from a MongoDB-backed event log on client reconnect'
+    ],
+    languages: [
+      { name: 'TypeScript', percentage: 62.4, color: '#3178c6' },
+      { name: 'JavaScript', percentage: 31.2, color: '#f1e05a' },
+      { name: 'CSS', percentage: 4.1, color: '#563d7c' },
+      { name: 'HTML', percentage: 2.3, color: '#e34c26' }
     ]
   },
   {
@@ -109,6 +127,12 @@ export const projects = [
     stats: [
       { value: '95%', label: 'Intent recognition accuracy' },
       { value: '40%', label: 'Reduction in support response time' }
+    ],
+    languages: [
+      { name: 'Python', percentage: 87.3, color: '#3572A5' },
+      { name: 'JavaScript', percentage: 8.4, color: '#f1e05a' },
+      { name: 'HTML', percentage: 2.8, color: '#e34c26' },
+      { name: 'CSS', percentage: 1.5, color: '#563d7c' }
     ]
   },
   {
@@ -135,6 +159,11 @@ export const projects = [
     stats: [
       { value: '85%', label: 'xUnit code coverage' },
       { value: '3', label: 'Architectural layers (Data, BLL, UI)' }
+    ],
+    languages: [
+      { name: 'C#', percentage: 92.7, color: '#178600' },
+      { name: 'HTML', percentage: 4.8, color: '#e34c26' },
+      { name: 'CSS', percentage: 2.5, color: '#563d7c' }
     ]
   },
   {
@@ -157,6 +186,11 @@ export const projects = [
       'Debounced data refresh cycles and used D3 transitions to update charts in place rather than re-rendering from scratch',
       'Designed a drill-down interaction model: national overview → country → region, reducing visual complexity at each level',
       'Used a mobile-first CSS approach and lazy-loaded chart components to keep initial load fast on slower connections'
+    ],
+    languages: [
+      { name: 'JavaScript', percentage: 78.9, color: '#f1e05a' },
+      { name: 'HTML', percentage: 12.4, color: '#e34c26' },
+      { name: 'CSS', percentage: 8.7, color: '#563d7c' }
     ]
   },
   {
@@ -179,6 +213,12 @@ export const projects = [
       'Used Kubernetes Services and environment-based DNS for service discovery across pods',
       'Built a GitHub Actions workflow: test → build Docker image → push to ECR → deploy to EKS, triggered on merge to main',
       'Defined all infrastructure in Docker Compose for local dev and equivalent Kubernetes manifests for production'
+    ],
+    languages: [
+      { name: 'JavaScript', percentage: 45.2, color: '#f1e05a' },
+      { name: 'Shell', percentage: 28.6, color: '#89e051' },
+      { name: 'Dockerfile', percentage: 15.3, color: '#384d54' },
+      { name: 'YAML', percentage: 10.9, color: '#cb171e' }
     ]
   },
   {
