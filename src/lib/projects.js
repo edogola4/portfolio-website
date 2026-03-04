@@ -10,29 +10,61 @@ export const projects = [
     id: 'smartschedule-healthcare',
     title: 'SmartSchedule Healthcare',
     slug: 'smartschedule-healthcare',
-    description: 'Enterprise-grade AI-powered healthcare appointment scheduling SaaS platform built on .NET 10 and Azure. Targets a $150B market with projected 40% no-show reduction and 50% administrative efficiency gains for healthcare providers.',
-    longDescription: 'SmartSchedule Healthcare is an enterprise AI-powered appointment scheduling SaaS platform built on .NET 10 and Azure. It targets a $150B annual inefficiency in healthcare scheduling — helping providers reduce no-shows, automate administrative workflows, and integrate with existing EHR systems through a HIPAA-compliant, cloud-native architecture.',
-    technologies: ['.NET 10', 'C#', 'ASP.NET Core', 'Blazor WebAssembly', 'Azure', 'ML.NET', 'Azure OpenAI', 'Terraform', 'Docker', 'SQL Server', 'Redis', 'SignalR'],
+    description: 'Enterprise-grade AI-powered healthcare appointment scheduling SaaS platform built on .NET 9/10 and Azure. Targets a $150B market with projected 40% no-show reduction and 50% administrative efficiency gains for healthcare providers.',
+    longDescription: 'SmartSchedule Healthcare is an enterprise-grade AI-powered appointment scheduling SaaS platform built on .NET 9/10 and Azure. It targets a $150B annual inefficiency in healthcare scheduling — helping small to mid-sized practices (2–50 providers) reduce no-show rates by 40%, cut administrative overhead by 50%, and integrate bidirectionally with major EHR systems through a fully HIPAA-compliant, cloud-native architecture. The platform is in active development with a complete CI/CD pipeline, Terraform-managed Azure infrastructure across dev/staging/production environments, SonarCloud code quality gates, and a 200+ user story product backlog tracking toward a Q2 2026 MVP.',
+    technologies: ['.NET 9', 'C#', 'ASP.NET Core', 'Blazor WebAssembly', 'MudBlazor', 'Entity Framework Core', 'MediatR (CQRS)', 'FluentValidation', 'Serilog', 'Azure SQL', 'Azure Redis Cache', 'Azure Service Bus', 'Azure Key Vault', 'Azure Application Insights', 'Azure DevOps', 'ML.NET', 'Azure Cognitive Services', 'Terraform', 'Docker', 'GitHub Actions', 'SonarCloud', 'xUnit', 'JWT Authentication', 'HL7 FHIR R4'],
     category: '.NET & Azure',
     featured: true,
     badge: '🏥 Featured · Active Development',
     status: 'In Development — MVP Q2 2026',
     imageUrl: '/images/projects/smartschedule.jpg',
     githubUrl: 'https://github.com/edogola4/smartschedule-healthcare',
+    isPrivate: true,
     challenges: [
-      'Designing a HIPAA-compliant, zero-trust architecture on Azure that meets SOC 2 Type II standards without sacrificing developer velocity',
-      'Building bidirectional EHR integration across fragmented systems (Epic, Cerner, Athena) using HL7 FHIR R4',
-      'Training an ML.NET no-show prediction model with sufficient accuracy to be clinically useful (target: 85% AUC-ROC)'
+      'Designing a HIPAA-compliant, zero-trust architecture on Azure that satisfies SOC 2 Type II requirements without sacrificing developer velocity across a solo-led project',
+      'Building a multi-tenant API with JWT authentication, role-based access control, and PHI encryption that passes automated SonarCloud security gates on every CI run',
+      'Coordinating infrastructure-as-code (Terraform), CI/CD (GitHub Actions + Azure DevOps), container security (Trivy/OWASP), and code quality (SonarCloud) into a single coherent pipeline from day one of the project'
     ],
     solutions: [
-      'Implemented Azure Key Vault, Always Encrypted SQL, and end-to-end audit trails for HIPAA compliance with Terraform-managed infrastructure',
-      'Abstracted EHR connectors behind a unified FHIR R4 adapter layer, enabling plug-and-play integration with major healthcare systems',
-      'Designed a feature-rich ML pipeline using patient history, appointment type, and scheduling patterns as predictive signals in ML.NET'
+      'Implemented AES-256 encryption at rest, TLS 1.3 in transit, Azure Key Vault for secret management, and complete PHI audit logging — documented in a full HIPAA compliance framework',
+      'Built modular Terraform infrastructure with separate modules for networking, security, database, compute, and monitoring — deployed independently across dev, staging, and production environments',
+      'Established a multi-stage GitHub Actions pipeline: test → SonarCloud analysis → OWASP dependency scan → Trivy container scan → build Docker image → deploy to Azure — all triggered on PR merge'
+    ],
+    architecture: {
+      layers: [
+        'Patient Portal / Provider Portal / Admin Dashboard (Blazor WebAssembly)',
+        'API Gateway & Load Balancer (Azure API Management)',
+        'Appointment Service | Patient Service | Notification Service (ASP.NET Core)',
+        'Azure Service Bus (Event Processing) | Entity Framework Core (Data Access)',
+        'Azure SQL Database | Azure Redis Cache | Azure AI Services (ML.NET)'
+      ]
+    },
+    languages: [
+      { name: 'C#', percentage: 88.7, color: '#178600' },
+      { name: 'Shell', percentage: 6.6, color: '#89e051' },
+      { name: 'HCL', percentage: 3.3, color: '#844FBA' },
+      { name: 'T-SQL', percentage: 1.3, color: '#e38c00' },
+      { name: 'Dockerfile', percentage: 0.1, color: '#384d54' }
+    ],
+    badges: [
+      { label: 'CI/CD', value: 'Passing', color: 'green' },
+      { label: '.NET', value: '9.0', color: 'blue' },
+      { label: 'Docker', value: 'Enabled', color: 'blue' },
+      { label: 'Azure', value: 'Deployed', color: 'blue' },
+      { label: 'License', value: 'MIT', color: 'yellow' },
+      { label: 'HIPAA', value: 'Compliant architecture', color: 'green' },
+      { label: 'Code Quality', value: 'SonarCloud', color: 'green' }
     ],
     stats: [
       { value: '40%', label: 'Projected no-show reduction' },
-      { value: '85%', label: 'ML prediction accuracy target' },
-      { value: '<200ms', label: 'Target API response time' },
+      { value: '50%', label: 'Target admin efficiency gain' },
+      { value: '85%+', label: 'ML no-show prediction AUC-ROC target' },
+      { value: '<100ms', label: 'Median API response time target' },
+      { value: '99.9%', label: 'Uptime target' },
+      { value: '36', label: 'Azure deployments to date' },
+      { value: '200+', label: 'User stories planned across 6 sprints' },
+      { value: '80%', label: 'Minimum enforced test coverage (xUnit)' },
+      { value: '3', label: 'Environments (dev / staging / production)' },
       { value: '$150B', label: 'Addressable market size' }
     ]
   },
