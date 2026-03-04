@@ -4,18 +4,11 @@
 import { motion } from 'framer-motion';
 
 // Tech stack icons from react-icons
-import {
-  SiCsharp, SiDotnet, SiTypescript, SiPython,
-  SiReact, SiNextdotjs,
-  SiNodedotjs, SiExpress,
-  SiMicrosoftsqlserver, SiPostgresql, SiMongodb, SiRedis,
-  SiMicrosoftazure, SiAmazonaws, SiDocker, SiKubernetes,
-  SiTerraform, SiGithubactions, SiGit
-} from 'react-icons/si';
+import { SiDotnet, SiTypescript, SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMicrosoftsqlserver, SiPostgresql, SiMongodb, SiRedis, SiMicrosoftazure, SiAmazonaws, SiDocker, SiKubernetes, SiTerraform, SiGithubactions, SiGit } from 'react-icons/si';
 import { TbBrandBlazor } from 'react-icons/tb';
 
 const iconComponents = {
-  csharp: SiCsharp,
+  csharp: SiDotnet,
   dotnet: SiDotnet,
   typescript: SiTypescript,
   python: SiPython,
