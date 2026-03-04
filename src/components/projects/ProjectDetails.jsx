@@ -90,40 +90,42 @@ export default function ProjectDetails({ project }) {
           </div>
         )}
         
-        {project.languages && project.languages.length > 0 && (
+        {project.technologies && project.technologies.length > 0 && (
           <div className="my-8">
             <h2>Languages & Tools</h2>
             <div className="not-prose">
               <div className="w-full h-2 rounded-full overflow-hidden flex mb-4">
-                {project.languages.map((lang, index) => (
-                  lang.percentage > 0 && (
+                {project.technologies.map((tech, index) => {
+                  const percentage = 100 / project.technologies.length;
+                  const colors = ['#3572A5', '#178600', '#f1e05a', '#3178c6', '#0078D4', '#e34c26', '#563d7c', '#89e051', '#384d54', '#cb171e', '#f34b7d', '#fedf5b'];
+                  return (
                     <div
                       key={index}
                       style={{
-                        width: `${lang.percentage}%`,
-                        backgroundColor: lang.color
+                        width: `${percentage}%`,
+                        backgroundColor: colors[index % colors.length]
                       }}
                       className="h-full"
-                      title={`${lang.name}: ${lang.percentage}%`}
+                      title={`${tech}`}
                     />
-                  )
-                ))}
+                  );
+                })}
               </div>
               <div className="flex flex-wrap gap-4">
-                {project.languages.map((lang, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <div
-                      className="w-3 h-3 rounded-full"
-                      style={{ backgroundColor: lang.color }}
-                    />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
-                      {lang.name}
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {lang.percentage}%
-                    </span>
-                  </div>
-                ))}
+                {project.technologies.map((tech, index) => {
+                  const colors = ['#3572A5', '#178600', '#f1e05a', '#3178c6', '#0078D4', '#e34c26', '#563d7c', '#89e051', '#384d54', '#cb171e', '#f34b7d', '#fedf5b'];
+                  return (
+                    <div key={index} className="flex items-center gap-2">
+                      <div
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: colors[index % colors.length] }}
+                      />
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                        {tech}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
