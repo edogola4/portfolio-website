@@ -44,6 +44,31 @@ import { testimonials } from '@/data/shared-testimonials';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
+declare global {
+  interface Window {
+    tsParticles: Engine;
+  }
+}
+
+interface TiltOptions {
+  max?: number;
+  speed?: number;
+  reset?: boolean;
+}
+
+interface TiltState {
+  x: number;
+  y: number;
+}
+
+interface TechItem {
+  icon: React.ComponentType<{ className?: string; title?: string; 'aria-label'?: string }>;
+  title: string;
+  proficiency: number;
+  color: string;
+  category: 'core' | 'backend' | 'cloud' | 'tools';
+}
+
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const techStack: TechItem[] = [
