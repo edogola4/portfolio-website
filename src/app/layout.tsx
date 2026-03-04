@@ -20,9 +20,9 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: 'Edwin Ogola | Full Stack Software Engineer',
-  description: 'Building scalable web applications focused on East African markets',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-website-five-sigma-91.vercel.app'),
+  title: 'Brandon Ogola | Software Engineer',
+  description: 'Software Engineer based in Nairobi, Kenya. Specialising in .NET, Azure, TypeScript, and cloud-native enterprise systems.',
   keywords: ['software engineer', 'web developer', 'east africa', 'full stack', 'react', 'next.js'],
   alternates: {
     canonical: '/en',
@@ -34,24 +34,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/en',
-    title: 'Edwin Ogola | Full Stack Software Engineer',
-    description: 'Building scalable web applications focused on East African markets',
-    siteName: 'Edwin Ogola Portfolio',
+    title: 'Brandon Ogola | Software Engineer',
+    description: 'Software Engineer based in Nairobi, Kenya. Specialising in .NET, Azure, TypeScript, and cloud-native enterprise systems.',
+    siteName: 'Brandon Ogola',
     images: [
       {
         url: '/images/og-default.jpg',
         width: 1200,
         height: 630,
-        alt: 'Edwin Ogola Portfolio',
+        alt: 'Brandon Ogola Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Edwin Ogola | Full Stack Software Engineer',
-    description: 'Building scalable web applications focused on East African markets',
+    title: 'Brandon Ogola | Software Engineer',
+    description: 'Software Engineer based in Nairobi, Kenya. Specialising in .NET, Azure, TypeScript, and cloud-native enterprise systems.',
     images: ['/images/og-default.jpg'],
-    creator: '@edwin_ogola',
+    creator: '@BrandonOgola',
   },
 };
 

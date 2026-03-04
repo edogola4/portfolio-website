@@ -1,6 +1,6 @@
 // src/lib/skills.js
 /**
- * Skills and services data for Edwin Ogola's portfolio
+ * Skills and services data for Brandon Ogola's portfolio
  * Organized by categories for display
  */
 

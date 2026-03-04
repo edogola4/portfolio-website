@@ -7,20 +7,20 @@ export const metadata = {
     'Brandon Ogola, full stack developer, software engineer, .NET developer, Azure, contact, hire developer, Kenya developer, Nairobi tech, cloud architect, TypeScript, React developer',
   locale: 'en_US',
   alternates: {
-    canonical: 'https://edwinogola.com/contact',
+    canonical: 'https://portfolio-website-five-sigma-91.vercel.app/contact',
     languages: {
-      'en-US': 'https://edwinogola.com/contact',
+      'en-US': 'https://portfolio-website-five-sigma-91.vercel.app/contact',
     },
   },
   openGraph: {
     title: 'Contact Brandon Ogola - Software Engineer',
     description:
       'Reach out to Brandon Ogola for software development, job opportunities, or collaborations.',
-    url: 'https://edwinogola.com/contact',
+    url: 'https://portfolio-website-five-sigma-91.vercel.app/contact',
     siteName: 'Brandon Ogola',
     images: [
       {
-        url: 'https://edwinogola.com/images/og-contact.png',
+        url: 'https://portfolio-website-five-sigma-91.vercel.app/images/og-contact.png',
         width: 1200,
         height: 630,
         alt: 'Brandon Ogola Contact Page',
@@ -35,7 +35,7 @@ export const metadata = {
     description:
       'Connect with Brandon Ogola for software development projects or opportunities.',
     creator: '@BrandonOgola',
-    images: ['https://edwinogola.com/images/og-contact.png'],
+    images: ['https://portfolio-website-five-sigma-91.vercel.app/images/og-contact.png'],
   },
   jsonLd: {
     '@context': 'https://schema.org',
@@ -43,7 +43,7 @@ export const metadata = {
     name: 'Contact Brandon Ogola',
     description:
       'Get in touch with Brandon Ogola, a Nairobi-based Software Engineer specializing in .NET, Azure, and cloud-native development.',
-    url: 'https://edwinogola.com/contact',
+    url: 'https://portfolio-website-five-sigma-91.vercel.app/contact',
     publisher: {
       '@type': 'Person',
       name: 'Brandon Ogola',

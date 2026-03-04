@@ -1,11 +1,11 @@
 // src/lib/utils/seo.js
 export function generateMetadata(page = 'resume') {
   const baseMetadata = {
-    title: 'Edwin Ogola - Full Stack Software Engineer',
-    description: 'Experienced Full Stack Software Engineer specializing in React, Node.js, and cloud solutions for East African fintech markets.',
+    title: 'Brandon Ogola - Software Engineer',
+    description: 'Experienced Software Engineer specializing in .NET, Azure, TypeScript, and cloud-native enterprise systems.',
     keywords: ['Full Stack Developer', 'Software Engineer', 'React', 'Node.js', 'Kenya', 'Fintech'],
-    authors: [{ name: 'Edwin Ogola' }],
-    creator: 'Edwin Ogola',
+    authors: [{ name: 'Brandon Ogola' }],
+    creator: 'Brandon Ogola',
   };
 
   const pageSpecificMetadata = {
@@ -13,14 +13,14 @@ export function generateMetadata(page = 'resume') {
       title: `${baseMetadata.title} | Professional Resume`,
       description: `${baseMetadata.description} View my professional experience, skills, and certifications.`,
       openGraph: {
-        title: 'Edwin Ogola - Professional Resume',
+        title: 'Brandon Ogola - Professional Resume',
         description: baseMetadata.description,
         type: 'profile',
         locale: 'en_US',
       },
       twitter: {
         card: 'summary',
-        title: 'Edwin Ogola - Professional Resume',
+        title: 'Brandon Ogola - Professional Resume',
         description: baseMetadata.description
       }
     }

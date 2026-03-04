@@ -1,4 +1,4 @@
-# Edwin Ogola - Portfolio Website
+# Brandon Ogola - Portfolio Website
 
 [![CI/CD Status](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml)
 [![Vercel](https://vercelbadge.vercel.app/api/edogola4/portfolio-website)](https://vercel.com/edogola4/portfolio-website)
@@ -34,7 +34,7 @@
 - [License](#-license)
 - [Contact](#-contact)
 
-Welcome to my professional portfolio website! I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world.
+Welcome to my professional portfolio website! I'm Brandon Ogola, a Software Engineer passionate about building scalable web applications tailored for East African markets. This site showcases my skills, projects, and insights into the tech world.
 
 ## 🚀 Features
 
@@ -294,9 +294,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📫 Contact
 
 - **Email**: [edwin.ogola@example.com](mailto:edwin.ogola@example.com)
-- **LinkedIn**: [Edwin Ogola](https://linkedin.com/in/edwinogola)
+- **LinkedIn**: [Brandon Ogola](https://linkedin.com/in/brandon-ogola-b77063232)
 - **GitHub**: [edogola4](https://github.com/edogola4)
-- **Portfolio**: [edwinogola.com](https://edwinogola.com)
+- **Portfolio**: [portfolio-website-five-sigma-91.vercel.app](https://portfolio-website-five-sigma-91.vercel.app)
 
 ## 🙏 Acknowledgments
 
