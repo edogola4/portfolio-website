@@ -57,7 +57,7 @@ const Header = () => {
       <div className="container-custom flex justify-between items-center py-4">
         <Link href={withLocale('/')} className="flex items-center space-x-2 group">
           <span className="font-bold text-2xl text-primary-600 dark:text-primary-400 group-hover:text-primary-700 dark:group-hover:text-primary-300 transition-colors">
-            Edwin<span className="text-text dark:text-text-light">Ogola</span>
+            Brandon<span className="text-text dark:text-text-light">Ogola</span>
           </span>
         </Link>
         
