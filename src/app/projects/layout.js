@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Projects | Edwin Ogola',
-    description: 'Explore my portfolio of web and mobile development projects focused on East African markets.'
+    title: 'Projects | Brandon Ogola',
+    description: 'Explore my portfolio of production-grade systems — from enterprise healthcare SaaS to full-stack web platforms and AI/ML integrations.'
   };
   
   export default function ProjectsLayout({ children }) {

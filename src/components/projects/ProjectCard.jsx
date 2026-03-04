@@ -16,6 +16,11 @@ export default function ProjectCard({ project }) {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
         />
+        {project.badge && (
+          <div className="absolute top-3 left-3 bg-accent-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+            {project.badge}
+          </div>
+        )}
       </div>
       
       <div className="p-6">
@@ -23,6 +28,14 @@ export default function ProjectCard({ project }) {
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           {project.description}
         </p>
+        
+        {project.status && (
+          <div className="mb-4">
+            <span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded">
+              {project.status}
+            </span>
+          </div>
+        )}
         
         <div className="flex flex-wrap gap-2 mb-6">
           {project.technologies.slice(0, 4).map(tech => (

@@ -1,135 +1,198 @@
 // src/lib/projects.js
 
 /**
- * Project data for Edwin Ogola's portfolio
+ * Project data for Brandon Ogola's portfolio
  * Contains information about featured and all projects
  */
 
 export const projects = [
   {
-    id: 'e-commerce-platform',
-    title: 'E-Commerce Platform',
-    slug: 'e-commerce-platform',
-    description: 'A full-featured e-commerce platform built for East African markets with M-Pesa integration, multilingual support, and offline capabilities.',
-    longDescription: `This project addressed the unique challenges of e-commerce in East Africa, including intermittent connectivity and diverse payment preferences. The platform features:
+    id: 'smartschedule-healthcare',
+    title: 'SmartSchedule Healthcare',
+    slug: 'smartschedule-healthcare',
+    description: 'Enterprise-grade AI-powered healthcare appointment scheduling SaaS platform built on .NET 10 and Azure. Targets a $150B market with projected 40% no-show reduction and 50% administrative efficiency gains for healthcare providers.',
+    longDescription: `SmartSchedule Healthcare is an enterprise-grade AI-powered appointment scheduling SaaS platform targeting the $150B healthcare market. Built on .NET 10 and Azure, it addresses critical pain points in healthcare operations:
 
-- Complete M-Pesa integration for seamless mobile payments
-- Offline browsing with Progressive Web App technology
-- Multilingual support (English, Swahili)
-- Vendor management system for marketplace functionality
-- Location-based delivery estimation
-- Low-bandwidth image optimization`,
-    technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Redis', 'Tailwind CSS'],
+- 🤖 AI no-show prediction targeting 85% accuracy with ML.NET
+- 🔒 HIPAA-compliant architecture with zero-trust security
+- 🔗 Bidirectional EHR integration (Epic, Cerner, Athena via HL7 FHIR R4)
+- ⚡ Target: <200ms API response, 99.9% uptime
+- 📊 200+ user stories, 6-sprint MVP roadmap
+- 🎯 MVP launch Q2 2026 with 10 beta customers
+
+The platform combines enterprise-grade architecture with AI/ML integration to deliver measurable business outcomes for healthcare providers.`,
+    technologies: ['.NET 10', 'C#', 'ASP.NET Core', 'Blazor WebAssembly', 'Azure', 'ML.NET', 'Azure OpenAI', 'Terraform', 'Docker', 'SQL Server', 'Redis', 'SignalR'],
+    category: '.NET & Azure',
+    featured: true,
+    badge: '🏥 Featured · Active Development',
+    status: 'In Development — MVP Q2 2026',
+    imageUrl: '/images/projects/smartschedule.jpg',
+    githubUrl: 'https://github.com/edogola4/smartschedule-healthcare',
+    highlights: [
+      '🤖 AI no-show prediction targeting 85% accuracy with ML.NET',
+      '🔒 HIPAA-compliant architecture with zero-trust security',
+      '🔗 Bidirectional EHR integration (Epic, Cerner, Athena via HL7 FHIR R4)',
+      '⚡ Target: <200ms API response, 99.9% uptime',
+      '📊 200+ user stories, 6-sprint MVP roadmap',
+      '🎯 MVP launch Q2 2026 with 10 beta customers'
+    ]
+  },
+  {
+    id: 'tinytots-ecommerce',
+    title: 'TinyTots — E-Commerce Platform',
+    slug: 'tinytots-ecommerce',
+    description: 'Full-stack e-commerce platform for eco-friendly children\'s and women\'s clothing. Features ML-powered product recommendations, secure M-Pesa payment integration, real-time order tracking, and 85% test coverage.',
+    longDescription: `TinyTots is a full-stack e-commerce platform specializing in eco-friendly children's and women's clothing. Built with modern web technologies and best practices:
+
+- 🤖 ML-powered product recommendation engine
+- 💳 M-Pesa payment gateway integration
+- 📦 Real-time inventory management
+- ✅ 85% test coverage with Jest and Pytest
+- 🚀 Deployed on AWS with CI/CD via GitHub Actions
+
+The platform demonstrates production-grade full-stack development with a focus on user experience and business metrics.`,
+    technologies: ['React 18', 'TypeScript', 'Node.js', 'Express.js', 'PostgreSQL', 'Redux Toolkit', 'JWT', 'Jest', 'AWS', 'GitHub Actions'],
     category: 'Full Stack',
-    featured: true,
-    imageUrl: '/images/projects/ecommerce.jpg',
-    demoUrl: 'https://ecommerce-demo.edwinogola.dev',
-    githubUrl: 'https://github.com/edwinogola/ecommerce-platform',
-    testimonial: {
-      text: "Edwin's platform perfectly addressed our need to reach customers across Kenya, regardless of their device or connectivity situation.",
-      author: "Jane Muthoni, CEO of Local Goods Kenya"
-    },
-    challenges: [
-      "Implementing reliable payment processing that works with intermittent connectivity",
-      "Optimizing image loading for low-bandwidth environments",
-      "Building a vendor onboarding system that's accessible to non-technical users"
-    ],
-    solutions: [
-      "Created a transaction queueing system that processes payments when connectivity is restored",
-      "Implemented progressive image loading and local caching strategies",
-      "Designed an intuitive, step-by-step onboarding process with comprehensive tutorials"
-    ]
-  },
-  {
-    id: 'health-tracking-app',
-    title: 'Community Health Tracking App',
-    slug: 'health-tracking-app',
-    description: 'Mobile-first health monitoring application for community health workers to track patient data in remote areas with limited connectivity.',
-    longDescription: `Developed for a Kenyan NGO, this progressive web application enables community health workers to:
-
-- Record patient data during home visits without internet access
-- Sync information when connectivity is available
-- Generate health trend reports for communities
-- Send SMS alerts for critical health situations
-- Schedule follow-up visits and track outreach metrics`,
-    technologies: ['React Native', 'Firebase', 'Express.js', 'SQLite', 'Chart.js'],
-    category: 'Mobile',
-    featured: true,
-    imageUrl: '/images/projects/health-app.jpg',
-    demoUrl: 'https://health-demo.edwinogola.dev',
-    githubUrl: 'https://github.com/edwinogola/community-health-tracker',
-    challenges: [
-      "Creating a robust offline-first data architecture",
-      "Ensuring patient data privacy while enabling necessary sharing between health workers",
-      "Building intuitive interfaces for users with varying levels of technical expertise"
-    ],
-    solutions: [
-      "Implemented local-first data with intelligent conflict resolution during syncing",
-      "Developed a role-based access control system with encrypted data storage",
-      "Conducted extensive user testing with actual community health workers to refine the UX"
-    ]
-  },
-  {
-    id: 'agricultural-marketplace',
-    title: 'Agricultural Marketplace',
-    slug: 'agricultural-marketplace',
-    description: 'Platform connecting small-scale farmers directly with buyers, featuring real-time price tracking, logistics coordination, and SMS notifications.',
-    longDescription: `This marketplace addresses key challenges in the East African agricultural supply chain:
-
-- Eliminating middlemen to increase farmer profits
-- Providing market price transparency
-- Coordinating transportation logistics
-- Supporting both web and SMS-based interactions for farmers with feature phones
-- Implementing quality verification workflows`,
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Redis', 'Twilio API', 'Tailwind CSS'],
-    category: 'Full Stack',
-    featured: true,
-    imageUrl: '/images/projects/agri-marketplace.jpg',
-    demoUrl: 'https://agri-demo.edwinogola.dev',
-    githubUrl: 'https://github.com/edwinogola/agricultural-marketplace',
-    testimonial: {
-      text: "This platform has increased our members' income by over 30% by connecting us directly with buyers and giving us real-time price information.",
-      author: "John Kamau, Nyeri Farmers Cooperative"
-    },
-    challenges: [
-      "Building interfaces that work for both smartphone and feature phone users",
-      "Creating a fair pricing system with transparency for all parties",
-      "Coordinating complex logistics across rural areas"
-    ],
-    solutions: [
-      "Developed a dual interface system with SMS fallback for all critical functions",
-      "Implemented a blockchain-based price verification system",
-      "Created an optimized route-planning algorithm for rural deliveries"
-    ]
-  },
-  {
-    id: 'education-platform',
-    title: 'E-Learning Platform',
-    slug: 'education-platform',
-    description: 'Accessible e-learning system designed for low-bandwidth environments with downloadable content, peer-to-peer sharing, and offline assessment capabilities.',
-    longDescription: `This educational platform was designed specifically for East African schools with limited internet infrastructure:
-
-- Content preloading when connectivity is available
-- Peer-to-peer content sharing via Bluetooth
-- Offline video lessons with interactive elements
-- Progress tracking that syncs when online
-- Teacher dashboard for monitoring student engagement
-- Gamification elements to increase student motivation`,
-    technologies: ['Vue.js', 'Nuxt.js', 'Node.js', 'MongoDB', 'IndexedDB', 'WebRTC'],
-    category: 'Web Application',
     featured: false,
-    imageUrl: '/images/projects/education-platform.jpg',
-    demoUrl: 'https://edu-demo.edwinogola.dev',
-    githubUrl: 'https://github.com/edwinogola/education-platform',
-    challenges: [
-      "Delivering video content in low-bandwidth environments",
-      "Creating assessment tools that work reliably offline",
-      "Implementing secure peer-to-peer content sharing"
-    ],
-    solutions: [
-      "Developed adaptive streaming with extreme compression options",
-      "Built a robust offline assessment engine with delayed submission",
-      "Created an encrypted sharing protocol for secure content distribution"
+    imageUrl: '/images/projects/tinytots.jpg',
+    githubUrl: 'https://github.com/edogola4/TinyTots',
+    highlights: [
+      '🤖 ML-powered product recommendation engine',
+      '💳 M-Pesa payment gateway integration',
+      '📦 Real-time inventory management',
+      '✅ 85% test coverage with Jest and Pytest',
+      '🚀 Deployed on AWS with CI/CD via GitHub Actions'
+    ]
+  },
+  {
+    id: 'realtime-collaboration',
+    title: 'Real-Time Collaboration Platform',
+    slug: 'realtime-collaboration',
+    description: 'Collaborative coding platform with real-time document editing, live presence detection, and WebSocket-based communication. Built with a scalable microservices backend and Redis session management.',
+    longDescription: `A real-time collaboration platform enabling multiple users to work together seamlessly:
+
+- 🔄 WebSocket real-time sync via Socket.io
+- 👥 Live user presence and typing indicators
+- 📝 Collaborative document/code editing
+- 🏗️ Microservices architecture with Redis sessions
+- 🔍 Message history and search functionality
+
+Demonstrates expertise in real-time systems, WebSocket communication, and scalable backend architecture.`,
+    technologies: ['TypeScript', 'React', 'Node.js', 'Socket.io', 'Redis', 'MongoDB', 'WebSockets', 'Winston'],
+    category: 'Full Stack',
+    featured: false,
+    imageUrl: '/images/projects/collaboration.jpg',
+    githubUrl: 'https://github.com/edogola4/code-editor',
+    highlights: [
+      '🔄 WebSocket real-time sync via Socket.io',
+      '👥 Live user presence and typing indicators',
+      '📝 Collaborative document/code editing',
+      '🏗️ Microservices architecture with Redis sessions',
+      '🔍 Message history and search functionality'
+    ]
+  },
+  {
+    id: 'ai-chatbot',
+    title: 'AI-Powered Customer Support Chatbot',
+    slug: 'ai-chatbot',
+    description: 'Intelligent chatbot for e-commerce platforms achieving 95% accuracy in intent recognition and reducing customer support response time by 40% using NLP and TensorFlow.',
+    longDescription: `An AI-powered customer support chatbot built with TensorFlow and NLP:
+
+- 🧠 95% intent recognition accuracy with TensorFlow NLP
+- ⚡ 40% faster customer support response time
+- 💬 Context-aware conversation management
+- 🎯 Entity recognition and classification
+
+Demonstrates practical application of AI/ML in production environments with measurable business impact.`,
+    technologies: ['Python', 'TensorFlow', 'NLP', 'REST APIs', 'React', 'Node.js'],
+    category: 'AI/ML',
+    featured: false,
+    imageUrl: '/images/projects/chatbot.jpg',
+    githubUrl: 'https://github.com/edogola4',
+    highlights: [
+      '🧠 95% intent recognition accuracy with TensorFlow NLP',
+      '⚡ 40% faster customer support response time',
+      '💬 Context-aware conversation management',
+      '🎯 Entity recognition and classification'
+    ]
+  },
+  {
+    id: 'blazor-crud-demo',
+    title: 'BlazorCrudDemo — Clean Architecture Showcase',
+    slug: 'blazor-crud-demo',
+    description: 'Production-ready .NET CRUD application demonstrating clean layered architecture, SOLID principles, real-time SignalR updates, and Entity Framework Core — built as a reference implementation for enterprise .NET patterns.',
+    longDescription: `A production-ready .NET CRUD application showcasing enterprise architecture patterns:
+
+- 🏗️ Clean layered architecture (Data, Business Logic, Presentation)
+- ⚡ Real-time updates via SignalR
+- ✅ 85% code coverage with xUnit
+- 💉 Dependency injection + Repository pattern throughout
+- 🔄 AutoMapper for DTO conversions
+
+Built as a reference implementation for enterprise .NET development best practices.`,
+    technologies: ['C#', '.NET Core', 'Blazor Server', 'Entity Framework Core', 'SignalR', 'SQL Server', 'xUnit', 'AutoMapper'],
+    category: '.NET & Azure',
+    featured: false,
+    imageUrl: '/images/projects/blazor-crud.jpg',
+    githubUrl: 'https://github.com/edogola4/BlazorCrudDemo',
+    highlights: [
+      '🏗️ Clean layered architecture (Data, Business Logic, Presentation)',
+      '⚡ Real-time updates via SignalR',
+      '✅ 85% code coverage with xUnit',
+      '💉 Dependency injection + Repository pattern throughout',
+      '🔄 AutoMapper for DTO conversions'
+    ]
+  },
+  {
+    id: 'covid-dashboard',
+    title: 'COVID-19 Data Visualization Dashboard',
+    slug: 'covid-dashboard',
+    description: 'Interactive dashboard visualising COVID-19 statistics across East Africa with real-time data updates, D3.js charts, and responsive design for all devices.',
+    longDescription: `An interactive data visualization dashboard for COVID-19 statistics:
+
+- 📈 D3.js interactive regional visualisations
+- 🔄 Real-time data updates
+- 🗺️ East Africa regional breakdown and trends
+- 📱 Fully responsive across all devices
+
+Demonstrates data visualization expertise and ability to present complex information in accessible formats.`,
+    technologies: ['JavaScript', 'D3.js', 'HTML5', 'CSS3', 'REST APIs'],
+    category: 'Data',
+    featured: false,
+    imageUrl: '/images/projects/covid-dashboard.jpg',
+    githubUrl: 'https://github.com/edogola4/COVID-19-Interactive-Data-Visualization-Dashboard',
+    highlights: [
+      '📈 D3.js interactive regional visualisations',
+      '🔄 Real-time data updates',
+      '🗺️ East Africa regional breakdown and trends',
+      '📱 Fully responsive across all devices'
+    ]
+  },
+  {
+    id: 'microservices-cicd',
+    title: 'Microservices Architecture with CI/CD',
+    slug: 'microservices-cicd',
+    description: 'Containerised microservices application with automated testing, full deployment pipeline, and AWS cloud orchestration — demonstrating production DevOps practices.',
+    longDescription: `A containerised microservices application showcasing DevOps best practices:
+
+- 🐳 Docker containerisation
+- ☸️ Kubernetes orchestration
+- 🔄 CI/CD with GitHub Actions
+- ✅ Automated testing and deployment
+- ☁️ AWS cloud infrastructure
+
+Demonstrates expertise in modern DevOps practices and cloud-native architecture.`,
+    technologies: ['Docker', 'Kubernetes', 'GitHub Actions', 'AWS', 'CI/CD'],
+    category: 'DevOps',
+    featured: false,
+    imageUrl: '/images/projects/microservices.jpg',
+    githubUrl: 'https://github.com/edogola4',
+    highlights: [
+      '🐳 Docker containerisation',
+      '☸️ Kubernetes orchestration',
+      '🔄 CI/CD with GitHub Actions',
+      '✅ Automated testing and deployment',
+      '☁️ AWS cloud infrastructure'
     ]
   }
 ];

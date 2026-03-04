@@ -60,25 +60,40 @@ export default function ProjectDetails({ project }) {
         <h2>Overview</h2>
         <div className="whitespace-pre-line">{project.longDescription}</div>
         
-        <div className="grid md:grid-cols-2 gap-8 my-8">
-          <div>
-            <h2>Challenges</h2>
+        {project.highlights && project.highlights.length > 0 && (
+          <div className="my-8">
+            <h2>Key Highlights</h2>
             <ul>
-              {project.challenges.map((challenge, index) => (
-                <li key={index}>{challenge}</li>
+              {project.highlights.map((highlight, index) => (
+                <li key={index}>{highlight}</li>
               ))}
             </ul>
           </div>
-          
-          <div>
-            <h2>Solutions</h2>
-            <ul>
-              {project.solutions.map((solution, index) => (
-                <li key={index}>{solution}</li>
-              ))}
-            </ul>
+        )}
+        
+        {project.challenges && project.challenges.length > 0 && (
+          <div className="grid md:grid-cols-2 gap-8 my-8">
+            <div>
+              <h2>Challenges</h2>
+              <ul>
+                {project.challenges.map((challenge, index) => (
+                  <li key={index}>{challenge}</li>
+                ))}
+              </ul>
+            </div>
+            
+            {project.solutions && project.solutions.length > 0 && (
+              <div>
+                <h2>Solutions</h2>
+                <ul>
+                  {project.solutions.map((solution, index) => (
+                    <li key={index}>{solution}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-        </div>
+        )}
         
         {project.testimonial && (
           <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg my-8 border-l-4 border-blue-500">

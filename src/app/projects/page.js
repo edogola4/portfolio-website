@@ -18,7 +18,7 @@ function ProjectsContent() {
     <div className="max-w-4xl mx-auto">
       <h1 className="text-4xl md:text-5xl font-bold mb-3">My Projects</h1>
       <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-        A showcase of my development work, focusing on scalable solutions for East African markets.
+        A showcase of production-grade systems — from enterprise healthcare SaaS to full-stack web platforms and AI/ML integrations.
       </p>
       
       <ProjectFilter categories={categories} />
