@@ -30,17 +30,38 @@ const ContactForm = () => {
         setIsSubmitting(true);
         
         try {
-            await executeRecaptcha('contact_form');
+            const token = await executeRecaptcha('contact_form');
             
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            setStatus({
-                type: 'success',
-                message: "Your message has been sent successfully! I'll get back to you soon."
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    token
+                }),
             });
-            setFormData({ name: '', email: '', subject: '', message: '' });
-        } catch {
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setStatus({
+                    type: 'success',
+                    message: "Your message has been sent successfully! I'll get back to you soon."
+                });
+                setFormData({ name: '', email: '', subject: '', message: '' });
+            } else {
+                setStatus({
+                    type: 'error',
+                    message: result.error || 'There was an error sending your message. Please try again later.'
+                });
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
             setStatus({
                 type: 'error',
                 message: 'There was an error sending your message. Please try again later.'
