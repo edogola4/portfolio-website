@@ -11,7 +11,7 @@ import {
   AnimatePresence,
   Variants,
 } from 'framer-motion';
-import { Container } from '@tsparticles/engine';
+import { Container, Engine } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaStar } from 'react-icons/fa';
