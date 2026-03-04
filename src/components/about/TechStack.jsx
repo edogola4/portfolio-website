@@ -3,32 +3,31 @@
 
 import { motion } from 'framer-motion';
 
-// Tech stack icons from react-icons
-import { SiDotnet, SiTypescript, SiPython, SiReact, SiNextdotjs, SiNodedotjs, SiExpress, SiMicrosoftsqlserver, SiPostgresql, SiMongodb, SiRedis, SiMicrosoftazure, SiAmazonaws, SiDocker, SiKubernetes, SiTerraform, SiGithubactions, SiGit } from 'react-icons/si';
-import { TbBrandBlazor } from 'react-icons/tb';
+import * as SiIcons from 'react-icons/si';
+import * as TbIcons from 'react-icons/tb';
 
 const iconComponents = {
-  csharp: SiDotnet,
-  dotnet: SiDotnet,
-  typescript: SiTypescript,
-  python: SiPython,
-  react: SiReact,
-  blazor: TbBrandBlazor,
-  nextjs: SiNextdotjs,
-  aspnet: SiDotnet,
-  nodejs: SiNodedotjs,
-  express: SiExpress,
-  sqlserver: SiMicrosoftsqlserver,
-  postgresql: SiPostgresql,
-  mongodb: SiMongodb,
-  redis: SiRedis,
-  azure: SiMicrosoftazure,
-  aws: SiAmazonaws,
-  docker: SiDocker,
-  kubernetes: SiKubernetes,
-  terraform: SiTerraform,
-  github: SiGithubactions,
-  git: SiGit
+  csharp: SiIcons.SiDotnet,
+  dotnet: SiIcons.SiDotnet,
+  typescript: SiIcons.SiTypescript,
+  python: SiIcons.SiPython,
+  react: SiIcons.SiReact,
+  blazor: TbIcons.TbBrandBlazor,
+  nextjs: SiIcons.SiNextdotjs,
+  aspnet: SiIcons.SiDotnet,
+  nodejs: SiIcons.SiNodedotjs,
+  express: SiIcons.SiExpress,
+  sqlserver: SiIcons.SiMicrosoftsqlserver,
+  postgresql: SiIcons.SiPostgresql,
+  mongodb: SiIcons.SiMongodb,
+  redis: SiIcons.SiRedis,
+  azure: SiIcons.SiMicrosoftazure,
+  aws: SiIcons.SiAmazonaws,
+  docker: SiIcons.SiDocker,
+  kubernetes: SiIcons.SiKubernetes,
+  terraform: SiIcons.SiTerraform,
+  github: SiIcons.SiGithubactions,
+  git: SiIcons.SiGit
 };
 
 function TechCard({ tech, index }) {
