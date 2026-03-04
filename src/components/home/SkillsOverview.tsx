@@ -24,7 +24,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] as any },
+    transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
