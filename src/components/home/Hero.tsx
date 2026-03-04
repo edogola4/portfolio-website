@@ -674,7 +674,8 @@ const Hero = () => {
                   alt="Brandon Ogola — Software Engineer"
                   width={900}
                   height={900}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover object-top"
+                  style={{ objectPosition: '50% 10%' }}
                   priority
                   placeholder="blur"
                   blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjAyMDIwIi8+PC9zdmc+"
