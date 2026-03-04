@@ -1,21 +1,21 @@
 // src/app/resume/layout.js
 
 export const metadata = {
-  title: 'Edwin Ogola - Full Stack Software Engineer | Professional Resume',
-  description: 'Experienced Full Stack Software Engineer specializing in React, Node.js, and cloud solutions for East African fintech markets. View my professional experience, skills, and certifications.',
-  keywords: ['Full Stack Developer', 'Software Engineer', 'React', 'Node.js', 'Kenya', 'Fintech', 'M-Pesa'],
-  authors: [{ name: 'Edwin Ogola' }],
-  creator: 'Edwin Ogola',
+  title: 'Resume | Brandon Ogola',
+  description: 'Experienced Full Stack Software Engineer specializing in .NET, React, Node.js, and cloud solutions. View my professional experience, skills, and certifications.',
+  keywords: ['Full Stack Developer', 'Software Engineer', '.NET', 'C#', 'React', 'Node.js', 'Kenya', 'Azure'],
+  authors: [{ name: 'Brandon Ogola' }],
+  creator: 'Brandon Ogola',
   openGraph: {
-    title: 'Edwin Ogola - Full Stack Software Engineer Resume',
-    description: 'Professional resume showcasing expertise in modern web technologies and East African fintech solutions',
+    title: 'Brandon Ogola - Full Stack Software Engineer Resume',
+    description: 'Professional resume showcasing expertise in .NET, modern web technologies and cloud solutions',
     type: 'profile',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary',
-    title: 'Edwin Ogola - Full Stack Software Engineer Resume',
-    description: 'Professional resume showcasing expertise in modern web technologies'
+    title: 'Brandon Ogola - Full Stack Software Engineer Resume',
+    description: 'Professional resume showcasing expertise in .NET and modern web technologies'
   },
   robots: {
     index: true,
