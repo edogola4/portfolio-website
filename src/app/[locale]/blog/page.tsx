@@ -9,7 +9,7 @@ function BlogContent() {
   const [categories] = useState(getAllCategories());
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setPosts(getPostsByCategory(category));
   };
