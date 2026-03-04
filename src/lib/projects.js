@@ -180,6 +180,40 @@ export const projects = [
       'Built a GitHub Actions workflow: test → build Docker image → push to ECR → deploy to EKS, triggered on merge to main',
       'Defined all infrastructure in Docker Compose for local dev and equivalent Kubernetes manifests for production'
     ]
+  },
+  {
+    id: 'email-signature-extraction',
+    title: 'Email Signature Extraction with LLMs',
+    slug: 'email-signature-extraction',
+    description: 'A research-oriented Python project that evaluates and compares the performance of large language models — OpenAI GPT-3.5 Turbo and Anthropic Claude 3 — on the task of extracting structured data from email signatures and outputting clean JSON.',
+    longDescription: 'A Python-based evaluation framework that benchmarks multiple large language models on a structured data extraction task. Given raw email signature text, the system prompts both OpenAI GPT-3.5 Turbo and Anthropic Claude 3 to extract contact information and return it as structured JSON — then measures and compares each model\'s accuracy, consistency, and output quality across a suite of test cases.',
+    technologies: ['Python', 'C', 'CUDA', 'C++', 'OpenAI GPT-3.5', 'Anthropic Claude 3', 'Prompt Engineering'],
+    category: 'AI/ML',
+    featured: false,
+    imageUrl: '/images/projects/email-signature.jpg',
+    githubUrl: 'https://github.com/edogola4/Email-Signature-Extraction-with-LLMs',
+    challenges: [
+      'Designing prompts that reliably produce valid, consistently structured JSON output across two different LLMs with different response styles',
+      'Building an evaluation framework that objectively measures and compares model performance without manual result inspection',
+      'Handling the wide variability in email signature formats — from simple name/email pairs to complex multi-field corporate signatures'
+    ],
+    solutions: [
+      'Iterated through multiple prompt engineering strategies, testing zero-shot, few-shot, and structured output prompting techniques to find the most consistent approach across both models',
+      'Built an automated scoring pipeline in functions.py that parses JSON responses, validates field extraction, and computes accuracy metrics per test case',
+      'Created a diverse test suite covering edge cases: missing fields, non-standard layouts, multilingual signatures, and varying levels of signature complexity'
+    ],
+    languages: [
+      { name: 'Python', percentage: 98.6, color: '#3572A5' },
+      { name: 'C', percentage: 0.6, color: '#555555' },
+      { name: 'CUDA', percentage: 0.5, color: '#3A4E3A' },
+      { name: 'C++', percentage: 0.2, color: '#f34b7d' },
+      { name: 'Cython', percentage: 0.1, color: '#fedf5b' },
+      { name: 'Fortran', percentage: 0.0, color: '#4d41b1' }
+    ],
+    stats: [
+      { value: '2', label: 'LLMs evaluated (GPT-3.5 Turbo vs Claude 3)' },
+      { value: '2', label: 'GitHub stars' }
+    ]
   }
 ];
 

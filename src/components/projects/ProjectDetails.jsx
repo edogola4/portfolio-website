@@ -90,6 +90,45 @@ export default function ProjectDetails({ project }) {
           </div>
         )}
         
+        {project.languages && project.languages.length > 0 && (
+          <div className="my-8">
+            <h2>Languages & Tools</h2>
+            <div className="not-prose">
+              <div className="w-full h-2 rounded-full overflow-hidden flex mb-4">
+                {project.languages.map((lang, index) => (
+                  lang.percentage > 0 && (
+                    <div
+                      key={index}
+                      style={{
+                        width: `${lang.percentage}%`,
+                        backgroundColor: lang.color
+                      }}
+                      className="h-full"
+                      title={`${lang.name}: ${lang.percentage}%`}
+                    />
+                  )
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-4">
+                {project.languages.map((lang, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: lang.color }}
+                    />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                      {lang.name}
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {lang.percentage}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        
         {project.stats && project.stats.length > 0 && (
           <div className="my-8">
             <h2>Key Stats</h2>
