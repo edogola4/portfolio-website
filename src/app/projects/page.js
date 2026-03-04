@@ -1,18 +1,17 @@
 // src/app/projects/page.js
 "use client";
 
-import React, { Suspense } from 'react';
-import { getAllProjects, getAllCategories } from '@/lib/projects';
+import React, { Suspense, useState } from 'react';
+import { getAllProjects, getAllCategories, getProjectsByCategory } from '@/lib/projects';
 import ProjectFilter from '@/components/projects/ProjectFilter';
 import ProjectCard from '@/components/projects/ProjectCard';
 
-// Metadata can't be used in client components, so we'll need to move this to a separate layout file
-// or handle it differently if needed
-
 // Client component for the projects content
 function ProjectsContent() {
-  const projects = getAllProjects();
+  const [activeCategory, setActiveCategory] = useState('All');
+  const allProjects = getAllProjects();
   const categories = getAllCategories();
+  const projects = getProjectsByCategory(activeCategory);
   
   return (
     <div className="max-w-4xl mx-auto">
@@ -21,7 +20,7 @@ function ProjectsContent() {
         A showcase of production-grade systems — from enterprise healthcare SaaS to full-stack web platforms and AI/ML integrations.
       </p>
       
-      <ProjectFilter categories={categories} />
+      <ProjectFilter categories={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
         {projects.map(project => (

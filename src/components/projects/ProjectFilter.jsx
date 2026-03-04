@@ -1,30 +1,7 @@
 // src/components/projects/ProjectFilter.jsx
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-
-export default function ProjectFilter({ categories }) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-  
-  const [activeCategory, setActiveCategory] = useState(
-    searchParams.get('category') || 'All'
-  );
-  
-  // Update the URL when the category changes
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    if (activeCategory === 'All') {
-      params.delete('category');
-    } else {
-      params.set('category', activeCategory);
-    }
-    
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }, [activeCategory, router, pathname, searchParams]);
-  
+export default function ProjectFilter({ categories, activeCategory, setActiveCategory }) {
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
       <h2 className="text-lg font-medium mb-3">Filter Projects:</h2>
