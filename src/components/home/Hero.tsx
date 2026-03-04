@@ -11,11 +11,11 @@ import {
   AnimatePresence,
   Variants,
 } from 'framer-motion';
-import { Engine, Container } from '@tsparticles/engine';
+import { Container } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { FiArrowRight } from 'react-icons/fi';
-import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaReact, FaGithub, FaStar } from 'react-icons/fa';
+
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import { MdHealthAndSafety } from 'react-icons/md';
 import Script from 'next/script';
