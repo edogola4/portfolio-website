@@ -152,7 +152,7 @@ export const projects = [
     technologies: ['C#', '.NET Core', 'Blazor Server', 'Entity Framework Core', 'SignalR', 'SQL Server', 'xUnit', 'AutoMapper'],
     category: '.NET & Azure',
     featured: false,
-    imageUrl: '/images/projects/blazor-crud.jpg',
+    imageUrl: '/images/projects/Blazor.jpg',
     githubUrl: 'https://github.com/edogola4/BlazorCrudDemo',
     challenges: [
       'Structuring a Blazor Server application that cleanly separates data access, business logic, and presentation concerns',
@@ -178,7 +178,7 @@ export const projects = [
     technologies: ['JavaScript', 'D3.js', 'HTML5', 'CSS3', 'REST APIs'],
     category: 'Data',
     featured: false,
-    imageUrl: '/images/projects/covid-dashboard.jpg',
+    imageUrl: '/images/projects/coviddashboard.jpg',
     githubUrl: 'https://github.com/edogola4/COVID-19-Interactive-Data-Visualization-Dashboard',
     challenges: [
       'Rendering performant D3.js visualisations with frequently updating datasets',
@@ -222,7 +222,7 @@ export const projects = [
     technologies: ['Python', 'C', 'CUDA', 'C++', 'OpenAI GPT-3.5', 'Anthropic Claude 3', 'Prompt Engineering'],
     category: 'AI/ML',
     featured: false,
-    imageUrl: '/images/projects/email-signature.jpg',
+    imageUrl: '/images/projects/email.jpg',
     githubUrl: 'https://github.com/edogola4/Email-Signature-Extraction-with-LLMs',
     challenges: [
       'Designing prompts that reliably produce valid, consistently structured JSON output across two different LLMs with different response styles',
