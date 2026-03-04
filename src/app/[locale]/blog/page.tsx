@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import BlogCard from '@/components/blog/BlogCard';
 import { getAllPosts, getAllCategories, getPostsByCategory } from '@/lib/blog';
 
