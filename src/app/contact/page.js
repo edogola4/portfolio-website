@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2, Github, Linkedin, Twitter } from 'lucide-react';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({ 
         name: '', 
-        email: '', 
+        email: '',
+        subject: '',
         message: ''
     });
     
@@ -38,7 +39,7 @@ const ContactForm = () => {
                 type: 'success',
                 message: 'Your message has been sent successfully! I&apos;ll get back to you soon.'
             });
-            setFormData({ name: '', email: '', message: '' });
+            setFormData({ name: '', email: '', subject: '', message: '' });
         } catch {
             setStatus({
                 type: 'error',
@@ -59,9 +60,21 @@ const ContactForm = () => {
                     className="text-center mb-12"
                 >
                     <h1 className="text-4xl font-bold text-contact-text dark:text-contact-dark-text-primary mb-4">Get In Touch</h1>
-                    <p className="text-lg text-contact-text-light dark:text-contact-dark-text-secondary max-w-2xl mx-auto">
-                        Have a project in mind or want to discuss potential opportunities? I&apos;d love to hear from you.
+                    <p className="text-lg text-contact-text-light dark:text-contact-dark-text-secondary max-w-2xl mx-auto mb-6">
+                        Have a project in mind, want to discuss an opportunity, or just want to connect? I&apos;m open to full-time roles, freelance work, and interesting collaborations. Feel free to reach out.
                     </p>
+                    
+                    {/* Availability Status */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-800">
+                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            <span className="font-medium">Currently available — open to full-time and freelance opportunities</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-800">
+                            <MapPin className="h-4 w-4" />
+                            <span className="font-medium">Based in Nairobi, Kenya — open to remote work globally</span>
+                        </div>
+                    </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -81,8 +94,8 @@ const ContactForm = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h3 className="text-sm font-medium text-contact-text-muted">Email</h3>
-                                    <a href="mailto:hello@edogola.com" className="text-contact-text hover:text-contact-primary transition-colors">
-                                        hello@edogola.com
+                                    <a href="mailto:edogola4@gmail.com" className="text-contact-text hover:text-contact-primary transition-colors">
+                                        edogola4@gmail.com
                                     </a>
                                 </div>
                             </div>
@@ -93,8 +106,8 @@ const ContactForm = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h3 className="text-sm font-medium text-contact-text-muted">Phone</h3>
-                                    <a href="tel:+1234567890" className="text-contact-text hover:text-contact-primary transition-colors">
-                                        +254 (234) 567-890
+                                    <a href="tel:+254717248673" className="text-contact-text hover:text-contact-primary transition-colors">
+                                        +254-717-248673
                                     </a>
                                 </div>
                             </div>
@@ -106,6 +119,31 @@ const ContactForm = () => {
                                 <div className="ml-4">
                                     <h3 className="text-sm font-medium text-contact-text-muted">Location</h3>
                                     <p className="text-contact-text">Nairobi, Kenya</p>
+                                </div>
+                            </div>
+
+                            {/* Social Links */}
+                            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <h3 className="text-sm font-medium text-contact-text-muted mb-4">Connect With Me</h3>
+                                <div className="space-y-3">
+                                    <a href="https://github.com/edogola4" target="_blank" rel="noopener noreferrer" className="flex items-center text-contact-text hover:text-contact-primary transition-colors group">
+                                        <div className="flex-shrink-0 bg-contact-primary/10 group-hover:bg-contact-primary/20 p-2 rounded-lg transition-colors">
+                                            <Github className="h-4 w-4 text-contact-primary" />
+                                        </div>
+                                        <span className="ml-3">github.com/edogola4</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/brandon-ogola-b77063232/" target="_blank" rel="noopener noreferrer" className="flex items-center text-contact-text hover:text-contact-primary transition-colors group">
+                                        <div className="flex-shrink-0 bg-contact-primary/10 group-hover:bg-contact-primary/20 p-2 rounded-lg transition-colors">
+                                            <Linkedin className="h-4 w-4 text-contact-primary" />
+                                        </div>
+                                        <span className="ml-3">linkedin.com/in/brandon-ogola</span>
+                                    </a>
+                                    <a href="https://x.com/BrandonOgola" target="_blank" rel="noopener noreferrer" className="flex items-center text-contact-text hover:text-contact-primary transition-colors group">
+                                        <div className="flex-shrink-0 bg-contact-primary/10 group-hover:bg-contact-primary/20 p-2 rounded-lg transition-colors">
+                                            <Twitter className="h-4 w-4 text-contact-primary" />
+                                        </div>
+                                        <span className="ml-3">x.com/BrandonOgola</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +187,7 @@ const ContactForm = () => {
                                         onChange={handleChange}
                                         required
                                         className="mt-1 block w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 focus:border-contact-primary focus:ring-2 focus:ring-contact-primary/50 dark:focus:ring-contact-primary/30 transition-colors duration-200 px-4 py-2.5 text-contact-text dark:text-gray-100 bg-white dark:bg-gray-700"
-                                        placeholder="Bran Don"
+                                        placeholder="John Doe"
                                     />
                                 </div>
 
@@ -168,6 +206,22 @@ const ContactForm = () => {
                                         placeholder="your.email@example.com"
                                     />
                                 </div>
+                            </div>
+
+                            <div>
+                                <label htmlFor="subject" className="block text-sm font-medium text-contact-text dark:text-gray-100 mb-1">
+                                    Subject <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full rounded-lg border-2 border-gray-200 dark:border-gray-600 focus:border-contact-primary focus:ring-2 focus:ring-contact-primary/50 dark:focus:ring-contact-primary/30 transition-colors duration-200 px-4 py-2.5 text-contact-text dark:text-gray-100 bg-white dark:bg-gray-700"
+                                    placeholder="e.g. Job opportunity, Project collaboration, Just saying hi"
+                                />
                             </div>
 
                             <div>

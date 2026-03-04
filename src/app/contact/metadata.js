@@ -1,10 +1,10 @@
 // src/app/contact/metadata.js
 export const metadata = {
-  title: 'Contact Edwin Ogola | Expert Full Stack Developer',
+  title: 'Contact | Brandon Ogola',
   description:
-    'Connect with Edwin Ogola, a Nairobi-based full stack developer, for web development, AI solutions, or job opportunities in East Africa.',
+    'Get in touch with Brandon Ogola, Software Engineer based in Nairobi, Kenya. Open to full-time roles, freelance projects, and collaborations in .NET, Azure, TypeScript, and cloud-native development.',
   keywords:
-    'Edwin Ogola, full stack developer, software engineer, web development, contact, hire developer, Kenya developer, East Africa tech, AI developer, cloud architect, cybersecurity, ethical hacking, Next.js developer, React developer, Nairobi tech',
+    'Brandon Ogola, full stack developer, software engineer, .NET developer, Azure, contact, hire developer, Kenya developer, Nairobi tech, cloud architect, TypeScript, React developer',
   locale: 'en_US',
   alternates: {
     canonical: 'https://edwinogola.com/contact',
@@ -13,17 +13,17 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Contact Edwin Ogola - Full Stack Software Engineer',
+    title: 'Contact Brandon Ogola - Software Engineer',
     description:
-      'Reach out to Edwin Ogola for web development, job opportunities, or collaborations in East Africa and beyond.',
+      'Reach out to Brandon Ogola for software development, job opportunities, or collaborations.',
     url: 'https://edwinogola.com/contact',
-    siteName: 'Edwin Ogola',
+    siteName: 'Brandon Ogola',
     images: [
       {
         url: 'https://edwinogola.com/images/og-contact.png',
         width: 1200,
         height: 630,
-        alt: 'Edwin Ogola Contact Page',
+        alt: 'Brandon Ogola Contact Page',
       },
     ],
     locale: 'en_US',
@@ -31,22 +31,22 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Edwin Ogola - Full Stack Software Engineer',
+    title: 'Contact Brandon Ogola - Software Engineer',
     description:
-      'Connect with Edwin Ogola for web development projects or opportunities.',
+      'Connect with Brandon Ogola for software development projects or opportunities.',
     creator: '@BrandonOgola',
     images: ['https://edwinogola.com/images/og-contact.png'],
   },
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contact Edwin Ogola',
+    name: 'Contact Brandon Ogola',
     description:
-      'Get in touch with Edwin Ogola, a Nairobi-based full stack developer specializing in AI-powered web applications and cloud architecture.',
+      'Get in touch with Brandon Ogola, a Nairobi-based Software Engineer specializing in .NET, Azure, and cloud-native development.',
     url: 'https://edwinogola.com/contact',
     publisher: {
       '@type': 'Person',
-      name: 'Edwin Ogola',
+      name: 'Brandon Ogola',
       sameAs: [
         'https://github.com/edogola4',
         'https://www.linkedin.com/in/brandon-ogola-b77063232/',
