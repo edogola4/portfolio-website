@@ -3,7 +3,6 @@
 'use client';
 
 import React from 'react';
-import DownloadButton from '@/components/resume/DownloadButton';
 import Link from 'next/link';
 
 export default function ResumePage() {
@@ -371,10 +370,6 @@ export default function ResumePage() {
           </div>
         </div>
       </section>
-
-      <div className="flex justify-center mt-8">
-        <DownloadButton className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg" />
-      </div>
     </main>
   );
 }
