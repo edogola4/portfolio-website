@@ -1,138 +1,110 @@
 // src/components/about/TechStack.jsx
 "use client";
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 // Tech stack icons from react-icons
 import {
-  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
-  SiNodedotjs, SiExpress, SiPython, SiDjango, SiGraphql,
-  SiMongodb, SiPostgresql, SiFirebase, SiRedis,
-  SiDocker, SiAmazon, SiVercel, SiGithubactions
+  SiCsharp, SiDotnet, SiTypescript, SiPython,
+  SiReact, SiNextdotjs,
+  SiNodedotjs, SiExpress,
+  SiMicrosoftsqlserver, SiPostgresql, SiMongodb, SiRedis,
+  SiMicrosoftazure, SiAmazonaws, SiDocker, SiKubernetes,
+  SiTerraform, SiGithubactions, SiGit
 } from 'react-icons/si';
+import { TbBrandBlazor } from 'react-icons/tb';
 
 const iconComponents = {
-  react: SiReact,
-  nextjs: SiNextdotjs,
+  csharp: SiCsharp,
+  dotnet: SiDotnet,
   typescript: SiTypescript,
-  tailwind: SiTailwindcss,
-  redux: SiRedux,
+  python: SiPython,
+  react: SiReact,
+  blazor: TbBrandBlazor,
+  nextjs: SiNextdotjs,
+  aspnet: SiDotnet,
   nodejs: SiNodedotjs,
   express: SiExpress,
-  python: SiPython,
-  django: SiDjango,
-  graphql: SiGraphql,
-  mongodb: SiMongodb,
+  sqlserver: SiMicrosoftsqlserver,
   postgresql: SiPostgresql,
-  firebase: SiFirebase,
+  mongodb: SiMongodb,
   redis: SiRedis,
+  azure: SiMicrosoftazure,
+  aws: SiAmazonaws,
   docker: SiDocker,
-  aws: SiAmazon,
-  vercel: SiVercel,
-  github: SiGithubactions
+  kubernetes: SiKubernetes,
+  terraform: SiTerraform,
+  github: SiGithubactions,
+  git: SiGit
 };
-
-// Custom hook for intersection observer
-function useInView(options = {}) {
-  const ref = useRef(null);
-  const [isInView, setIsInView] = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !isInView.current) {
-        setIsInView.current = true;
-        if (ref.current) {
-          ref.current.setAttribute('data-in-view', 'true');
-        }
-      }
-    }, options);
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [options]);
-
-  return ref;
-}
 
 function TechCard({ tech, index }) {
   const IconComponent = iconComponents[tech.icon];
   
-  // Get color for each technology
   const getIconColor = (icon) => {
     const colors = {
-      react: '#61DAFB',
-      nextjs: '#000000',
+      csharp: '#239120',
+      dotnet: '#512BD4',
       typescript: '#3178C6',
-      tailwind: '#06B6D4',
-      redux: '#764ABC',
+      python: '#3776AB',
+      react: '#61DAFB',
+      blazor: '#512BD4',
+      nextjs: '#000000',
+      aspnet: '#512BD4',
       nodejs: '#339933',
       express: '#000000',
-      python: '#3776AB',
-      django: '#092E20',
-      graphql: '#E10098',
-      mongodb: '#47A248',
+      sqlserver: '#CC2927',
       postgresql: '#4169E1',
-      firebase: '#FFCA28',
+      mongodb: '#47A248',
       redis: '#DC382D',
-      docker: '#2496ED',
+      azure: '#0078D4',
       aws: '#FF9900',
-      vercel: '#000000',
-      github: '#181717'
+      docker: '#2496ED',
+      kubernetes: '#326CE5',
+      terraform: '#7B42BC',
+      github: '#181717',
+      git: '#F05032'
     };
     return colors[icon] || '#6B7F82';
+  };
+  
+  const getLevelColor = (level) => {
+    const colors = {
+      'Expert': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
+      'Proficient': 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+      'Familiar': 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
+    };
+    return colors[level] || 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300';
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ 
         scale: 1.03, 
         boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)'
       }}
-      className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 sm:p-5 md:p-6 transition-all duration-300 border border-neutral-100 dark:border-neutral-700/50 hover:border-accent-100 dark:hover:border-accent-800/50 backdrop-blur-sm"
+      className="bg-white dark:bg-neutral-800/50 rounded-xl p-4 transition-all duration-300 border border-neutral-100 dark:border-neutral-700/50 hover:border-accent-100 dark:hover:border-accent-800/50 backdrop-blur-sm"
     >
-      <div className="flex items-center mb-3 sm:mb-4">
-        <motion.div
-          whileHover={{ rotate: 360 }}
-          transition={{ type: "spring", duration: 1 }}
-          style={{ color: getIconColor(tech.icon) }}
-          className="text-2xl sm:text-3xl mr-2 sm:mr-3"
-        >
-          {IconComponent && <IconComponent />}
-        </motion.div>
-        <span className="font-semibold text-base sm:text-lg text-primary-800 dark:text-white">
-          {tech.name}
-        </span>
-      </div>
-      
-      <div className="relative pt-1">
-        <div className="flex items-center justify-between mb-1 sm:mb-2">
-          <span className="text-xs font-semibold inline-block py-1 px-2 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
-            Proficiency
-          </span>
-          <span className="text-xs font-semibold text-accent-700 dark:text-accent-300">
-            {tech.level}%
-          </span>
-        </div>
-        <div className="overflow-hidden h-1.5 sm:h-2 mb-2 sm:mb-4 text-xs flex rounded-full bg-neutral-100 dark:bg-neutral-700/50">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${tech.level}%` }}
-            transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-            className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-accent-500 to-accent-600"
-          />
+            whileHover={{ rotate: 360 }}
+            transition={{ type: "spring", duration: 1 }}
+            style={{ color: getIconColor(tech.icon) }}
+            className="text-2xl mr-3"
+          >
+            {IconComponent && <IconComponent />}
+          </motion.div>
+          <span className="font-semibold text-sm text-primary-800 dark:text-white">
+            {tech.name}
+          </span>
         </div>
+        <span className={`text-xs font-semibold px-2 py-1 rounded-full ${getLevelColor(tech.level)}`}>
+          {tech.level}
+        </span>
       </div>
     </motion.div>
   );
@@ -141,41 +113,53 @@ function TechCard({ tech, index }) {
 export default function TechStack() {
   const techCategories = [
     {
-      title: "Frontend Development",
+      title: "Core Languages",
       technologies: [
-        { name: "React", icon: "react", level: 90 },
-        { name: "Next.js", icon: "nextjs", level: 85 },
-        { name: "TypeScript", icon: "typescript", level: 80 },
-        { name: "Tailwind CSS", icon: "tailwind", level: 90 },
-        { name: "Redux", icon: "redux", level: 75 },
+        { name: "C# / .NET", icon: "csharp", level: "Expert" },
+        { name: "TypeScript", icon: "typescript", level: "Proficient" },
+        { name: "Python", icon: "python", level: "Proficient" },
       ]
     },
     {
-      title: "Backend Development",
+      title: "Frontend",
       technologies: [
-        { name: "Node.js", icon: "nodejs", level: 85 },
-        { name: "Express", icon: "express", level: 80 },
-        { name: "Python", icon: "python", level: 75 },
-        { name: "Django", icon: "django", level: 70 },
-        { name: "GraphQL", icon: "graphql", level: 65 },
+        { name: "React", icon: "react", level: "Proficient" },
+        { name: "Blazor", icon: "blazor", level: "Proficient" },
+        { name: "Next.js", icon: "nextjs", level: "Proficient" },
       ]
     },
     {
-      title: "Database & Storage",
+      title: "Backend",
       technologies: [
-        { name: "MongoDB", icon: "mongodb", level: 80 },
-        { name: "PostgreSQL", icon: "postgresql", level: 75 },
-        { name: "Firebase", icon: "firebase", level: 85 },
-        { name: "Redis", icon: "redis", level: 65 },
+        { name: "ASP.NET Core", icon: "aspnet", level: "Expert" },
+        { name: "Node.js", icon: "nodejs", level: "Proficient" },
+        { name: "Express", icon: "express", level: "Proficient" },
       ]
     },
     {
-      title: "DevOps & Deployment",
+      title: "Database",
       technologies: [
-        { name: "Docker", icon: "docker", level: 70 },
-        { name: "AWS", icon: "aws", level: 75 },
-        { name: "Vercel", icon: "vercel", level: 90 },
-        { name: "GitHub Actions", icon: "github", level: 80 },
+        { name: "SQL Server", icon: "sqlserver", level: "Expert" },
+        { name: "PostgreSQL", icon: "postgresql", level: "Proficient" },
+        { name: "MongoDB", icon: "mongodb", level: "Proficient" },
+        { name: "Redis", icon: "redis", level: "Familiar" },
+      ]
+    },
+    {
+      title: "Cloud/DevOps",
+      technologies: [
+        { name: "Azure", icon: "azure", level: "Proficient" },
+        { name: "AWS", icon: "aws", level: "Proficient" },
+        { name: "Docker", icon: "docker", level: "Proficient" },
+        { name: "Kubernetes", icon: "kubernetes", level: "Familiar" },
+      ]
+    },
+    {
+      title: "Tools",
+      technologies: [
+        { name: "Terraform", icon: "terraform", level: "Familiar" },
+        { name: "GitHub Actions", icon: "github", level: "Proficient" },
+        { name: "Git", icon: "git", level: "Expert" },
       ]
     }
   ];
@@ -209,7 +193,7 @@ export default function TechStack() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto px-4 sm:px-6"
             >
-              These are the technologies I work with regularly. I'm always expanding my toolkit and exploring new technologies to improve my development capabilities.
+              Technologies I work with regularly, organized by experience level: Expert, Proficient, and Familiar.
             </motion.p>
           </div>
 
@@ -219,7 +203,7 @@ export default function TechStack() {
                 key={categoryIndex}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 className="bg-neutral-50/50 dark:bg-neutral-900/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 backdrop-blur-sm border border-neutral-100 dark:border-neutral-800/50"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center mb-6 sm:mb-8">
@@ -234,7 +218,7 @@ export default function TechStack() {
                   <div className="hidden sm:block h-px sm:ml-4 bg-gradient-to-r from-accent-500/30 to-transparent flex-grow" />
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {category.technologies.map((tech, techIndex) => (
                     <TechCard 
                       key={techIndex} 

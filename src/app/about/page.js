@@ -9,8 +9,8 @@ import TechStack from '@/components/about/TechStack';
 import CallToAction from '@/components/about/CallToAction';
 
 export const metadata = {
-  title: 'About Me | Edwin Ogola - Full Stack Software Engineer',
-  description: 'Learn about Edwin Ogola\'s journey as a Full Stack Software Engineer specializing in building scalable web applications for East African markets.',
+  title: 'About Me | Brandon Ogola - Software Engineer',
+  description: 'Learn about Brandon Ogola\'s journey as a Software Engineer specializing in enterprise backend systems, cloud-native SaaS, and full-stack TypeScript applications.',
 };
 
 export default function AboutPage() {

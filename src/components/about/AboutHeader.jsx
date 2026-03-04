@@ -48,7 +48,7 @@ export default function AboutHeader() {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-500/20 to-primary-700/20 -z-10 group-hover:opacity-30 transition-opacity duration-300"></div>
             <Image
               src="/images/profile.jpg"
-              alt="Edwin Ogola"
+              alt="Brandon Ogola"
               width={400}
               height={400}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -68,7 +68,13 @@ export default function AboutHeader() {
           </h1>
           
           <p className="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
-            I'm Edwin Ogola, a Full Stack Software Engineer passionate about building scalable web applications focused on East African markets. With expertise in modern web technologies, I create innovative solutions that address local challenges and opportunities.
+            I'm a Software Engineer based in Nairobi, Kenya, with roots in East Africa's growing tech ecosystem. I started my career building solutions for local startups and organisations — learning early that great software must be both technically sound and contextually relevant to the people it serves.
+          </p>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
+            That foundation shaped how I approach engineering today. I now specialise in enterprise backend systems, cloud-native SaaS, and full-stack TypeScript applications — building production-grade software using .NET, C#, Azure, and React with a focus on scalable architecture and measurable business outcomes.
+          </p>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
+            Currently architecting SmartSchedule Healthcare, an AI-powered appointment scheduling SaaS on .NET 10 and Azure targeting a $150B healthcare market — bringing the same problem-solving mindset I developed in East Africa to enterprise-grade global challenges.
           </p>
           
           {/* Social Links */}

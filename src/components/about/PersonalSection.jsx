@@ -101,7 +101,7 @@ export default function PersonalSection() {
               className="text-base sm:text-lg leading-relaxed text-center sm:text-left"
               variants={fadeInUp}
             >
-              When I'm not diving into code, I enjoy exploring the natural beauty of East Africa through hiking and photography. These activities not only provide a refreshing break but also inspire creative thinking that I bring back to my development work.
+              Being part of Nairobi's tech community is something I take seriously. East Africa has an extraordinary generation of developers coming up, and I want to play an active role in that growth.
             </motion.p>
 
             <motion.div 
@@ -115,23 +115,28 @@ export default function PersonalSection() {
                   Community Involvement
                 </h3>
               </div>
-              <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 pl-6 sm:pl-7"> 
-                I'm an active member of Nairobi's tech community, where I volunteer as a mentor for aspiring developers through the 
-                <motion.span 
-                  className="font-medium mx-1 text-accent-700 dark:text-accent-300 hover:underline cursor-pointer"
-                  whileHover={{ color: "#E07A5F" }}
-                >
-                  KamiLimu Mentorship Program
-                </motion.span>. 
-                I also organize monthly meetups for the 
-                <motion.span 
-                  className="font-medium mx-1 text-accent-700 dark:text-accent-300 hover:underline cursor-pointer"
-                  whileHover={{ color: "#E07A5F" }}
-                >
-                  Nairobi JavaScript Community
-                </motion.span>, 
-                fostering knowledge sharing and networking among local developers.
-              </p>
+              <ul className="space-y-2 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 pl-6 sm:pl-7">
+                <li className="flex items-start">
+                  <span className="mr-2">🧑‍🏫</span>
+                  <span>Peer mentor during ALX Software Engineering cohort — supporting fellow engineers through system design and algorithm challenges</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">🤝</span>
+                  <span>Member of @Krypto-Hashers-Community on GitHub — collaborating on blockchain and Web3 exploration projects</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">📝</span>
+                  <span>Committed to publishing technical blog posts on .NET, Blazor, Azure, and AI/ML in 2026 to contribute to the ecosystem</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">🎯</span>
+                  <span>2026 goal: mentor 5+ junior developers in the Nairobi tech community and organise monthly coding sessions for aspiring engineers</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">🌍</span>
+                  <span>Open source contributor with 2,535 GitHub contributions in the last year across enterprise and personal projects</span>
+                </li>
+              </ul>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
@@ -149,15 +154,15 @@ export default function PersonalSection() {
                 animate="visible"
               >
                 <InterestItem icon={BookOpen}>
-                  Reading tech blogs and books on software architecture and entrepreneurship
+                  Reading tech blogs and books on software architecture, .NET patterns, and cloud-native design
                 </InterestItem>
                 
                 <InterestItem icon={Mountain}>
-                  Exploring new hiking trails around Mount Kenya and the Aberdare Ranges
+                  Exploring Nairobi's tech community through meetups and knowledge-sharing sessions
                 </InterestItem>
                 
                 <InterestItem icon={Camera}>
-                  Wildlife photography, with a focus on Kenya's rich biodiversity
+                  Building side projects to experiment with new technologies and frameworks
                 </InterestItem>
                 
                 <InterestItem icon={Code}>
@@ -180,7 +185,7 @@ export default function PersonalSection() {
                     <Mountain className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary-700 dark:text-primary-300" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
-                    <p className="text-white text-xs sm:text-sm font-medium">Hiking Adventures</p>
+                    <p className="text-white text-xs sm:text-sm font-medium">Tech Meetups</p>
                   </div>
                 </motion.div>
                 
@@ -192,7 +197,7 @@ export default function PersonalSection() {
                     <Camera className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-accent-600 dark:text-accent-400" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2 sm:p-3">
-                    <p className="text-white text-xs sm:text-sm font-medium">Photography</p>
+                    <p className="text-white text-xs sm:text-sm font-medium">Side Projects</p>
                   </div>
                 </motion.div>
                 

@@ -73,10 +73,10 @@ const SkillItem = ({ children }) => (
 
 export default function Education() {
   const selfLearningSkills = [
-    'Next.js and Server Components',
-    'TypeScript and Type-Safe Development',
-    'Serverless Architecture Patterns',
-    'Performance Optimization Techniques',
+    'Advanced .NET patterns: CQRS, Clean Architecture, Event Sourcing',
+    'Azure cloud services: Service Bus, Key Vault, Cosmos DB, OpenAI',
+    'AI/ML integration: Azure OpenAI GPT-4o, ML.NET predictive models',
+    'HIPAA-compliant and zero-trust security architecture patterns',
     'Modern Authentication Patterns',
     'Mobile-First Responsive Design'
   ];
@@ -102,7 +102,7 @@ export default function Education() {
               period="2021 - 2025"
             >
               <p className="text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm">
-                Focused on software engineering, database systems, and web technologies. Graduated with honors and completed a capstone project on developing a mobile payment integration system for small businesses in Kenya.
+                Top 15% graduate. Coursework: Data Structures & Algorithms, Software Engineering, Database Management, Distributed Systems, Cloud Computing.
               </p>
             </EducationItem>
             
@@ -111,25 +111,136 @@ export default function Education() {
             <div className="grid gap-6 md:grid-cols-2">
               <TrainingItem 
                 icon={CheckBadgeIcon}
-                title="Full Stack Web Development Bootcamp"
-                institution="Moringa School"
-                period="2021"
-              >
-                <p className="text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm">
-                  Intensive 16-week program covering modern JavaScript frameworks, RESTful API design, and deployment strategies.
-                </p>
-              </TrainingItem>
-              
-              <TrainingItem 
-                icon={BeakerIcon}
                 title="AWS Certified Solutions Architect"
                 institution="Amazon Web Services"
                 period="2022"
               >
                 <p className="text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm">
-                  Certification focused on designing distributed systems on AWS, with emphasis on high availability and cost optimization for web applications.
+                  Designing distributed systems on AWS with emphasis on high availability, scalability, and cost optimisation for web applications.
                 </p>
               </TrainingItem>
+              
+              <TrainingItem 
+                icon={BeakerIcon}
+                title="ALX Software Engineering Program"
+                institution="ALX Africa"
+                period="2023 - 2024"
+              >
+                <p className="text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm">
+                  Top 15% graduate. Intensive full-stack program. Built 15+ projects covering Python, C, system design, and software architecture. 1,200+ hours of hands-on work.
+                </p>
+              </TrainingItem>
+              
+              <TrainingItem 
+                icon={BeakerIcon}
+                title="Software Development Bootcamp"
+                institution="Moringa School"
+                period="June 2022 - December 2022"
+              >
+                <p className="text-neutral-700 dark:text-neutral-300 text-xs sm:text-sm">
+                  Top 15% graduate. 24-week full-stack program covering JavaScript, TypeScript, React, Node.js, and Python.
+                </p>
+              </TrainingItem>
+            </div>
+          
+            <SectionDivider title="Professional Experience" />
+            
+            <div className="space-y-6">
+              <div className="relative group">
+                <div className="absolute -left-8 sm:-left-11 top-0 h-full w-0.5 bg-neutral-200 dark:bg-neutral-700 group-last:hidden"></div>
+                <div className="relative flex items-start pl-8 sm:pl-10 pb-6">
+                  <div className="absolute left-0 top-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30 ring-6 sm:ring-8 ring-white dark:ring-neutral-900">
+                    <CheckBadgeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                  </div>
+                  <div className="w-full">
+                    <h3 className="text-base sm:text-lg font-semibold text-primary-800 dark:text-white">
+                      Software Engineer
+                    </h3>
+                    <p className="mt-1 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                      Cognativ Technology Limited • November 2024 - January 2026 • Nairobi
+                    </p>
+                    <ul className="mt-2 space-y-1 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Built scalable .NET Core APIs and Blazor Server components for SmartSaaS™ enterprise cloud platform</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Reduced API response times by 35% via query optimisation and Entity Framework Core migrations</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Achieved 95% bug-free deployment rate across agile sprints</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Maintained 80% code coverage through unit and integration testing</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="relative group">
+                <div className="absolute -left-8 sm:-left-11 top-0 h-full w-0.5 bg-neutral-200 dark:bg-neutral-700 group-last:hidden"></div>
+                <div className="relative flex items-start pl-8 sm:pl-10 pb-6">
+                  <div className="absolute left-0 top-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30 ring-6 sm:ring-8 ring-white dark:ring-neutral-900">
+                    <CheckBadgeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                  </div>
+                  <div className="w-full">
+                    <h3 className="text-base sm:text-lg font-semibold text-primary-800 dark:text-white">
+                      Operations Intern
+                    </h3>
+                    <p className="mt-1 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                      Alliance Bioversity CIAT • November 2024 - April 2025 • Nairobi
+                    </p>
+                    <ul className="mt-2 space-y-1 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Reduced operational processing time by 20% with Python/Flask automation</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Built data processing tools serving a cross-functional team of 12</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Delivered RESTful APIs for internal agricultural research tools</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="relative group">
+                <div className="relative flex items-start pl-8 sm:pl-10 pb-0">
+                  <div className="absolute left-0 top-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30 ring-6 sm:ring-8 ring-white dark:ring-neutral-900">
+                    <CheckBadgeIcon className="h-3 w-3 sm:h-4 sm:w-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                  </div>
+                  <div className="w-full">
+                    <h3 className="text-base sm:text-lg font-semibold text-primary-800 dark:text-white">
+                      Software Developer Intern
+                    </h3>
+                    <p className="mt-1 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                      REAL BIZ Digital • June 2023 - September 2023 • Remote
+                    </p>
+                    <ul className="mt-2 space-y-1 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Increased user engagement by 25% via React/TypeScript web apps</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Reduced data processing time by 30% through API optimisation</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircleIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>Delivered production features across 3 client projects in agile sprints</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           
             <SectionDivider title="Self-Learning" />

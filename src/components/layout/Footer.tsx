@@ -17,8 +17,8 @@ const Footer = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-primary-800 dark:text-primary-200 mb-4">Edwin Ogola</h3>
-            <p className="text-text/80 dark:text-text-light/80 mb-6">{t('footer.tagline')}</p>
+            <h3 className="text-xl font-bold text-primary-800 dark:text-primary-200 mb-4">Brandon Ogola</h3>
+            <p className="text-text/80 dark:text-text-light/80 mb-6">Software Engineer | Nairobi, Kenya</p>
             <div className="flex space-x-4">
               <a
                 href="https://github.com/edogola4"
@@ -84,16 +84,16 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-primary-800 dark:text-primary-200 mb-4">{t('footer.getInTouch')}</h3>
             <div className="flex flex-col space-y-3">
               <a 
-                href="mailto:hello@edwinogola.com"
+                href="mailto:edogola4@gmail.com"
                 className="flex items-center text-text/80 hover:text-primary-600 dark:text-text-light/80 dark:hover:text-primary-400 transition-colors group"
               >
-                <FiMail className="mr-3 group-hover:scale-110 transition-transform" /> hello@edwinogola.com
+                <FiMail className="mr-3 group-hover:scale-110 transition-transform" /> edogola4@gmail.com
               </a>
               <a 
-                href="tel:+254712345678"
+                href="tel:+254717248673"
                 className="flex items-center text-text/80 hover:text-primary-600 dark:text-text-light/80 dark:hover:text-primary-400 transition-colors group"
               >
-                <FiPhone className="mr-3 group-hover:scale-110 transition-transform" /> +254 712 345 678
+                <FiPhone className="mr-3 group-hover:scale-110 transition-transform" /> +254-717-248673
               </a>
               <Link 
                 href={withLocale('/contact')}
@@ -106,7 +106,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-100 dark:border-primary-800/30 mt-12 pt-8 text-center text-text/60 dark:text-text-light/60 text-sm">
-          <p> {currentYear} Edwin Ogola. {t('footer.rights')}</p>
+          <p> {currentYear} Brandon Ogola. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>
