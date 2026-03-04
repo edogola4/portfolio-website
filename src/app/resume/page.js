@@ -16,8 +16,8 @@ export default function ResumePage() {
           </p>
         </div>
         <Link 
-          href="/files/Brandon_Resume.pdf" 
-          download
+          href="/files/bran_don_ (1).pdf" 
+          download="Ogola.pdf"
           className="bg-[#D45D42] hover:bg-[#B84C35] text-white px-8 py-3.5 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform flex items-center gap-2"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
