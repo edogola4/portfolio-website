@@ -125,11 +125,11 @@ const highlights = [
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: 'easeOut', delay },
-  }),
+    transition: { duration: 0.55, ease: 'easeOut' },
+  },
 };
 
 const staggerContainer: Variants = {
