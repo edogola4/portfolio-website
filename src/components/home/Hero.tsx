@@ -11,12 +11,14 @@ import {
   AnimatePresence,
   Variants,
 } from 'framer-motion';
-
+import { Container, Engine } from '@tsparticles/engine';
+import { loadFull } from 'tsparticles';
 import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaStar } from 'react-icons/fa';
 
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import { MdHealthAndSafety } from 'react-icons/md';
+import Script from 'next/script';
 import { useLocale, useTranslations } from 'next-intl';
 import {
   SiTypescript,
@@ -42,7 +44,11 @@ import { testimonials } from '@/data/shared-testimonials';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
-
+declare global {
+  interface Window {
+    tsParticles: Engine;
+  }
+}
 
 interface TiltOptions {
   max?: number;
@@ -193,7 +199,8 @@ const useCustomTilt = (
 const Hero = () => {
   const typedRef    = useRef<Typed | null>(null);
   const typedEl     = useRef<HTMLSpanElement | null>(null);
-
+  const particlesInitialized = useRef(false);
+  const particlesContainerRef = useRef<Container | null | undefined>(undefined);
 
   const [selectedTech,       setSelectedTech]       = useState<TechItem | null>(null);
   const [activeTestimonial,  setActiveTestimonial]  = useState(0);
@@ -240,7 +247,74 @@ const Hero = () => {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+  // ── tsParticles ─────────────────────────────────────────────────────────
+  const initParticles = useCallback(async () => {
+    if (
+      particlesInitialized.current ||
+      prefersReducedMotion ||
+      typeof window === 'undefined' ||
+      !window.tsParticles
+    ) return;
 
+    const container = document.getElementById('hero-particles');
+    if (!container) return;
+
+    try {
+      await loadFull(window.tsParticles);
+      particlesContainerRef.current = await window.tsParticles.load({
+        id: 'hero-particles',
+        options: {
+          fpsLimit: 60,
+          fullScreen: { enable: false, zIndex: 0 },
+          particles: {
+            number: { value: 28, density: { enable: true, width: 1500, height: 1500 } },
+            color: { value: '#3A5A6B' },
+            shape: { type: 'triangle' },
+            opacity: { value: { min: 0.08, max: 0.25 } },
+            size: { value: { min: 2, max: 5 } },
+            move: {
+              enable: true,
+              speed: 1.2,
+              direction: 'none',
+              random: true,
+              outModes: { default: 'bounce' },
+            },
+          },
+          interactivity: {
+            detectsOn: 'window',
+            events: {
+              onHover: { enable: true, mode: 'bubble' },
+              resize: { enable: true },
+            },
+            modes: { bubble: { distance: 200, size: 7, duration: 2, opacity: 0.7 } },
+          },
+          detectRetina: true,
+          pauseOnBlur: true,
+        },
+      });
+      particlesInitialized.current = true;
+    } catch (err) {
+      console.error('Particles init failed:', err);
+    }
+  }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.tsParticles && !particlesInitialized.current) {
+        initParticles();
+      }
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      if (particlesContainerRef.current && particlesInitialized.current) {
+        try { 
+          particlesContainerRef.current.destroy(); 
+          particlesInitialized.current = false; 
+        } catch { /* ignore */ }
+      }
+    };
+  }, [initParticles]);
 
   // ── Testimonial auto-rotate ──────────────────────────────────────────────
   useEffect(() => {
@@ -280,7 +354,13 @@ const Hero = () => {
         }}
       />
 
-
+      {/* ── tsParticles CDN ────────────────────────────────────────────────── */}
+      <Script
+        id="tsparticles-script"
+        src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"
+        onLoad={initParticles}
+        strategy="lazyOnload"
+      />
 
       <section
         className="relative min-h-screen pt-8 pb-16 md:pt-10 md:pb-20 bg-gradient-to-br from-[#F8F5F0] to-[#EFEAE2] dark:from-[#1E2A35] dark:to-[#141E26] overflow-hidden"
@@ -293,7 +373,12 @@ const Hero = () => {
           <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full bg-gradient-to-br from-[#6B7F82]/8 to-[#3A5A6B]/8 blur-3xl" />
         </div>
 
-
+        {/* ── Particles canvas ──────────────────────────────────────────────── */}
+        <div
+          id="hero-particles"
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{ width: '100%', height: '100%' }}
+        />
 
         {/* ── Main grid ─────────────────────────────────────────────────────── */}
         <div className="container-custom grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center relative z-10">
