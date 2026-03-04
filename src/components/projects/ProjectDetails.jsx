@@ -7,6 +7,14 @@ export default function ProjectDetails({ project }) {
     <article>
       <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
       
+      {project.status && (
+        <div className="mb-4">
+          <span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 text-sm font-medium px-3 py-1.5 rounded">
+            {project.status}
+          </span>
+        </div>
+      )}
+      
       <div className="flex flex-wrap gap-2 mb-8">
         {project.technologies.map(tech => (
           <Tag key={tech} text={tech} />
@@ -58,20 +66,9 @@ export default function ProjectDetails({ project }) {
       
       <div className="prose dark:prose-invert max-w-none">
         <h2>Overview</h2>
-        <div className="whitespace-pre-line">{project.longDescription}</div>
+        <p className="text-lg leading-relaxed">{project.longDescription}</p>
         
-        {project.highlights && project.highlights.length > 0 && (
-          <div className="my-8">
-            <h2>Key Highlights</h2>
-            <ul>
-              {project.highlights.map((highlight, index) => (
-                <li key={index}>{highlight}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
-        {project.challenges && project.challenges.length > 0 && (
+        {project.challenges && project.challenges.length > 0 && project.solutions && project.solutions.length > 0 && (
           <div className="grid md:grid-cols-2 gap-8 my-8">
             <div>
               <h2>Challenges</h2>
@@ -82,16 +79,32 @@ export default function ProjectDetails({ project }) {
               </ul>
             </div>
             
-            {project.solutions && project.solutions.length > 0 && (
-              <div>
-                <h2>Solutions</h2>
-                <ul>
-                  {project.solutions.map((solution, index) => (
-                    <li key={index}>{solution}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div>
+              <h2>Solutions</h2>
+              <ul>
+                {project.solutions.map((solution, index) => (
+                  <li key={index}>{solution}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+        
+        {project.stats && project.stats.length > 0 && (
+          <div className="my-8">
+            <h2>Key Stats</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 not-prose">
+              {project.stats.map((stat, index) => (
+                <div key={index} className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
         
