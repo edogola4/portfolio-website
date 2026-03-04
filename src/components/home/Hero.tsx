@@ -13,7 +13,7 @@ import {
 } from 'framer-motion';
 import { Engine, Container } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
-import { FiArrowRight, FiDownload, FiMail } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import { FaReact, FaGithub, FaLinkedin, FaStar } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
@@ -21,22 +21,16 @@ import { MdHealthAndSafety } from 'react-icons/md';
 import Script from 'next/script';
 import { useLocale, useTranslations } from 'next-intl';
 import {
-  SiNextdotjs,
   SiTypescript,
   SiNodedotjs,
   SiMongodb,
   SiAmazon,
   SiPython,
-  SiRedux,
-  SiTailwindcss,
   SiPostgresql,
   SiDocker,
-  SiGraphql,
   SiKubernetes,
   SiGit,
-  SiJavascript,
   SiMysql,
-  SiExpress,
   SiDotnet,
   SiBlazor,
   SiTerraform,
@@ -46,39 +40,9 @@ import {
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Typed from 'typed.js';
 
+import { testimonials } from '@/data/shared-testimonials';
+
 // ─── Types ─────────────────────────────────────────────────────────────────
-
-declare global {
-  interface Window {
-    tsParticles: Engine;
-  }
-}
-
-interface TiltOptions {
-  max?: number;
-  speed?: number;
-  reset?: boolean;
-}
-
-interface TiltState {
-  x: number;
-  y: number;
-}
-
-interface TechItem {
-  icon: React.ComponentType<{ className?: string; title?: string; 'aria-label'?: string }>;
-  title: string;
-  proficiency: number;
-  color: string;
-  category: 'core' | 'backend' | 'cloud' | 'tools';
-}
-
-interface Testimonial {
-  quote: string;
-  author: string;
-  position: string;
-  company: string;
-}
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -129,30 +93,6 @@ const highlights = [
     value: '.NET',
     label: '& Azure Specialist',
     color: 'from-[#6B9FB1] to-[#3A5A6B]',
-  },
-];
-
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Brandon's full-stack development skills and attention to detail resulted in a 25% increase in user engagement on our platform.",
-    author: 'Michael Ochieng',
-    position: 'Product Manager',
-    company: 'REAL BIZ Digital',
-  },
-  {
-    quote:
-      'His ability to translate business requirements into technical solutions is exceptional. A valuable asset to any team.',
-    author: 'Dr. Jane Atieno',
-    position: 'Senior Researcher',
-    company: 'Alliance Bioversity CIAT',
-  },
-  {
-    quote:
-      'Brandon consistently delivers high-quality solutions with a strong focus on scalability and performance.',
-    author: 'Abraham Ogol',
-    position: 'CTO',
-    company: 'Cognativ',
   },
 ];
 

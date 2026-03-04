@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
-import { testimonials, skillCategories, allSkills } from '@/data/testimonials';
+import { skillCategories, allSkills } from '@/data/testimonials';
+import { testimonials } from '@/data/shared-testimonials';
 
 // Imported skillCategories and allSkills from testimonials.ts
 const categories = ['All', ...skillCategories.map(cat => cat.name)];
@@ -125,10 +126,11 @@ export default function SkillsPageClient() {
           
           {/* Skills Grid */}
           <motion.div 
+            key={selectedCategory}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={container}
             initial="hidden"
-            animate={isVisible ? "show" : "hidden"}
+            animate="show"
           >
             {filteredSkills.map((skill) => {
               // Using the icon directly since we're not using the Icon component
@@ -169,22 +171,10 @@ export default function SkillsPageClient() {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between mt-4">
-                      <div className="flex-1">
-                        <div className="flex justify-between text-xs text-gray-500 mb-1">
-                          <span>Experience</span>
-                          <span className="font-medium">{skill.years}+ year{skill.years !== 1 ? 's' : ''}</span>
-                        </div>
-                        <div className="w-full bg-gray-100 rounded-full h-2">
-                          <div 
-                            className="h-2 rounded-full"
-                            style={{
-                              width: `${Math.min(100, skill.years * 25)}%`,
-                              background: `linear-gradient(90deg, ${skill.gradientStart}, ${skill.gradientEnd})`
-                            }}
-                          />
-                        </div>
-                      </div>
+                    <div className="mt-4">
+                      <span className="inline-block px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full">
+                        {skill.years}+ year{skill.years !== 1 ? 's' : ''} experience
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -257,45 +247,45 @@ export default function SkillsPageClient() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={testimonial.id}
+              key={index}
               className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-shadow duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               style={{
-                borderTop: `4px solid ${testimonial.gradientStart}`,
+                borderTop: `4px solid #3A5A6B`,
               }}
             >
               <div className="flex items-center mb-4">
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4"
                   style={{
-                    background: `linear-gradient(135deg, ${testimonial.gradientStart}, ${testimonial.gradientEnd})`
+                    background: `linear-gradient(135deg, #3A5A6B, #6B7F82)`
                   }}
                 >
-                  {testimonial.name.charAt(0)}
+                  {testimonial.author.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</p>
+                  <h4 className="font-semibold text-gray-900">{testimonial.author}</h4>
+                  <p className="text-sm text-gray-600">{testimonial.position}, {testimonial.company}</p>
                 </div>
               </div>
               
               <div className="relative">
                 <FaQuoteLeft className="text-gray-200 text-3xl absolute -top-2 -left-1" />
-                <p className="text-gray-700 pl-6 mb-4 italic">&quot;{testimonial.content}&quot;</p>
+                <p className="text-gray-700 pl-6 mb-4 italic">&quot;{testimonial.quote}&quot;</p>
               </div>
               
               <div className="flex items-center">
                 <div className="flex space-x-1 mr-2">
-                  {renderStars(testimonial.rating)}
+                  {renderStars(5)}
                 </div>
                 <span className="text-sm text-gray-500">
-                  {testimonial.rating}.0/5.0
+                  5.0/5.0
                 </span>
               </div>
             </motion.div>
