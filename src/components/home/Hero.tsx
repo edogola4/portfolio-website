@@ -381,7 +381,7 @@ const Hero = () => {
         />
 
         {/* ── Main grid ─────────────────────────────────────────────────────── */}
-        <div className="container-custom grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center relative z-10">
+        <div className="container-custom grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 items-start relative z-10">
 
           {/* ════════════════════════ LEFT COLUMN ════════════════════════════ */}
           <motion.div
@@ -633,10 +633,10 @@ const Hero = () => {
           {/* ═══════════════════════ RIGHT COLUMN ════════════════════════════ */}
           <motion.div
             style={{ y: profileImageY }}
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.15 }}
-            className="relative flex flex-col items-center justify-start lg:pt-0"
+            className="relative flex flex-col items-center justify-start"
           >
             {/* ── Decorative glow ─────────────────────────────────────────── */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#3A5A6B]/20 to-[#6B7F82]/20 rounded-full blur-3xl animate-pulse pointer-events-none" />
