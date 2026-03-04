@@ -13,7 +13,7 @@ export const RESUME_CONFIG = {
   lastUpdated: new Date().toISOString(),
   version: "1.0.0",
   //downloadUrl: "/files/Edwin_B__Ogola_CV.pdf",
-  downloadUrl: "/files/bran_don_ (1).pdf",
+  downloadUrl: "/files/Ogola.pdf",
   printOptimized: true
 };
 
