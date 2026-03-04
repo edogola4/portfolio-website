@@ -9,6 +9,7 @@ import ProjectCard from '@/components/projects/ProjectCard';
 // Client component for the projects content
 function ProjectsContent() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const allProjects = getAllProjects();
   const categories = getAllCategories();
   const projects = getProjectsByCategory(activeCategory);
   

@@ -20,12 +20,16 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      <Header />
-      <div className="container-custom py-8">
-        {children}
-      </div>
-      <Footer />
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <div className="container-custom py-8">
+            {children}
+          </div>
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
