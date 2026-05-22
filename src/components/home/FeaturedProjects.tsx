@@ -18,7 +18,21 @@ interface Badge {
 // Use featured projects from the shared data source
 import { getFeaturedProjects } from '@/lib/projects';
 
-const featuredProjects = getFeaturedProjects();
+type Project = {
+  id: string;
+  title: string;
+  slug?: string;
+  description?: string;
+  technologies?: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+  badges?: Badge[];
+  badge?: string;
+  imageUrl?: string;
+  image?: string;
+};
+
+const featuredProjects = getFeaturedProjects() as Project[];
 
 const FeaturedProjects = () => {
   const [ref, inView] = useInView({
