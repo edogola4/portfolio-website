@@ -294,7 +294,7 @@ const Hero = () => {
     try {
     // loadFull may expect an engine; use safe call and narrow window.tsParticles without 'any'
     try {
-      await loadFull();
+      await loadFull((window as any).tsParticles);
     } catch (innerErr) {
       console.warn('loadFull failed:', innerErr);
     }
