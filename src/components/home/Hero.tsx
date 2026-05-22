@@ -301,7 +301,7 @@ const Hero = () => {
       console.warn('loadFull failed:', innerErr);
     }
 
-    const ts = (window as unknown as { tsParticles?: { load?: (opts: unknown) => Promise<unknown> } }).tsParticles;
+    const ts = (window as unknown as { tsParticles?: { load?: (opts: unknown) => Promise<Container> } }).tsParticles;
     if (ts && typeof ts.load === 'function') {
       particlesContainerRef.current = await ts.load({
         id: 'hero-particles',
