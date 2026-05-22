@@ -5,6 +5,8 @@
  * Contains information about featured and all projects
  */
 
+/** @typedef {'teal'|'amber'|'red'|'blue'|'green'} BadgeColor */
+
 export const projects = [
   {
     id: 'smartschedule-healthcare',
@@ -67,6 +69,44 @@ export const projects = [
       { value: '3', label: 'Environments (dev / staging / production)' },
       { value: '$150B', label: 'Addressable market size' }
     ]
+  },
+  {
+    id: 'riggs-london-kenya',
+    title: 'Riggs London Kenya',
+    slug: 'riggs-london-kenya',
+    description: 'Premium ecommerce platform for Riggs London fragrances in the Kenyan market. Mobile-first, M-Pesa-first, with a Claude-powered AI Scent Advisor.',
+    longDescription: 'Riggs London Kenya is a premium ecommerce platform built for the Kenyan fragrance market. Mobile-first and M-Pesa-first, it features a Claude 3.5 Haiku-powered AI Scent Advisor, semantic vector search via pgvector and OpenAI embeddings, WhatsApp Business API order notifications, and a Railway + Vercel deployment stack targeting ~KES 14,000/mo infrastructure cost.',
+    technologies: ['Next.js 14', 'Fastify', 'PostgreSQL + pgvector', 'Claude 3.5 Haiku', 'M-Pesa Daraja API', 'Turborepo'],
+    category: 'Ecommerce · AI · Fintech',
+    featured: true,
+    badge: '✨ MVP Week 8',
+    badgeColor: 'amber',
+    status: 'Pre-Launch · Active Build',
+    imageUrl: '/images/projects/ecommerce.jpg',
+    githubUrl: 'https://github.com/edogola4/Riggs-London-Kenya',
+    highlights: [
+      'AI Scent Advisor powered by Claude 3.5 Haiku',
+      'M-Pesa STK Push (Safaricom Daraja API)',
+      'Semantic vector search via pgvector + OpenAI embeddings',
+      'WhatsApp Business API notifications',
+      'Railway + Vercel deployment · ~KES 14,000/mo infra',
+    ],
+    challenges: [
+      'Integrating M-Pesa Daraja STK Push reliably within a Next.js + Fastify architecture with webhook confirmation',
+      'Building a semantic fragrance recommendation engine using pgvector embeddings on a cold-start catalogue',
+      'Keeping infrastructure costs under KES 14,000/mo while maintaining production-grade reliability',
+    ],
+    solutions: [
+      'Built a dedicated Fastify payment service with idempotent transaction handling and M-Pesa callback verification',
+      'Generated OpenAI embeddings for fragrance descriptions at catalogue ingest time, enabling sub-100ms semantic search via pgvector',
+      'Chose Railway for the Fastify API and Vercel for the Next.js frontend — right-sized for MVP traffic with zero idle cost',
+    ],
+    stats: [
+      { value: 'Week 8', label: 'MVP target' },
+      { value: 'M-Pesa', label: 'Primary payment method' },
+      { value: 'Claude 3.5', label: 'AI Scent Advisor model' },
+      { value: '~KES 14k', label: 'Monthly infra cost' },
+    ],
   },
   {
     id: 'tinytots-ecommerce',
