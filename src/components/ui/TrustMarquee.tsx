@@ -360,7 +360,7 @@ export default function TrustMarquee({ inline = false }: TrustMarqueeProps) {
       <div
         role="region"
         aria-label="Brandon Ogola tech stack"
-        className="w-full overflow-hidden"
+        className="overflow-hidden"
       >
         {content}
       </div>

@@ -537,7 +537,7 @@ const Hero = () => {
             {/* ── Technologies & Tools marquee ────────────────────────────── */}
             <motion.div
               variants={fadeInUp}
-              className="pt-6 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20 -mx-4 sm:-mx-0"
+              className="pt-6 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
             >
               <TrustMarquee inline />
             </motion.div>
