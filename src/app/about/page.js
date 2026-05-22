@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <main className="container-custom py-12 sm:px-6 lg:px-8">
       <AboutHeader />
       <div className="mt-16 grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-8 space-y-16">

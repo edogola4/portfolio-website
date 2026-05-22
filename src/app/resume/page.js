@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function ResumePage() {
   return (
-    <main className="container mx-auto px-4 py-12 max-w-5xl bg-[#F7F7F7] dark:bg-[#1E1E1E]">
+    <main className="container-custom py-12 max-w-5xl bg-[#F7F7F7] dark:bg-[#1E1E1E]">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
         <div className="mb-6 md:mb-0">
           <h1 className="text-4xl font-bold text-[#1E3F2B] dark:text-[#E8F5E9] mb-3 font-display">Professional Resume</h1>

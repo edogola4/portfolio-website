@@ -17,10 +17,11 @@ function BlogContent() {
   return (
     <>
       <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#2B2D42] dark:text-[#F8F5F0] mb-4">
           Blog
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+        <div className="h-1 w-24 bg-[#3A5A6B] dark:bg-[#6B7F82] mx-auto mb-6 rounded-full" />
+        <p className="text-lg text-[#2B2D42]/80 dark:text-[#F8F5F0]/80">
           Technical writing on .NET, Azure, AI/ML, and building production-grade software. Articles coming in 2026 — follow along on X or LinkedIn to get notified when they drop.
         </p>
       </div>
@@ -33,8 +34,8 @@ function BlogContent() {
               onClick={() => handleCategoryChange(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 activeCategory === category
-                  ? 'bg-blue-600 text-white dark:bg-blue-500'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                  ? 'bg-[#3A5A6B] text-white dark:bg-[#6B7F82]'
+                  : 'bg-white text-[#2B2D42]/80 hover:bg-[#F8F5F0] border border-[#e8e2d6] dark:bg-[#1E2A35] dark:text-[#F8F5F0]/80 dark:border-[#3A5A6B]/35 dark:hover:bg-[#3A5A6B]/20'
               }`}
             >
               {category}
@@ -49,11 +50,11 @@ function BlogContent() {
         ))}
       </div>
       
-      <div className="max-w-4xl mx-auto mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 border border-blue-100 dark:border-gray-600">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
+      <div className="max-w-4xl mx-auto mt-16 bg-gradient-to-r from-[#F8F5F0] to-neutral-100 dark:from-[#1E2A35] dark:to-[#141E26] rounded-2xl p-8 border border-[#e8e2d6] dark:border-[#3A5A6B]/35">
+        <h2 className="text-2xl font-bold text-[#2B2D42] dark:text-[#F8F5F0] mb-2 text-center">
           Get notified when I publish
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+        <p className="text-[#2B2D42]/75 dark:text-[#F8F5F0]/75 mb-6 text-center">
           No newsletter — just follow me where you already are.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
@@ -98,7 +99,7 @@ function BlogContent() {
 
 export default function BlogPage() {
   return (
-    <main className="container mx-auto px-4 py-12 md:py-20">
+    <main className="container-custom py-12 md:py-20">
       <Suspense fallback={
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
@@ -106,7 +107,7 @@ export default function BlogPage() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">Loading blog posts...</p>
+            <p className="mt-2 text-[#2B2D42]/70 dark:text-[#F8F5F0]/70">Loading blog posts...</p>
           </div>
         </div>
       }>

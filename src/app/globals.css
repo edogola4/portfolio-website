@@ -35,6 +35,13 @@
   p { @apply leading-relaxed text-neutral-800 dark:text-neutral-200; }
 }
 
+/* Layout */
+@layer components {
+  .container-custom {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
 /* Component Styles */
 @layer components {
   /* Base button styles */

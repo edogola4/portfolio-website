@@ -1,7 +1,9 @@
 // src/components/about/CallToAction.jsx
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 
 export default function CallToAction() {
+  const locale = useLocale();
   return (
     <section 
       className="mt-16 sm:mt-20 md:mt-24 mb-12 sm:mb-16 md:mb-20" 
@@ -25,7 +27,7 @@ export default function CallToAction() {
           
           <div className="mt-6 sm:mt-8 flex flex-col xs:flex-row flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4">
             <Link 
-              href="/contact" 
+              href={`/${locale}/contact`} 
               className="group relative inline-flex items-center justify-center rounded-lg bg-white px-5 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-semibold text-primary-700 shadow-sm transition-all duration-200 hover:bg-white/95 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500 w-full xs:w-auto text-center"
             >
               Get in Touch
@@ -34,7 +36,7 @@ export default function CallToAction() {
               </span>
             </Link>
             <Link 
-              href="/projects" 
+              href={`/${locale}/projects`} 
               className="group relative inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-white/10 px-5 sm:px-6 py-2.5 sm:py-3.5 text-sm sm:text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-white/30 hover:bg-white/15 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-400 w-full xs:w-auto text-center"
             >
               <span className="flex items-center">

@@ -34,7 +34,7 @@ function ProjectsContent() {
 // Main wrapper component with Suspense boundary
 export default function ProjectsPage() {
   return (
-    <main className="container mx-auto px-4 py-12">
+    <main className="container-custom py-12">
       <Suspense fallback={
         <div className="flex items-center justify-center h-64">
           <div className="text-center">

@@ -14,6 +14,10 @@
 
 ## 🚀 Latest Updates
 
+- **Design System Unified**: All pages now use a single consistent brand palette — Deep Forest Green (`#3A5A6B`), Warm Off-White (`#F8F5F0`), Charcoal (`#2B2D42`), Burnt Sienna (`#E07A5F`). Eliminated rogue `stone`, `amber`, `blue`, and `gray` Tailwind color usage across Skills, Blog, and SkillsOverview.
+- **`container-custom` Defined**: Added `.container-custom` as a proper `@layer components` utility (`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`) — used consistently across all pages.
+- **Locale-Aware Links Fixed**: All internal `<Link>` hrefs now use the `/${locale}/path` pattern. Fixed `AboutPreview`, `CallToAction`, `SkillsPageClient`, and `SkillsOverview`.
+- **Layout Double-Padding Removed**: The `[locale]/layout.tsx` wrapper `div` with `container-custom py-8` was removed — pages now own their own spacing.
 - **Enhanced Hero Component**: Completely revamped with smooth animations and interactive elements
 - **SEO Optimized**: Added comprehensive metadata and structured data for better search visibility
 - **Performance**: Optimized images and animations for faster load times
@@ -160,6 +164,9 @@ images: {
   - English: `http://localhost:3000/en`
   - Swahili: `http://localhost:3000/sw`
 - If you see deprecation notices, ensure you’re using the patterns shown above for next-intl v3.
+- All internal `<Link>` components must use locale-prefixed paths: `` href={`/${locale}/path`} `` — never bare `/path`.
+- Use `container-custom` (defined in `globals.css` `@layer components`) for all page-level layout wrappers. Do not use `container mx-auto px-4` directly.
+- The brand palette is defined in `tailwind.config.cjs` under `theme.extend.colors`. Do not introduce new Tailwind color scales (e.g. `stone`, `amber`, `slate`) for brand UI elements.
 
 ## 🧪 Troubleshooting (i18n)
 

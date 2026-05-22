@@ -24,9 +24,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <div className="container-custom py-8">
-            {children}
-          </div>
+          <main>{children}</main>
           <Footer />
         </NextIntlClientProvider>
       </body>

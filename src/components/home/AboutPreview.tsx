@@ -6,6 +6,7 @@ import { motion, MotionProps } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiArrowRight } from 'react-icons/fi';
 import { memo, useMemo, useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
 
 /**
  * Props interface for AboutPreview component
@@ -52,7 +53,7 @@ const AboutPreview = memo<AboutPreviewProps>(({
   className = '',
   reduceMotion: forcedReduceMotion = false 
 }) => {
-  // Check user's motion preference
+  const locale = useLocale();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -125,7 +126,7 @@ const AboutPreview = memo<AboutPreviewProps>(({
           
           <div className="mt-10">
             <Link 
-              href="/about" 
+              href={`/${locale}/about`}
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#3A5A6B] hover:bg-[#2B3D4D] dark:bg-[#6B7F82] dark:hover:bg-[#5A6D72] transition-colors duration-200"
             >
               Learn More About Me
