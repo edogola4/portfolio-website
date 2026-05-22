@@ -206,15 +206,19 @@ function MarqueeRow({ items, direction, duration, label, ariaLabel, mobileDurati
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function TrustMarquee() {
+interface TrustMarqueeProps {
+  /** When true, renders without the outer section wrapper and entrance animation.
+   *  Use this when embedding inside another animated container (e.g. Hero). */
+  inline?: boolean;
+}
+
+export default function TrustMarquee({ inline = false }: TrustMarqueeProps) {
   const t = useTranslations('marquee');
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
-  return (
+  const content = (
     <>
-      {/* ── Scoped styles ── */}
       <style>{`
-        /* Keyframes */
         @keyframes marqueeScrollLeft {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
@@ -223,16 +227,12 @@ export default function TrustMarquee() {
           from { transform: translateX(-50%); }
           to   { transform: translateX(0); }
         }
-
-        /* Row wrapper */
         .marquee-row-wrapper {
           display: flex;
           align-items: center;
           gap: 0.75rem;
           min-height: 44px;
         }
-
-        /* Vertical label */
         .marquee-row-label {
           writing-mode: vertical-rl;
           transform: rotate(180deg);
@@ -246,40 +246,20 @@ export default function TrustMarquee() {
           width: 1rem;
           user-select: none;
         }
-
-        /* Track: overflow hidden + fade mask */
         .marquee-track {
           flex: 1;
           overflow: hidden;
           min-height: 44px;
-          mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 5%,
-            black 95%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 5%,
-            black 95%,
-            transparent 100%
-          );
+          mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
         }
-
-        /* Inner: two lists side by side */
         .marquee-inner {
           display: flex;
           width: max-content;
         }
-
-        /* Pause all rows on track hover */
         .marquee-track:hover .marquee-list {
           animation-play-state: paused;
         }
-
-        /* List */
         .marquee-list {
           display: flex;
           align-items: center;
@@ -288,27 +268,19 @@ export default function TrustMarquee() {
           padding: 0;
           flex-shrink: 0;
         }
-
         .marquee-scroll-left {
           animation: marqueeScrollLeft var(--duration, 38s) linear infinite;
         }
-
         .marquee-scroll-right {
           animation: marqueeScrollRight var(--duration, 30s) linear infinite;
         }
-
-        /* Mobile: use faster duration */
         @media (max-width: 767px) {
           .marquee-scroll-left,
           .marquee-scroll-right {
             animation-duration: var(--mobile-duration, 22s);
           }
-          .marquee-row-label {
-            display: none;
-          }
+          .marquee-row-label { display: none; }
         }
-
-        /* Tech pill */
         .marquee-pill {
           display: flex;
           align-items: center;
@@ -323,95 +295,90 @@ export default function TrustMarquee() {
           white-space: nowrap;
           flex-shrink: 0;
         }
-
         .marquee-pill:hover {
           border-color: var(--pill-color);
           box-shadow: 0 0 16px color-mix(in srgb, var(--pill-color) 30%, transparent);
           background: rgba(var(--pill-rgb), 0.06);
         }
-
         .marquee-pill-label {
           font-size: 0.78rem;
           font-weight: 500;
           color: rgba(255,255,255,0.75);
           line-height: 1;
         }
-
-        /* Dark mode: labels slightly brighter */
-        .dark .marquee-pill-label {
-          color: rgba(255,255,255,0.80);
-        }
-
-        /* Light mode adjustments */
+        .dark .marquee-pill-label { color: rgba(255,255,255,0.80); }
         :not(.dark) .marquee-pill {
           background: rgba(0,0,0,0.02);
           border-color: rgba(0,0,0,0.08);
         }
-        :not(.dark) .marquee-pill:hover {
-          background: rgba(var(--pill-rgb), 0.07);
-        }
-        :not(.dark) .marquee-pill-label {
-          color: rgba(43,45,66,0.85);
-        }
-        :not(.dark) .marquee-row-label {
-          color: rgba(43,45,66,0.35);
-        }
+        :not(.dark) .marquee-pill:hover { background: rgba(var(--pill-rgb), 0.07); }
+        :not(.dark) .marquee-pill-label { color: rgba(43,45,66,0.85); }
+        :not(.dark) .marquee-row-label  { color: rgba(43,45,66,0.35); }
       `}</style>
 
-      <motion.section
-        ref={ref}
+      <p
+        className="text-left mb-3 uppercase tracking-[0.24em] text-[0.58rem] font-semibold text-[#2B2D42]/50 dark:text-[#F8F5F0]/40 select-none"
+        aria-hidden="true"
+      >
+        <span className="md:hidden">{t('headingShort')}</span>
+        <span className="hidden md:inline">{t('heading')}</span>
+      </p>
+
+      <div className="flex flex-col gap-y-3">
+        <MarqueeRow
+          items={row1}
+          direction="left"
+          duration={38}
+          mobileDuration={22}
+          label={t('row1Label')}
+          ariaLabel={t('row1Label')}
+        />
+        <div className="hidden md:block">
+          <MarqueeRow
+            items={row2}
+            direction="right"
+            duration={30}
+            label={t('row2Label')}
+            ariaLabel={t('row2Label')}
+          />
+        </div>
+        <div className="hidden md:block">
+          <MarqueeRow
+            items={row3}
+            direction="left"
+            duration={44}
+            label={t('row3Label')}
+            ariaLabel={t('row3Label')}
+          />
+        </div>
+      </div>
+    </>
+  );
+
+  if (inline) {
+    return (
+      <div
         role="region"
         aria-label="Brandon Ogola tech stack"
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-        transition={{ duration: 0.55, ease: 'easeOut' }}
-        className="w-full overflow-hidden py-8 border-t border-b border-white/[0.07] dark:border-white/[0.07]"
-        style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+        className="w-full overflow-hidden"
       >
-        {/* Section heading */}
-        <p
-          className="text-center mb-6 uppercase tracking-[0.24em] text-[0.58rem] font-semibold text-[#2B2D42]/50 dark:text-[#F8F5F0]/40 select-none"
-          aria-hidden="true"
-        >
-          {/* Mobile: shorter label */}
-          <span className="md:hidden">{t('headingShort')}</span>
-          <span className="hidden md:inline">{t('heading')}</span>
-        </p>
+        {content}
+      </div>
+    );
+  }
 
-        <div className="flex flex-col gap-y-3">
-          {/* Row 1 — always visible */}
-          <MarqueeRow
-            items={row1}
-            direction="left"
-            duration={38}
-            mobileDuration={22}
-            label={t('row1Label')}
-            ariaLabel={t('row1Label')}
-          />
-
-          {/* Row 2 — hidden on mobile */}
-          <div className="hidden md:block">
-            <MarqueeRow
-              items={row2}
-              direction="right"
-              duration={30}
-              label={t('row2Label')}
-              ariaLabel={t('row2Label')}
-            />
-          </div>
-
-          {/* Row 3 — hidden on mobile */}
-          <div className="hidden md:block">
-            <MarqueeRow
-              items={row3}
-              direction="left"
-              duration={44}
-              label={t('row3Label')}
-              ariaLabel={t('row3Label')}
-            />
-          </div>
-        </div>
-      </motion.section>
-    </>
+  return (
+    <motion.section
+      ref={ref}
+      role="region"
+      aria-label="Brandon Ogola tech stack"
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      transition={{ duration: 0.55, ease: 'easeOut' }}
+      className="w-full overflow-hidden py-8 border-t border-b"
+      style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+    >
+      {content}
+    </motion.section>
   );
 }

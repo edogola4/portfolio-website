@@ -539,7 +539,7 @@ const Hero = () => {
               variants={fadeInUp}
               className="pt-6 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20 -mx-4 sm:-mx-0"
             >
-              <TrustMarquee />
+              <TrustMarquee inline />
             </motion.div>
 
             {/* ── Client logos ──────────────────────────────────────────────── */}
