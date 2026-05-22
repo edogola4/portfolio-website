@@ -294,7 +294,9 @@ const Hero = () => {
     try {
     // loadFull may expect an engine; use safe call and narrow window.tsParticles without 'any'
     try {
-      await loadFull((window as any).tsParticles);
+      // loadFull typing doesn't match the CDN/global shape here; allow a single explicit any
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+      await loadFull((window as unknown as { tsParticles?: unknown }).tsParticles as any);
     } catch (innerErr) {
       console.warn('loadFull failed:', innerErr);
     }
