@@ -18,6 +18,7 @@ import { FaReact, FaGithub, FaStar } from 'react-icons/fa';
 
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import { MdHealthAndSafety } from 'react-icons/md';
+import { GiBottleVapors } from 'react-icons/gi';
 import Script from 'next/script';
 import { useLocale, useTranslations } from 'next-intl';
 import {
@@ -121,7 +122,48 @@ const highlights = [
   },
 ];
 
-// ─── Animation Variants ─────────────────────────────────────────────────────
+// ─── Rotating project badge data ───────────────────────────────────────────
+
+interface ProjectBadge {
+  key: string;
+  icon: React.ComponentType<{ className?: string }>;
+  iconColor: string;
+  name: string;
+  tags: string;
+  badge: string;
+  badgeBg: string;
+  badgeText: string;
+}
+
+const projectBadges: ProjectBadge[] = [
+  {
+    key: 'smartschedule',
+    icon: MdHealthAndSafety,
+    iconColor: 'text-[#E07A5F]',
+    name: 'SmartSchedule',
+    tags: 'AI SaaS · .NET 10 + Azure',
+    badge: 'MVP Q2 2026',
+    badgeBg: 'bg-[#E07A5F]/15',
+    badgeText: 'text-[#E07A5F]',
+  },
+  {
+    key: 'riggs',
+    icon: GiBottleVapors,
+    iconColor: 'text-amber-500',
+    name: 'Riggs London',
+    tags: 'Ecommerce AI · M-Pesa · Kenya',
+    badge: 'MVP Week 8',
+    badgeBg: 'bg-amber-100 dark:bg-amber-900/30',
+    badgeText: 'text-amber-700 dark:text-amber-300',
+  },
+];
+
+const badgeSlideVariants: Variants = {
+  enter: { opacity: 0, y: 14 },
+  center: { opacity: 1, y: 0, transition: { duration: 0.38, ease: 'easeOut' } },
+  exit:  { opacity: 0, y: -14, transition: { duration: 0.28, ease: 'easeIn' } },
+};
+
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -149,7 +191,7 @@ const iconVariants: Variants = {
   }),
 };
 
-// ─── Custom Hook: 3D Tilt ───────────────────────────────────────────────────
+// ─── Animation Variants ─────────────────────────────────────────────────────
 
 const useCustomTilt = (
   options: TiltOptions = {}
@@ -194,7 +236,7 @@ const useCustomTilt = (
   return [ref, tilt];
 };
 
-// ─── Component ───────────────────────────────────────────────────────────────
+// ─── Custom Hook: 3D Tilt ───────────────────────────────────────────────────
 
 const Hero = () => {
   const typedRef    = useRef<Typed | null>(null);
@@ -204,6 +246,8 @@ const Hero = () => {
 
   const [selectedTech,       setSelectedTech]       = useState<TechItem | null>(null);
   const [activeTestimonial,  setActiveTestimonial]  = useState(0);
+  const [activeBadge,        setActiveBadge]        = useState(0);
+  const [badgePaused,        setBadgePaused]        = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const { scrollY } = useScroll();
@@ -315,6 +359,16 @@ const Hero = () => {
       }
     };
   }, [initParticles]);
+
+  // ── Project badge auto-rotate ──────────────────────────────────────────
+  useEffect(() => {
+    if (badgePaused || prefersReducedMotion) return;
+    const id = setInterval(
+      () => setActiveBadge(p => (p + 1) % projectBadges.length),
+      3500,
+    );
+    return () => clearInterval(id);
+  }, [badgePaused, prefersReducedMotion]);
 
   // ── Testimonial auto-rotate ──────────────────────────────────────────────
   useEffect(() => {
@@ -671,7 +725,7 @@ const Hero = () => {
               <div className="relative rounded-full overflow-hidden border-8 border-white dark:border-[#1E2A35] shadow-2xl aspect-square bg-[#F8F5F0] dark:bg-[#1E2A35]">
                 <Image
                   src="/images/profile.png"
-                  alt="Brandon Ogola — Software Engineer"
+                  alt="Brandon Ogola, full-stack .NET and TypeScript engineer based in Nairobi, Kenya"
                   width={900}
                   height={900}
                   className="w-full h-auto object-cover object-top"
@@ -683,25 +737,57 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* ── Floating badge: SmartSchedule ─────────────────────────────── */}
+            {/* ── Floating badge: animated project rotation ─────────────────────── */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.45 }}
-              className="absolute -right-4 top-1/4 bg-white dark:bg-[#1E2A35] rounded-xl shadow-lg border border-[#e8e2d6] dark:border-[#3A5A6B]/40 px-3.5 py-2.5 max-w-[10rem] hidden lg:block"
+              onMouseEnter={() => setBadgePaused(true)}
+              onMouseLeave={() => setBadgePaused(false)}
+              className="absolute -right-4 top-1/4 bg-white dark:bg-[#1E2A35] rounded-xl shadow-lg border border-[#e8e2d6] dark:border-[#3A5A6B]/40 px-3.5 py-2.5 max-w-[11rem] hidden lg:block overflow-hidden"
+              aria-live="polite"
+              aria-label="Current active project"
             >
-              <div className="flex items-center gap-2 mb-1">
-                <MdHealthAndSafety className="text-[#E07A5F] w-4 h-4 shrink-0" />
-                <p className="text-[0.65rem] font-bold text-[#2B2D42] dark:text-white leading-tight">
-                  SmartSchedule
-                </p>
-              </div>
-              <p className="text-[0.6rem] text-[#2B2D42]/60 dark:text-[#F8F5F0]/60 leading-snug">
-                AI SaaS · .NET 10 + Azure
-              </p>
-              <span className="inline-block mt-1.5 px-1.5 py-0.5 text-[0.55rem] font-semibold rounded-full bg-[#E07A5F]/15 text-[#E07A5F]">
-                MVP Q2 2026
-              </span>
+              <AnimatePresence mode="wait">
+                {(() => {
+                  const badge = projectBadges[activeBadge];
+                  const BadgeIcon = badge.icon;
+                  return (
+                    <motion.div
+                      key={badge.key}
+                      variants={badgeSlideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <BadgeIcon className={`w-4 h-4 shrink-0 ${badge.iconColor}`} aria-hidden="true" />
+                        <p className="text-[0.65rem] font-bold text-[#2B2D42] dark:text-white leading-tight">
+                          {badge.name}
+                        </p>
+                      </div>
+                      <p className="text-[0.6rem] text-[#2B2D42]/60 dark:text-[#F8F5F0]/60 leading-snug">
+                        {badge.tags}
+                      </p>
+                      <span className={`inline-block mt-1.5 px-1.5 py-0.5 text-[0.55rem] font-semibold rounded-full ${badge.badgeBg} ${badge.badgeText}`}>
+                        {badge.badge}
+                      </span>
+                      <div className="flex gap-1 mt-2">
+                        {projectBadges.map((_, i) => (
+                          <span
+                            key={i}
+                            className={`block h-1 rounded-full transition-all duration-300 ${
+                              i === activeBadge
+                                ? 'w-4 bg-[#3A5A6B] dark:bg-[#6B9FB1]'
+                                : 'w-1.5 bg-[#e8e2d6] dark:bg-[#3A5A6B]/40'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })()}
+              </AnimatePresence>
             </motion.div>
 
             {/* ── Floating badge: GitHub contributions ──────────────────────── */}
