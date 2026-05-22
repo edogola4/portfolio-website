@@ -14,34 +14,18 @@ import {
 import { Container, Engine } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { FiArrowRight } from 'react-icons/fi';
-import { FaReact, FaGithub, FaStar } from 'react-icons/fa';
+import { FaGithub, FaStar } from 'react-icons/fa';
 
 import { IoRocketOutline, IoStatsChart } from 'react-icons/io5';
 import { MdHealthAndSafety } from 'react-icons/md';
 import { GiBottleVapors } from 'react-icons/gi';
 import Script from 'next/script';
 import { useLocale, useTranslations } from 'next-intl';
-import {
-  SiTypescript,
-  SiNodedotjs,
-  SiMongodb,
-  SiAmazon,
-  SiPython,
-  SiPostgresql,
-  SiDocker,
-  SiKubernetes,
-  SiGit,
-  SiMysql,
-  SiDotnet,
-  SiBlazor,
-  SiTerraform,
-  SiGithubactions,
-  SiRedis,
-} from 'react-icons/si';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Typed from 'typed.js';
 
 import { testimonials } from '@/data/shared-testimonials';
+import TrustMarquee from '@/components/ui/TrustMarquee';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -62,37 +46,8 @@ interface TiltState {
   y: number;
 }
 
-interface TechItem {
-  icon: React.ComponentType<{ className?: string; title?: string; 'aria-label'?: string }>;
-  title: string;
-  proficiency: number;
-  color: string;
-  category: 'core' | 'backend' | 'cloud' | 'tools';
-}
-
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const techStack: TechItem[] = [
-  // Core
-  { icon: SiDotnet,        title: 'C# / .NET',     proficiency: 90, color: 'text-purple-600 dark:text-purple-400', category: 'core' },
-  { icon: SiTypescript,    title: 'TypeScript',    proficiency: 88, color: 'text-blue-500 dark:text-blue-300',    category: 'core' },
-  { icon: FaReact,         title: 'React',         proficiency: 85, color: 'text-cyan-500 dark:text-cyan-300',    category: 'core' },
-  { icon: SiBlazor,        title: 'Blazor',        proficiency: 85, color: 'text-indigo-500 dark:text-indigo-300',category: 'core' },
-  { icon: SiPython,        title: 'Python',        proficiency: 80, color: 'text-yellow-500 dark:text-yellow-300',category: 'core' },
-  // Backend / DB
-  { icon: SiNodedotjs,     title: 'Node.js',       proficiency: 82, color: 'text-green-600 dark:text-green-400',  category: 'backend' },
-  { icon: SiPostgresql,    title: 'PostgreSQL',    proficiency: 85, color: 'text-blue-700 dark:text-blue-400',   category: 'backend' },
-  { icon: SiMysql,         title: 'SQL Server',    proficiency: 88, color: 'text-red-600 dark:text-red-400',     category: 'backend' },
-  { icon: SiMongodb,       title: 'MongoDB',       proficiency: 78, color: 'text-green-500 dark:text-green-300', category: 'backend' },
-  { icon: SiRedis,         title: 'Redis',         proficiency: 75, color: 'text-red-500 dark:text-red-300',     category: 'backend' },
-  // Cloud / DevOps
-  { icon: SiAmazon,        title: 'Azure',         proficiency: 85, color: 'text-blue-500 dark:text-blue-300',   category: 'cloud' },
-  { icon: SiDocker,        title: 'Docker',        proficiency: 80, color: 'text-sky-400 dark:text-sky-200',     category: 'cloud' },
-  { icon: SiKubernetes,    title: 'Kubernetes',    proficiency: 72, color: 'text-blue-500 dark:text-blue-300',   category: 'cloud' },
-  { icon: SiTerraform,     title: 'Terraform',     proficiency: 75, color: 'text-violet-500 dark:text-violet-300',category: 'tools' },
-  { icon: SiGithubactions, title: 'GitHub Actions',proficiency: 80, color: 'text-gray-700 dark:text-gray-300',   category: 'tools' },
-  { icon: SiGit,           title: 'Git',           proficiency: 92, color: 'text-orange-500 dark:text-orange-300',category: 'tools' },
-];
 
 const clientLogos = [
   { name: 'Safaricom',    logo: '/images/Clients/client1.png' },
@@ -182,14 +137,6 @@ const staggerContainer: Variants = {
   },
 };
 
-const iconVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.06, type: 'spring', stiffness: 280, damping: 20 },
-  }),
-};
 
 // ─── Animation Variants ─────────────────────────────────────────────────────
 
@@ -244,7 +191,6 @@ const Hero = () => {
   const particlesInitialized = useRef(false);
   const particlesContainerRef = useRef<Container | null | undefined>(undefined);
 
-  const [selectedTech,       setSelectedTech]       = useState<TechItem | null>(null);
   const [activeTestimonial,  setActiveTestimonial]  = useState(0);
   const [activeBadge,        setActiveBadge]        = useState(0);
   const [badgePaused,        setBadgePaused]        = useState(false);
@@ -381,7 +327,6 @@ const Hero = () => {
 
   const [tiltRef, tilt] = useCustomTilt({ max: 15, speed: 500, reset: true });
 
-  const proficiencyStyle = (pct: number) => ({ width: `${pct}%` });
 
   // ─────────────────────────────────────────────────────────────────────────
 
@@ -589,67 +534,12 @@ const Hero = () => {
             {/* ── CTAs ──────────────────────────────────────────────────────── */}
             
 
-            {/* ── Tech stack ────────────────────────────────────────────────── */}
+            {/* ── Technologies & Tools marquee ────────────────────────────── */}
             <motion.div
               variants={fadeInUp}
-              className="pt-6 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20"
+              className="pt-6 border-t border-[#e8e2d6] dark:border-[#3A5A6B]/20 -mx-4 sm:-mx-0"
             >
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#2B2D42]/55 dark:text-[#F8F5F0]/55 mb-4">
-                Tech Stack
-              </p>
-              <div className="flex flex-wrap gap-5">
-                {techStack.map((item, i) => {
-                  const Icon = item.icon;
-                  const isActive = selectedTech?.title === item.title;
-                  return (
-                    <motion.div
-                      key={item.title}
-                      custom={i}
-                      initial="hidden"
-                      animate="visible"
-                      variants={iconVariants}
-                      onMouseEnter={() => setSelectedTech(item)}
-                      onMouseLeave={() => setSelectedTech(null)}
-                      className="relative"
-                    >
-                      <Icon
-                        className={`w-8 h-8 cursor-pointer transition-all duration-200 ${item.color} ${
-                          isActive
-                            ? 'scale-125 drop-shadow-lg opacity-100'
-                            : 'opacity-60 hover:opacity-90 hover:scale-110'
-                        }`}
-                        title={item.title}
-                        aria-label={item.title}
-                      />
-
-                      {/* Tooltip */}
-                      <AnimatePresence>
-                        {isActive && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 8, scale: 0.92 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.1 } }}
-                            className="absolute -top-[4.5rem] left-1/2 -translate-x-1/2 z-20 w-36 pointer-events-none bg-white dark:bg-[#1E2A35] rounded-xl shadow-xl border border-[#e8e2d6] dark:border-[#3A5A6B]/40 p-3"
-                          >
-                            <p className="text-center text-xs font-semibold text-[#2B2D42] dark:text-[#F8F5F0] mb-1.5">
-                              {item.title}
-                            </p>
-                            <div className="w-full h-1.5 rounded-full bg-[#e8e2d6] dark:bg-[#3A5A6B]/30">
-                              <div
-                                className="h-1.5 rounded-full bg-gradient-to-r from-[#3A5A6B] to-[#6B7F82] transition-all duration-300"
-                                style={proficiencyStyle(item.proficiency)}
-                              />
-                            </div>
-                            <p className="text-center text-xs mt-1 text-[#2B2D42]/70 dark:text-[#F8F5F0]/70">
-                              {item.proficiency}%
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  );
-                })}
-              </div>
+              <TrustMarquee />
             </motion.div>
 
             {/* ── Client logos ──────────────────────────────────────────────── */}
