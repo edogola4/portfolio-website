@@ -25,7 +25,9 @@
     "sendAnotherMessage": "Tuma Ujumbe Mwingine",
     "sending": "Inatuma...",
     "sendMessage": "Tuma Ujumbe",
-    "viewFullContactForm": "Fungua Fomu Kamili ya Mawasiliano"
+    "viewFullContactForm": "Fungua Fomu Kamili ya Mawasiliano",
+  "code": "Msimbo",
+  "viewOnGithub": "Tazama kwenye GitHub →"
   },
   "footer": {
     "tagline": "Mhandisi wa Programu (Full Stack) anayejenga tovuti zinazokadiriwa kwa masoko ya Afrika Mashariki.",

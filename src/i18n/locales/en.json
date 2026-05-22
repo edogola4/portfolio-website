@@ -25,8 +25,11 @@
     "sendAnotherMessage": "Send Another Message",
     "sending": "Sending...",
     "sendMessage": "Send Message",
-    "viewFullContactForm": "View Full Contact Form"
+    "viewFullContactForm": "View Full Contact Form",
+    "code": "Code",
+    "viewOnGithub": "View on GitHub →"
   },
+
   "footer": {
     "tagline": "Full Stack Software Engineer building scalable web applications focused on East African markets.",
     "quickLinks": "Quick Links",
