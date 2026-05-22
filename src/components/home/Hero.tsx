@@ -285,47 +285,63 @@ const Hero = () => {
     if (
       particlesInitialized.current ||
       prefersReducedMotion ||
-      typeof window === 'undefined' ||
-      !window.tsParticles
+      typeof window === 'undefined'
     ) return;
 
     const container = document.getElementById('hero-particles');
-    if (!container) return;
+    if (!container || !window.tsParticles) return;
 
     try {
-      await loadFull(window.tsParticles);
-      particlesContainerRef.current = await window.tsParticles.load({
-        id: 'hero-particles',
-        options: {
-          fpsLimit: 60,
-          fullScreen: { enable: false, zIndex: 0 },
-          particles: {
-            number: { value: 28, density: { enable: true, width: 1500, height: 1500 } },
-            color: { value: '#3A5A6B' },
-            shape: { type: 'triangle' },
-            opacity: { value: { min: 0.08, max: 0.25 } },
-            size: { value: { min: 2, max: 5 } },
-            move: {
-              enable: true,
-              speed: 1.2,
-              direction: 'none',
-              random: true,
-              outModes: { default: 'bounce' },
+      // loadFull may expect an engine; try several fallbacks to avoid runtime errors
+      try {
+        // preferred: enhance global tsParticles if possible
+        await loadFull((window as any).tsParticles);
+      } catch {
+        try {
+          // some distributions export without needing a param
+          await loadFull();
+        } catch (innerErr) {
+          // swallow — we'll try direct load below
+          console.warn('loadFull fallback failed:', innerErr);
+        }
+      }
+
+      if (typeof (window as any).tsParticles.load === 'function') {
+        particlesContainerRef.current = await (window as any).tsParticles.load({
+          id: 'hero-particles',
+          options: {
+            fpsLimit: 60,
+            fullScreen: { enable: false, zIndex: 0 },
+            particles: {
+              number: { value: 28, density: { enable: true, width: 1500, height: 1500 } },
+              color: { value: '#3A5A6B' },
+              shape: { type: 'triangle' },
+              opacity: { value: { min: 0.08, max: 0.25 } },
+              size: { value: { min: 2, max: 5 } },
+              move: {
+                enable: true,
+                speed: 1.2,
+                direction: 'none',
+                random: true,
+                outModes: { default: 'bounce' },
+              },
             },
-          },
-          interactivity: {
-            detectsOn: 'window',
-            events: {
-              onHover: { enable: true, mode: 'bubble' },
-              resize: { enable: true },
+            interactivity: {
+              detectsOn: 'window',
+              events: {
+                onHover: { enable: true, mode: 'bubble' },
+                resize: { enable: true },
+              },
+              modes: { bubble: { distance: 200, size: 7, duration: 2, opacity: 0.7 } },
             },
-            modes: { bubble: { distance: 200, size: 7, duration: 2, opacity: 0.7 } },
+            detectRetina: true,
+            pauseOnBlur: true,
           },
-          detectRetina: true,
-          pauseOnBlur: true,
-        },
-      });
-      particlesInitialized.current = true;
+        });
+        particlesInitialized.current = true;
+      } else {
+        console.warn('tsParticles.load is not available — skipping particle init.');
+      }
     } catch (err) {
       console.error('Particles init failed:', err);
     }
