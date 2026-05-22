@@ -1,40 +1,11 @@
-import type { MetadataRoute } from 'next';
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
-  const now = new Date();
-  const locales = ['en', 'sw'] as const;
-
-  const routes = [
-    '/',
-    '/about',
-    '/projects',
-    '/blog',
-    '/contact',
-    '/resume',
-    '/skills',
+export default function sitemap() {
+  const lastModified = new Date();
+  return [
+    { url: 'https://brandonogola.com/', lastModified, priority: 1.0 },
+    { url: 'https://brandonogola.com/about', lastModified, priority: 0.7 },
+    { url: 'https://brandonogola.com/projects', lastModified, priority: 0.9 },
+    { url: 'https://brandonogola.com/skills', lastModified, priority: 0.7 },
+    { url: 'https://brandonogola.com/blog', lastModified, priority: 0.7 },
+    { url: 'https://brandonogola.com/contact', lastModified, priority: 0.7 },
   ];
-
-  // Root maps to default locale path (en)
-  const entries: MetadataRoute.Sitemap = [
-    {
-      url: new URL('/en', base).toString(),
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 1
-    }
-  ];
-
-  for (const route of routes.filter((r) => r !== '/')) {
-    for (const locale of locales) {
-      entries.push({
-        url: new URL(`/${locale}${route}`, base).toString(),
-        lastModified: now,
-        changeFrequency: 'weekly',
-        priority: route === '/about' ? 0.8 : 0.7
-      });
-    }
-  }
-
-  return entries;
 }
