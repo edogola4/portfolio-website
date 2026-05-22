@@ -27,6 +27,13 @@
     "sendMessage": "Tuma Ujumbe",
     "viewFullContactForm": "Fungua Fomu Kamili ya Mawasiliano"
   },
+  "marquee": {
+    "heading": "TEKNOLOJIA KAMILI — 40+ ZANA",
+    "headingShort": "ZANA ZA TEKNOLOJIA",
+    "row1Label": "LUGHA & BACKEND",
+    "row2Label": "FRONTEND & DATA",
+    "row3Label": "WINGU · DEVOPS · AI"
+  },
   "footer": {
     "tagline": "Mhandisi wa Programu (Full Stack) anayejenga tovuti zinazokadiriwa kwa masoko ya Afrika Mashariki.",
     "quickLinks": "Viungo vya Haraka",
