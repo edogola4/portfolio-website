@@ -232,6 +232,8 @@ export default function TrustMarquee({ inline = false }: TrustMarqueeProps) {
           align-items: center;
           gap: 0.75rem;
           min-height: 44px;
+          min-width: 0;
+          width: 100%;
         }
         .marquee-row-label {
           writing-mode: vertical-rl;
@@ -248,6 +250,8 @@ export default function TrustMarquee({ inline = false }: TrustMarqueeProps) {
         }
         .marquee-track {
           flex: 1;
+          width: 100%;
+          max-width: 100%;
           overflow: hidden;
           min-height: 44px;
           mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
@@ -361,6 +365,7 @@ export default function TrustMarquee({ inline = false }: TrustMarqueeProps) {
         role="region"
         aria-label="Brandon Ogola tech stack"
         className="overflow-hidden"
+        style={{ minWidth: 0, width: '100%' }}
       >
         {content}
       </div>
