@@ -27,13 +27,6 @@
     "sendMessage": "Send Message",
     "viewFullContactForm": "View Full Contact Form"
   },
-  "marquee": {
-    "heading": "TECHNOLOGIES & TOOLS",
-    "headingShort": "TECHNOLOGIES",
-    "row1Label": "LANGUAGES & BACKEND",
-    "row2Label": "FRONTEND & DATA",
-    "row3Label": "CLOUD · DEVOPS · AI"
-  },
   "footer": {
     "tagline": "Full Stack Software Engineer building scalable web applications focused on East African markets.",
     "quickLinks": "Quick Links",
