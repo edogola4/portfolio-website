@@ -62,7 +62,7 @@ const Header = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 items-center">
+        <nav aria-label="Main navigation" className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <Link
               key={item.key}
@@ -134,7 +134,7 @@ const Header = () => {
             isOpen ? 'block' : 'hidden'
           } md:hidden absolute top-full left-0 right-0 bg-background dark:bg-primary-950/95 backdrop-blur-sm shadow-lg border-b border-primary-100 dark:border-primary-800 py-2 px-4`}
         >
-          <nav className="flex flex-col space-y-1">
+          <nav aria-label="Mobile navigation" className="flex flex-col space-y-1">
             {navItems.map((item) => (
               <Link
                 key={item.key}

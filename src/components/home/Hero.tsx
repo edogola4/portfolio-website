@@ -6,11 +6,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   motion,
+  LazyMotion,
+  domAnimation,
   useScroll,
   useTransform,
   AnimatePresence,
   Variants,
 } from 'framer-motion';
+import { GiSparkles } from 'react-icons/gi';
 import { Container, Engine } from '@tsparticles/engine';
 import { loadFull } from 'tsparticles';
 import { FiArrowRight } from 'react-icons/fi';
@@ -121,6 +124,26 @@ const highlights = [
   },
 ];
 
+// Rotating badges data for the floating project badge
+const rotatingBadges = [
+  {
+    key: 'smartschedule',
+    icon: MdHealthAndSafety,
+    name: 'SmartSchedule',
+    tags: ['AI SaaS', '.NET 10 + Azure'],
+    badge: 'MVP Q2 2026',
+    colorClass: 'text-[#E07A5F]'
+  },
+  {
+    key: 'riggs',
+    icon: GiSparkles,
+    name: 'Riggs London',
+    tags: ['Ecommerce AI', 'M-Pesa · Kenya'],
+    badge: 'MVP Week 8',
+    colorClass: 'text-amber-500'
+  }
+];
+
 // ─── Animation Variants ─────────────────────────────────────────────────────
 
 const fadeInUp: Variants = {
@@ -205,6 +228,16 @@ const Hero = () => {
   const [selectedTech,       setSelectedTech]       = useState<TechItem | null>(null);
   const [activeTestimonial,  setActiveTestimonial]  = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [badgeIndex, setBadgeIndex] = useState(0);
+  const [badgePaused, setBadgePaused] = useState(false);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const id = setInterval(() => {
+      if (!badgePaused) setBadgeIndex(i => (i + 1) % rotatingBadges.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [badgePaused, prefersReducedMotion]);
 
   const { scrollY } = useScroll();
   const locale = useLocale();
@@ -671,7 +704,7 @@ const Hero = () => {
               <div className="relative rounded-full overflow-hidden border-8 border-white dark:border-[#1E2A35] shadow-2xl aspect-square bg-[#F8F5F0] dark:bg-[#1E2A35]">
                 <Image
                   src="/images/profile.png"
-                  alt="Brandon Ogola — Software Engineer"
+                  alt="Brandon Ogola, full-stack .NET and TypeScript engineer based in Nairobi, Kenya"
                   width={900}
                   height={900}
                   className="w-full h-auto object-cover object-top"
@@ -683,26 +716,49 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* ── Floating badge: SmartSchedule ─────────────────────────────── */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.45 }}
-              className="absolute -right-4 top-1/4 bg-white dark:bg-[#1E2A35] rounded-xl shadow-lg border border-[#e8e2d6] dark:border-[#3A5A6B]/40 px-3.5 py-2.5 max-w-[10rem] hidden lg:block"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <MdHealthAndSafety className="text-[#E07A5F] w-4 h-4 shrink-0" />
-                <p className="text-[0.65rem] font-bold text-[#2B2D42] dark:text-white leading-tight">
-                  SmartSchedule
-                </p>
+            {/* ── Rotating project badges (SmartSchedule + Riggs) ───────────── */}
+            <LazyMotion features={domAnimation}>
+              <div
+                className="absolute -right-4 top-1/4 rounded-xl max-w-[10rem] hidden lg:block"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={rotatingBadges[badgeIndex].key}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.45, ease: 'easeInOut' }}
+                    className="bg-white dark:bg-[#1E2A35] rounded-xl shadow-lg border border-[#e8e2d6] dark:border-[#3A5A6B]/40 px-3.5 py-2.5"
+                    onMouseEnter={() => setBadgePaused(true)}
+                    onMouseLeave={() => setBadgePaused(false)}
+                  >
+                    {(() => {
+                      const curr = rotatingBadges[badgeIndex];
+                      const IconComp = curr.icon as React.ComponentType<{ className?: string }>;
+                      return (
+                        <>
+                          <div className="flex items-center gap-2 mb-1">
+                            <IconComp className={`${curr.colorClass} w-4 h-4 shrink-0`} />
+                            <p className="text-[0.65rem] font-bold text-[#2B2D42] dark:text-white leading-tight">
+                              {curr.name}
+                            </p>
+                          </div>
+                          <p className="text-[0.6rem] text-[#2B2D42]/60 dark:text-[#F8F5F0]/60 leading-snug">
+                            {curr.tags.join(' · ')}
+                          </p>
+                          <span className={`inline-block mt-1.5 px-1.5 py-0.5 text-[0.55rem] font-semibold rounded-full ${curr.key === 'riggs' ? 'bg-amber-100 text-amber-700' : 'bg-[#E07A5F]/15 text-[#E07A5F]'} `}>
+                            {curr.badge}
+                          </span>
+                        </>
+                      );
+                    })()}
+                  </motion.div>
+                </AnimatePresence>
               </div>
-              <p className="text-[0.6rem] text-[#2B2D42]/60 dark:text-[#F8F5F0]/60 leading-snug">
-                AI SaaS · .NET 10 + Azure
-              </p>
-              <span className="inline-block mt-1.5 px-1.5 py-0.5 text-[0.55rem] font-semibold rounded-full bg-[#E07A5F]/15 text-[#E07A5F]">
-                MVP Q2 2026
-              </span>
-            </motion.div>
+            </LazyMotion>
+
+            {/* Badge rotation state and renderer (client-only logic) */}
+
 
             {/* ── Floating badge: GitHub contributions ──────────────────────── */}
             <motion.div
