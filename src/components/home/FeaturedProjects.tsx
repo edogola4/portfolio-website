@@ -8,36 +8,10 @@ import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 
-// This would come from your data source
-const featuredProjects = [
-  {
-    id: 'fintech-app',
-    title: 'M-Pesa Integration Platform',
-    description: 'A seamless integration platform enabling businesses to easily connect with M-Pesa payment services across East Africa.',
-    image: '/images/projects/project1.jpg',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'M-Pesa API'],
-    demoUrl: 'https://mpesa-integration.example.com',
-    githubUrl: 'https://github.com/edwinogola/mpesa-integration',
-  },
-  {
-    id: 'ecommerce',
-    title: 'Kenyan Artisan Marketplace',
-    description: 'An e-commerce platform connecting local artisans with global customers, complete with multi-currency support.',
-    image: '/images/projects/project2.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Stripe'],
-    demoUrl: 'https://artisan-marketplace.example.com',
-    githubUrl: 'https://github.com/edwinogola/artisan-marketplace',
-  },
-  {
-    id: 'health-app',
-    title: 'Rural Health Monitoring System',
-    description: 'A progressive web app that works offline for rural health workers to collect and synchronize patient data.',
-    image: '/images/projects/project3.jpg',
-    technologies: ['React', 'PWA', 'IndexedDB', 'Firebase', 'Node.js'],
-    demoUrl: 'https://health-monitor.example.com',
-    githubUrl: 'https://github.com/edwinogola/health-monitor',
-  },
-];
+// Use featured projects from the shared data source
+import { getFeaturedProjects } from '@/lib/projects';
+
+const featuredProjects = getFeaturedProjects();
 
 const FeaturedProjects = () => {
   const [ref, inView] = useInView({
@@ -89,58 +63,90 @@ const FeaturedProjects = () => {
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          {featuredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              className="bg-white dark:bg-[#1E2A35] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-              variants={itemVariants}
-            >
-              <div className="relative h-48 w-full">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-[#2B2D42] dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-2 py-1 text-xs font-medium rounded-full bg-[#F8F5F0] dark:bg-[#2C3E50] text-[#3A5A6B] dark:text-[#6B7F82]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          {featuredProjects.map((project) => {
+            const imageSrc = project.image || project.imageUrl || '/images/projects/project-placeholder.jpg';
+            const isRiggs = project.slug === 'riggs-london-kenya' || (project.title && project.title.toLowerCase().includes('riggs'));
+
+            return (
+              <motion.div
+                key={project.id}
+                className="bg-white dark:bg-[#1E2A35] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                variants={itemVariants}
+              >
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={imageSrc}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <div className="flex gap-4">
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-medium text-[#3A5A6B] dark:text-[#6B7F82] hover:text-[#2B3D4D] dark:hover:text-[#5A6D72] transition-colors"
-                  >
-                    <FiExternalLink className="mr-1" /> Live Demo
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-medium text-[#3A5A6B] dark:text-[#6B7F82] hover:text-[#2B3D4D] dark:hover:text-[#5A6D72] transition-colors"
-                  >
-                    <FiGithub className="mr-1" /> Code
-                  </a>
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 className="text-xl font-bold text-[#2B2D42] dark:text-white mb-0">
+                      {project.title}
+                    </h3>
+                    {/* subtle badge accent */}
+                    {project.badges && project.badges.length > 0 ? (
+                      <div className="flex-shrink-0">
+                        {project.badges.map((b: any) => (
+                          <span
+                            key={b.label}
+                            className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${b.color === 'amber' ? 'bg-amber-100 text-amber-700' : 'bg-[#E07A5F]/10 text-[#E07A5F]'} `}
+                          >
+                            {b.label} {b.value ? `· ${b.value}` : ''}
+                          </span>
+                        ))}
+                      </div>
+                    ) : project.badge ? (
+                      <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-[#E07A5F]/15 text-[#E07A5F]">
+                        {project.badge}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <p className="text-[#2B2D42]/80 dark:text-[#F8F5F0]/80 mb-4">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {(project.technologies || project.technologies)?.map((tech: string) => (
+                      <span 
+                        key={tech} 
+                        className={`px-2 py-1 text-xs font-medium rounded-full bg-[#F8F5F0] dark:bg-[#2C3E50] text-[#3A5A6B] dark:text-[#6B7F82]`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sm font-medium text-[#3A5A6B] dark:text-[#6B7F82] hover:text-[#2B3D4D] dark:hover:text-[#5A6D72] transition-colors"
+                        aria-label={`Open ${project.title} demo`}
+                      >
+                        <FiExternalLink className="mr-1" /> Live Demo
+                      </a>
+                    )}
+
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sm font-medium text-[#3A5A6B] dark:text-[#6B7F82] hover:text-[#2B3D4D] dark:hover:text-[#5A6D72] transition-colors"
+                        aria-label={`View ${project.title} on GitHub`}
+                      >
+                        <FiGithub className="mr-1" /> {isRiggs ? t('viewOnGithub', { defaultMessage: 'View on GitHub →' }) : t('code', { defaultMessage: 'Code' })}
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
         {/* View all projects CTA */}
         <div className="mt-12 text-center">

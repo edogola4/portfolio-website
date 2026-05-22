@@ -69,6 +69,30 @@ export const projects = [
     ]
   },
   {
+    id: 'riggs-london-kenya',
+    title: 'Riggs London Kenya',
+    slug: 'riggs-london-kenya',
+    description: 'Premium ecommerce platform for Riggs London fragrances in the Kenyan market. Mobile-first, M-Pesa-first, with a Claude-powered AI Scent Advisor.',
+    longDescription: 'Premium ecommerce platform for Riggs London fragrances in the Kenyan market. Mobile-first, M-Pesa-first, with a Claude-powered AI Scent Advisor. AI-driven scent recommendations, semantic search via pgvector, and WhatsApp notifications.',
+    technologies: ['Next.js 14', 'Fastify', 'PostgreSQL', 'pgvector', 'Claude 3.5 Haiku', 'M-Pesa Daraja API', 'Turborepo'],
+    category: 'Ecommerce · AI · Fintech',
+    featured: true,
+    imageUrl: '/images/projects/ecommerce.jpg',
+    githubUrl: 'https://github.com/edogola4/Riggs-London-Kenya',
+    badge: 'MVP Week 8',
+    status: 'Pre-Launch · Active Build',
+    badges: [
+      { label: 'MVP', value: 'Week 8', color: 'amber' }
+    ],
+    highlights: [
+      'AI Scent Advisor powered by Claude 3.5 Haiku',
+      'M-Pesa STK Push (Safaricom Daraja API)',
+      'Semantic vector search via pgvector + OpenAI embeddings',
+      'WhatsApp Business API notifications',
+      'Railway + Vercel deployment · ~KES 14,000/mo infra'
+    ],
+  },
+  {
     id: 'tinytots-ecommerce',
     title: 'TinyTots — E-Commerce Platform',
     slug: 'tinytots-ecommerce',
