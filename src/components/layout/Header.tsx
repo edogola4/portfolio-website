@@ -62,7 +62,7 @@ const Header = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 items-center">
+        <nav className="hidden md:flex space-x-6 items-center" aria-label="Main navigation">
           {navItems.map((item) => (
             <Link
               key={item.key}
