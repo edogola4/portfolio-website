@@ -1,4 +1,4 @@
-# Brandon Ogola - Portfolio Website
+# Brandon Ogola - Portfolio Website 
 
 [![CI/CD Status](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/edogola4/portfolio-website/actions/workflows/ci-cd.yml)
 [![Vercel](https://vercelbadge.vercel.app/api/edogola4/portfolio-website)](https://vercel.com/edogola4/portfolio-website)
