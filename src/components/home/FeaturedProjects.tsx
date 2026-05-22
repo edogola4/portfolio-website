@@ -8,6 +8,13 @@ import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 
+// Badge type for project items
+interface Badge {
+  label: string;
+  value?: string;
+  color?: string;
+}
+
 // Use featured projects from the shared data source
 import { getFeaturedProjects } from '@/lib/projects';
 
@@ -89,7 +96,7 @@ const FeaturedProjects = () => {
                     {/* subtle badge accent */}
                     {project.badges && project.badges.length > 0 ? (
                       <div className="flex-shrink-0">
-                        {project.badges.map((b: any) => (
+                        {project.badges.map((b: Badge) => (
                           <span
                             key={b.label}
                             className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full ${b.color === 'amber' ? 'bg-amber-100 text-amber-700' : 'bg-[#E07A5F]/10 text-[#E07A5F]'} `}

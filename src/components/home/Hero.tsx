@@ -292,23 +292,17 @@ const Hero = () => {
     if (!container || !window.tsParticles) return;
 
     try {
-      // loadFull may expect an engine; try several fallbacks to avoid runtime errors
-      try {
-        // preferred: enhance global tsParticles if possible
-        await loadFull((window as any).tsParticles);
-      } catch {
-        try {
-          // some distributions export without needing a param
-          await loadFull();
-        } catch (innerErr) {
-          // swallow — we'll try direct load below
-          console.warn('loadFull fallback failed:', innerErr);
-        }
-      }
+    // loadFull may expect an engine; use safe call and narrow window.tsParticles without 'any'
+    try {
+      await loadFull();
+    } catch (innerErr) {
+      console.warn('loadFull failed:', innerErr);
+    }
 
-      if (typeof (window as any).tsParticles.load === 'function') {
-        particlesContainerRef.current = await (window as any).tsParticles.load({
-          id: 'hero-particles',
+    const ts = (window as unknown as { tsParticles?: { load?: (opts: unknown) => Promise<unknown> } }).tsParticles;
+    if (ts && typeof ts.load === 'function') {
+      particlesContainerRef.current = await ts.load({
+        id: 'hero-particles',
           options: {
             fpsLimit: 60,
             fullScreen: { enable: false, zIndex: 0 },

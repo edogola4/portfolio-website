@@ -4,7 +4,6 @@
 import { motion } from 'framer-motion';
 
 import * as SiIcons from 'react-icons/si';
-import * as TbIcons from 'react-icons/tb';
 
 const iconComponents = {
   csharp: SiIcons.SiDotnet,
@@ -12,17 +11,17 @@ const iconComponents = {
   typescript: SiIcons.SiTypescript,
   python: SiIcons.SiPython,
   react: SiIcons.SiReact,
-  blazor: TbIcons.TbBrandBlazor,
+  blazor: SiIcons.SiBlazor,
   nextjs: SiIcons.SiNextdotjs,
   aspnet: SiIcons.SiDotnet,
   nodejs: SiIcons.SiNodedotjs,
   express: SiIcons.SiExpress,
-  sqlserver: SiIcons.SiMicrosoftsqlserver,
+  sqlserver: SiIcons.SiServer || SiIcons.SiDatabase || SiIcons.SiMssql || SiIcons.SiPostgresql,
   postgresql: SiIcons.SiPostgresql,
   mongodb: SiIcons.SiMongodb,
   redis: SiIcons.SiRedis,
-  azure: SiIcons.SiMicrosoftazure,
-  aws: SiIcons.SiAmazonaws,
+  azure: SiIcons.SiAmazon, // fallback used elsewhere as Azure icon
+  aws: SiIcons.SiAmazon,
   docker: SiIcons.SiDocker,
   kubernetes: SiIcons.SiKubernetes,
   terraform: SiIcons.SiTerraform,
