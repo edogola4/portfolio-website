@@ -8,7 +8,10 @@ import { useInView } from 'react-intersection-observer';
 
 interface TechPillItem {
   name: string;
-  icon: string | null; // devicon class or null → SVG monogram
+  /** devicon font class (e.g. 'devicon-csharp-plain') — must exist in font variant */
+  icon: string | null;
+  /** CDN SVG URL — used when the icon exists only as SVG, not in the font */
+  svgUrl?: string;
   color: string;
 }
 
@@ -19,25 +22,33 @@ interface ClientLogoItem {
   height: number;
 }
 
+// ─── CDN base ─────────────────────────────────────────────────────────────────
+
+const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
+
 // ─── Row 1 data — Technologies ────────────────────────────────────────────────
+// Rule: if the icon exists in the devicon FONT → use icon class + colored
+//       if SVG-only (no font variant) → use svgUrl
 
 const techItems: TechPillItem[] = [
-  { name: 'C# / .NET',       icon: 'devicon-csharp-plain',            color: '#239120' },
-  { name: 'TypeScript',      icon: 'devicon-typescript-plain',        color: '#3178C6' },
-  { name: 'React',           icon: 'devicon-react-original',          color: '#61DAFB' },
-  { name: 'Blazor',          icon: 'devicon-blazor-original',         color: '#512BD4' },
-  { name: 'Python',          icon: 'devicon-python-original',         color: '#3776AB' },
-  { name: 'Node.js',         icon: 'devicon-nodejs-plain',            color: '#339933' },
-  { name: 'PostgreSQL',      icon: 'devicon-postgresql-plain',        color: '#336791' },
-  { name: 'SQL Server',      icon: 'devicon-microsoftsqlserver-plain', color: '#CC2927' },
-  { name: 'MongoDB',         icon: 'devicon-mongodb-plain',           color: '#47A248' },
-  { name: 'Redis',           icon: 'devicon-redis-plain',             color: '#DC382D' },
-  { name: 'Azure',           icon: 'devicon-azure-plain',             color: '#0078D4' },
-  { name: 'Docker',          icon: 'devicon-docker-plain',            color: '#2496ED' },
-  { name: 'Kubernetes',      icon: 'devicon-kubernetes-plain',        color: '#326CE5' },
-  { name: 'Terraform',       icon: 'devicon-terraform-plain',         color: '#7B42BC' },
-  { name: 'GitHub Actions',  icon: 'devicon-githubactions-plain',     color: '#2088FF' },
-  { name: 'Git',             icon: 'devicon-git-plain',               color: '#F05032' },
+  { name: 'C# / .NET',      icon: 'devicon-csharp-plain colored',             color: '#239120' },
+  { name: 'TypeScript',     icon: 'devicon-typescript-plain colored',         color: '#3178C6' },
+  { name: 'React',          icon: 'devicon-react-original colored',           color: '#61DAFB' },
+  // Blazor — font has 'original' ✅
+  { name: 'Blazor',         icon: 'devicon-blazor-original colored',          color: '#512BD4' },
+  // Python — font only has 'plain' (flat/monochrome). Use SVG original for real logo.
+  { name: 'Python',         icon: null, svgUrl: `${DI}/python/python-original.svg`, color: '#3776AB' },
+  { name: 'Node.js',        icon: 'devicon-nodejs-plain colored',             color: '#339933' },
+  { name: 'PostgreSQL',     icon: 'devicon-postgresql-plain colored',         color: '#336791' },
+  { name: 'SQL Server',     icon: 'devicon-microsoftsqlserver-plain colored', color: '#CC2927' },
+  { name: 'MongoDB',        icon: 'devicon-mongodb-plain colored',            color: '#47A248' },
+  { name: 'Redis',          icon: 'devicon-redis-plain colored',              color: '#DC382D' },
+  { name: 'Azure',          icon: 'devicon-azure-plain colored',              color: '#0078D4' },
+  { name: 'Docker',         icon: 'devicon-docker-plain colored',             color: '#2496ED' },
+  { name: 'Kubernetes',     icon: 'devicon-kubernetes-plain colored',         color: '#326CE5' },
+  { name: 'Terraform',      icon: 'devicon-terraform-plain colored',          color: '#7B42BC' },
+  { name: 'GitHub Actions', icon: 'devicon-githubactions-plain colored',      color: '#2088FF' },
+  { name: 'Git',            icon: 'devicon-git-plain colored',                color: '#F05032' },
 ];
 
 // ─── Row 2 data — Clients ─────────────────────────────────────────────────────
@@ -72,6 +83,48 @@ function Monogram({ name, color }: { name: string; color: string }) {
         {letter}
       </text>
     </svg>
+  );
+}
+
+/** Renders the correct icon: font <i>, CDN <img>, or SVG monogram fallback */
+function TechIcon({ item }: { item: TechPillItem }) {
+  if (item.svgUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={item.svgUrl}
+        alt={item.name}
+        width={18}
+        height={18}
+        style={{ width: 18, height: 18, flexShrink: 0, objectFit: 'contain' }}
+        aria-hidden="true"
+      />
+    );
+  }
+  if (item.icon) {
+    return (
+      <i
+        className={item.icon}
+        style={{ fontSize: 18, width: 18, height: 18, lineHeight: 1, flexShrink: 0 }}
+        aria-hidden="true"
+      />
+    );
+  }
+  return <Monogram name={item.name} color={item.color} />;
+}
+
+// ─── Pill ─────────────────────────────────────────────────────────────────────
+
+function TechPill({ item }: { item: TechPillItem }) {
+  return (
+    <li
+      className="tm-pill"
+      style={{ '--pill-color': item.color, '--pill-rgb': hexToRgb(item.color) } as React.CSSProperties}
+      title={item.name}
+    >
+      <TechIcon item={item} />
+      <span className="tm-pill-label">{item.name}</span>
+    </li>
   );
 }
 
@@ -144,27 +197,15 @@ export default function TrustMarquee() {
           transition: opacity 0.2s ease, filter 0.2s ease;
           cursor: default;
         }
-        .tm-logo-wrap:hover {
-          opacity: 1;
-          filter: grayscale(0);
-        }
-        /* Light mode */
+        .tm-logo-wrap:hover { opacity: 1; filter: grayscale(0); }
         :not(.dark) .tm-pill {
           border-color: rgba(0,0,0,0.08);
           background: rgba(0,0,0,0.02);
         }
-        :not(.dark) .tm-pill:hover {
-          background: rgba(var(--pill-rgb), 0.07);
-        }
-        :not(.dark) .tm-pill-label {
-          color: rgba(43,45,66,0.82);
-        }
-        :not(.dark) .tm-logo-wrap {
-          filter: grayscale(1) brightness(0.7);
-        }
-        :not(.dark) .tm-logo-wrap:hover {
-          filter: grayscale(0) brightness(1);
-        }
+        :not(.dark) .tm-pill:hover { background: rgba(var(--pill-rgb), 0.07); }
+        :not(.dark) .tm-pill-label { color: rgba(43,45,66,0.82); }
+        :not(.dark) .tm-logo-wrap { filter: grayscale(1) brightness(0.7); }
+        :not(.dark) .tm-logo-wrap:hover { filter: grayscale(0) brightness(1); }
       `}</style>
 
       <motion.section
@@ -178,59 +219,30 @@ export default function TrustMarquee() {
       >
         <div className="flex flex-col gap-y-5">
 
-          {/* ── Row 1: Technologies (scrolls left) ── */}
+          {/* ── Row 1: Technologies → left ── */}
           <div>
             <p className="text-center text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-[#2B2D42]/40 dark:text-[#F8F5F0]/35 mb-3 select-none">
               Technologies
             </p>
             <div className="tm-track">
               <div className="tm-inner">
-                {/* Primary list */}
                 <ul className="tm-inner tm-left" aria-label="Technologies" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                  {techItems.map(item => (
-                    <li
-                      key={`${item.name}-a`}
-                      className="tm-pill"
-                      style={{ '--pill-color': item.color, '--pill-rgb': hexToRgb(item.color) } as React.CSSProperties}
-                      title={item.name}
-                    >
-                      {item.icon
-                        ? <i className={`${item.icon} colored`} style={{ fontSize: '18px', width: '18px', height: '18px', lineHeight: 1, flexShrink: 0 }} aria-hidden="true" />
-                        : <Monogram name={item.name} color={item.color} />
-                      }
-                      <span className="tm-pill-label">{item.name}</span>
-                    </li>
-                  ))}
+                  {techItems.map(item => <TechPill key={`${item.name}-a`} item={item} />)}
                 </ul>
-                {/* Duplicate for seamless loop */}
                 <ul className="tm-inner tm-left" aria-hidden="true" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                  {techItems.map(item => (
-                    <li
-                      key={`${item.name}-b`}
-                      className="tm-pill"
-                      style={{ '--pill-color': item.color, '--pill-rgb': hexToRgb(item.color) } as React.CSSProperties}
-                      title={item.name}
-                    >
-                      {item.icon
-                        ? <i className={`${item.icon} colored`} style={{ fontSize: '18px', width: '18px', height: '18px', lineHeight: 1, flexShrink: 0 }} aria-hidden="true" />
-                        : <Monogram name={item.name} color={item.color} />
-                      }
-                      <span className="tm-pill-label">{item.name}</span>
-                    </li>
-                  ))}
+                  {techItems.map(item => <TechPill key={`${item.name}-b`} item={item} />)}
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* ── Row 2: Trusted By (scrolls right) ── */}
+          {/* ── Row 2: Trusted By → right ── */}
           <div>
             <p className="text-center text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-[#2B2D42]/40 dark:text-[#F8F5F0]/35 mb-3 select-none">
               Trusted By
             </p>
             <div className="tm-track">
               <div className="tm-inner">
-                {/* Primary list */}
                 <div className="tm-inner tm-right" aria-label="Clients" role="list">
                   {clientItems.map(c => (
                     <div key={`${c.name}-a`} className="tm-logo-wrap" role="listitem" title={c.name}>
@@ -238,7 +250,6 @@ export default function TrustMarquee() {
                     </div>
                   ))}
                 </div>
-                {/* Duplicate */}
                 <div className="tm-inner tm-right" aria-hidden="true">
                   {clientItems.map(c => (
                     <div key={`${c.name}-b`} className="tm-logo-wrap" title={c.name}>
