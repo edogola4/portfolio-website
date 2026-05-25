@@ -50,14 +50,14 @@ interface TiltState {
 const highlights = [
   {
     icon: IoRocketOutline,
-    value: '3+',
-    label: 'Years Enterprise Experience',
+    value: '2+',
+    label: 'Years of Production Experience',
     color: 'from-[#3A5A6B] to-[#6B7F82]',
   },
   {
     icon: FaStar,
-    value: '15+',
-    label: 'Projects Built & Deployed',
+    value: '10+',
+    label: 'Projects Shipped',
     color: 'from-[#E07A5F] to-[#D4673D]',
   },
   {
@@ -199,9 +199,11 @@ const Hero = () => {
     if (!typedEl.current) return;
     typedRef.current = new Typed(typedEl.current, {
       strings: [
-        'Scale enterprise systems',
+        'Full-stack .NET &amp; TypeScript engineer',
+        'Building fintech &amp; healthcare SaaS',
+        'M-Pesa · Claude AI · Azure · .NET 10 · C#  · TypeScript  · Next.js  · React  · Angular · Vue · Nuxt · Node.js',
+         'Scale enterprise systems',
         'Architect cloud solutions',
-        '.NET & Azure specialist'
       ],
       typeSpeed: 60,
       backSpeed: 40,
@@ -410,32 +412,38 @@ const Hero = () => {
               style={{ opacity: subtitleOpacity }}
               className="text-base md:text-lg text-[#2B2D42]/85 dark:text-[#F8F5F0]/85 leading-relaxed max-w-xl"
             >
-              Full-stack engineer with 3+ years building production-grade systems in{' '}
-              <strong className="text-[#3A5A6B] dark:text-[#6B9FB1] font-semibold">.NET, TypeScript &amp; Azure</strong>.
-              Currently architecting SmartSchedule Healthcare — an AI-powered scheduling SaaS
-              targeting a{' '}
-              <strong className="text-[#E07A5F] font-semibold">$150B market</strong>.
+              Full-stack engineer with 2+ years shipping production-grade systems across fintech, edtech, healthcare, and SaaS —{' '}
+              <strong className="text-[#3A5A6B] dark:text-[#6B9FB1] font-semibold">.NET 10, C#, TypeScript &amp; Azure</strong>.
+              Building SmartSchedule Healthcare and Riggs London Kenya — real products with{' '}
+              <strong className="text-[#E07A5F] font-semibold">M-Pesa, Claude AI &amp; pgvector</strong>.
             </motion.p>
 
             {/* ── Featured project callout ───────────────────────────────────── */}
             <motion.div
               variants={fadeInUp}
-              className="flex items-start gap-4 p-4 rounded-xl border-2 border-[#3A5A6B]/25 dark:border-[#6B9FB1]/30 bg-gradient-to-r from-[#3A5A6B]/8 to-transparent dark:from-[#3A5A6B]/15 dark:to-transparent backdrop-blur-sm"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3"
             >
-              <span className="text-2xl mt-0.5 shrink-0">🏥</span>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-[#2B2D42] dark:text-white mb-0.5">
-                  SmartSchedule Healthcare — Active Development
-                </p>
-                <p className="text-xs text-[#2B2D42]/70 dark:text-[#F8F5F0]/70 mb-2 leading-relaxed">
-                  Enterprise AI scheduling SaaS · .NET 10 + Azure · MVP Q2 2026
-                </p>
-                <Link
-                  href={`/${locale}/projects`}
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#3A5A6B] dark:text-[#6B9FB1] hover:gap-2 transition-all duration-200"
-                >
-                  View Project <FiArrowRight className="text-xs" />
-                </Link>
+              {/* SmartSchedule */}
+              <div className="flex items-start gap-3 p-3.5 rounded-xl border border-[#3A5A6B]/25 dark:border-[#6B9FB1]/30 bg-gradient-to-r from-[#3A5A6B]/8 to-transparent dark:from-[#3A5A6B]/15 dark:to-transparent">
+                <span className="text-xl mt-0.5 shrink-0">🏥</span>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-[#2B2D42] dark:text-white mb-0.5">SmartSchedule Healthcare</p>
+                  <p className="text-[0.68rem] text-[#2B2D42]/65 dark:text-[#F8F5F0]/65 leading-snug mb-1.5">.NET 10 + Azure · MVP Q2 2026</p>
+                  <Link href={`/${locale}/projects`} className="inline-flex items-center gap-1 text-[0.68rem] font-semibold text-[#3A5A6B] dark:text-[#6B9FB1] hover:gap-2 transition-all duration-200">
+                    View <FiArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
+              {/* Riggs London */}
+              <div className="flex items-start gap-3 p-3.5 rounded-xl border border-amber-400/30 dark:border-amber-500/30 bg-gradient-to-r from-amber-400/8 to-transparent dark:from-amber-500/10 dark:to-transparent">
+                <span className="text-xl mt-0.5 shrink-0">🧴</span>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-[#2B2D42] dark:text-white mb-0.5">Riggs London Kenya</p>
+                  <p className="text-[0.68rem] text-[#2B2D42]/65 dark:text-[#F8F5F0]/65 leading-snug mb-1.5">M-Pesa · Claude AI · pgvector</p>
+                  <a href="https://github.com/edogola4/Riggs-London-Kenya" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[0.68rem] font-semibold text-amber-600 dark:text-amber-400 hover:gap-2 transition-all duration-200">
+                    GitHub <FiArrowRight className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </motion.div>
 
