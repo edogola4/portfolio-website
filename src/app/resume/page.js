@@ -34,7 +34,7 @@ export default function ResumePage() {
           <p className="text-[#2B2D42]/70 dark:text-neutral-300">Software Engineer · Nairobi, Kenya · Open to remote &amp; hybrid</p>
         </div>
         <a
-          href="/files/EdOgola (1).pdf"
+          href="/files/Brandon_Ogola_CV.pdf"
           download="Brandon_Ogola_CV.pdf"
           className="inline-flex items-center gap-2 bg-[#E07A5F] hover:bg-[#c9664d] text-white px-7 py-3.5 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02]"
         >
