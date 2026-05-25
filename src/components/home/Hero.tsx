@@ -201,7 +201,11 @@ const Hero = () => {
       strings: [
         'Full-stack .NET &amp; TypeScript engineer',
         'Building fintech &amp; healthcare SaaS',
-        'M-Pesa · Claude AI · Azure · .NET 10 · C#  · TypeScript  · Next.js  · React  · Angular · Vue · Nuxt · Node.js',
+        'M-Pesa · Claude AI · Azure',
+        'Scalable cloud systems · Enterprise architecture',
+        '.NET 10 · C#  · TypeScript',
+        'React · Next.js  · React',
+        'Angular · Vue · Nuxt · Node.js',
          'Scale enterprise systems',
         'Architect cloud solutions',
       ],
