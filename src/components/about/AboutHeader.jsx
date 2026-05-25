@@ -68,13 +68,13 @@ export default function AboutHeader() {
           </h1>
           
           <p className="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
-            I'm a Software Engineer based in Nairobi, Kenya, with roots in East Africa's growing tech ecosystem. I started my career building solutions for local startups and organisations — learning early that great software must be both technically sound and contextually relevant to the people it serves.
+            I&apos;m a Software Engineer based in Nairobi, Kenya, with 3+ years delivering full-stack applications across fintech, edtech, healthcare, and SaaS domains. I started my career building solutions for local startups and organisations — learning early that great software must be both technically sound and contextually relevant to the people it serves.
           </p>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
-            That foundation shaped how I approach engineering today. I now specialise in enterprise backend systems, cloud-native SaaS, and full-stack TypeScript applications — building production-grade software using .NET, C#, Azure, and React with a focus on scalable architecture and measurable business outcomes.
+            I specialise in enterprise backend systems, cloud-native SaaS, and full-stack TypeScript applications — shipping production-grade software using .NET, C#, Azure, and React with a focus on scalable architecture and measurable outcomes: 35% faster API response times, 40% reduction in manual processing, and consistently high test coverage.
           </p>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed text-center lg:text-left">
-            Currently architecting SmartSchedule Healthcare, an AI-powered appointment scheduling SaaS on .NET 10 and Azure targeting a $150B healthcare market — bringing the same problem-solving mindset I developed in East Africa to enterprise-grade global challenges.
+            Currently architecting SmartSchedule Healthcare, an AI-powered appointment scheduling SaaS on .NET 10 and Azure targeting a $150B healthcare market — and building Riggs London Kenya, a mobile-first e-commerce platform with M-Pesa payments and a Claude-powered AI Scent Advisor.
           </p>
           
           {/* Social Links */}

@@ -11,25 +11,25 @@ export default function ProfessionalJourney() {
         <div className="mt-6 space-y-6 text-gray-700 dark:text-gray-300">
           <div className="relative pl-6 before:absolute before:left-0 before:top-3 before:h-3 before:w-3 before:rounded-full before:bg-accent-500 before:ring-4 before:ring-accent-100 dark:before:ring-accent-900/30">
             <p className="text-lg leading-relaxed">
-              I started my career building solutions for local startups and organisations in East Africa, learning early that great software must be both technically sound and contextually relevant to the people it serves. This foundation shaped how I approach engineering today.
+              I started my career as a Software Developer Intern at REAL BIZ Digital in 2023, building React and Node.js applications across three client projects. That early experience — shipping real features under real deadlines — shaped how I approach engineering: with a bias for measurable outcomes over theoretical perfection.
             </p>
           </div>
           
           <div className="relative pl-6 before:absolute before:left-0 before:top-3 before:h-3 before:w-3 before:rounded-full before:bg-accent-500 before:ring-4 before:ring-accent-100 dark:before:ring-accent-900/30">
             <p className="text-lg leading-relaxed">
-              I now specialise in enterprise backend systems, cloud-native SaaS, and full-stack TypeScript applications — building production-grade software using .NET, C#, Azure, and React with a focus on scalable architecture and measurable business outcomes.
+              I moved into freelance work, building Riggs London Kenya — a mobile-first e-commerce platform with M-Pesa payments, Anthropic Claude AI, and semantic search via pgvector — and a real-time collaborative coding platform. Simultaneously, I interned at Alliance Bioversity CIAT, automating data workflows with Python and Flask.
             </p>
           </div>
           
           <div className="relative pl-6 before:absolute before:left-0 before:top-3 before:h-3 before:w-3 before:rounded-full before:bg-accent-500 before:ring-4 before:ring-accent-100 dark:before:ring-accent-900/30">
             <p className="text-lg leading-relaxed">
-              Currently architecting SmartSchedule Healthcare, an AI-powered appointment scheduling SaaS on .NET 10 and Azure targeting a $150B healthcare market. This project brings together enterprise-grade architecture with AI/ML integration, HIPAA-compliant security, and bidirectional EHR integration.
+              I joined Cognativ Technology Limited as a Software Engineer, shipping RESTful APIs and Blazor Server components for the SmartSaaS™ enterprise platform — cutting API response times by 35% and driving test coverage to 80%.
             </p>
           </div>
           
           <div className="relative pl-6 before:absolute before:left-0 before:top-3 before:h-3 before:w-3 before:rounded-full before:bg-accent-500 before:ring-4 before:ring-accent-100 dark:before:ring-accent-900/30">
             <p className="text-lg leading-relaxed">
-              I started building software to solve problems I saw around me in East Africa. That instinct — to build things that actually matter to real people — is what drives every technical decision I make today, whether I'm designing a distributed system or a healthcare SaaS architecture.
+              Today I&apos;m architecting SmartSchedule Healthcare — an enterprise AI scheduling SaaS on .NET 10 and Azure targeting a $150B market. The same instinct that drove me to build solutions for East African organisations now drives every architectural decision I make at enterprise scale.
             </p>
           </div>
         </div>
